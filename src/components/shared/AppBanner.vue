@@ -44,28 +44,25 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import feather from 'feather-icons'
+import { ref, onBeforeMount, onMounted, onUpdated } from 'vue'
 
-export default {
-  name: 'Home',
-  data: () => {
-    return {
-      theme: '',
-    }
-  },
-  created() {
-    this.theme = localStorage.getItem('theme') || 'light'
-  },
-  mounted() {
-    feather.replace()
-    this.theme = localStorage.getItem('theme') || 'light'
-  },
-  updated() {
-    feather.replace()
-  },
-  methods: {},
-}
+const theme = ref(null)
+
+// onBeforeMount = created
+onBeforeMount(() => {
+  theme.value = localStorage.getItem('theme') || 'light'
+})
+
+onMounted(() => {
+  feather.replace()
+  theme.value = localStorage.getItem('theme') || 'light'
+})
+
+onUpdated(() => {
+  feather.replace()
+})
 </script>
 
 <style scoped></style>
