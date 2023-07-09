@@ -40,7 +40,7 @@
             aria-label="Name"
           />
         </div>
-        <ProjectsFilter @filter="selectedCategory = $event" />
+        <ProjectsFilter :selectOptions="selectOptions" @filter="selectedCategory = $event" />
       </div>
     </div>
 
@@ -55,53 +55,49 @@
   </section>
 </template>
 
-<script>
+<script setup>
 import feather from 'feather-icons'
 import ProjectsFilter from './ProjectsFilter.vue'
 import ProjectSingle from './ProjectSingle.vue'
 import projects from '../../data/projects'
+import { ref, computed, onMounted } from 'vue'
 
-export default {
-  components: { ProjectSingle, ProjectsFilter },
-  data: () => {
-    return {
-      projects,
-      projectsHeading: 'Projects Portfolio',
-      selectedCategory: '',
-      searchProject: '',
-    }
-  },
-  computed: {
-    // Get the filtered projects
-    filteredProjects() {
-      if (this.selectedCategory) {
-        return this.filterProjectsByCategory()
-      } else if (this.searchProject) {
-        return this.filterProjectsBySearch()
-      }
-      return this.projects
-    },
-  },
-  methods: {
-    // Filter projects by category
-    filterProjectsByCategory() {
-      return this.projects.filter((item) => {
-        let category =
-          item.category.charAt(0).toUpperCase() + item.category.slice(1)
-        console.log(category)
-        return category.includes(this.selectedCategory)
-      })
-    },
-    // Filter projects by title search
-    filterProjectsBySearch() {
-      let project = new RegExp(this.searchProject, 'i')
-      return this.projects.filter((el) => el.title.match(project))
-    },
-  },
-  mounted() {
-    feather.replace()
-  },
+const projectsHeading = 'Projects Portfolio'
+const selectedCategory = ref(null)
+const searchProject = ref(null)
+const selectOptions = [
+  'Web Application',
+  'Mobile Application',
+  'API Spring boot',
+  'Spring Microservice',
+]
+
+const filteredProjects = computed(() => {
+  if (selectedCategory.value) {
+    return filterProjectsByCategory()
+  } else if (searchProject.value) {
+    return filterProjectsBySearch()
+  }
+  return projects
+})
+
+function filterProjectsByCategory() {
+  return projects.filter((item) => {
+    let category =
+      item.category.charAt(0).toUpperCase() + item.category.slice(1)
+    console.log(category)
+    return category.includes(selectedCategory.value)
+  })
 }
+
+function filterProjectsBySearch() {
+  let project = new RegExp(searchProject.value, 'i')
+  return projects.filter((el) => el.title.match(project))
+}
+
+onMounted(() => {
+  feather.replace()
+})
 </script>
 
 <style scoped></style>

@@ -1,5 +1,4 @@
 <template>
-  <!-- <h2>Under Construction :-(</h2> -->
   <router-link
     to="/projects/single-project"
     class="rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark"
@@ -30,11 +29,7 @@
 <script>
 export default {
   props: {
-	project: Object,
-  },
-  setup(props) {
-	console.log("props.project", props.project);
-	return props.project
+    project: Object,
   },
 }
 </script>
