@@ -40,7 +40,10 @@
             aria-label="Name"
           />
         </div>
-        <ProjectsFilter :selectOptions="selectOptions" @filter="selectedCategory = $event" />
+        <ProjectsFilter
+          :selectOptions="selectOptions"
+          @filter="selectedCategory = $event"
+        />
       </div>
     </div>
 

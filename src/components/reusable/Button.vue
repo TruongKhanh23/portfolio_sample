@@ -1,16 +1,16 @@
+<template>
+  <button>{{ title }}</button>
+</template>
+
 <script>
 export default {
-	props: ['title'],
-	data: () => {
-		return {
-			//
-		};
-	},
-};
+  props: {
+    title: {
+      type: String,
+      default: '',
+    },
+  },
+}
 </script>
-
-<template>
-	<button>{{ title }}</button>
-</template>
 
 <style lang="scss" scoped></style>
