@@ -6,7 +6,7 @@
       <p
         class="font-general-semibold text-2xl sm:text-5xl font-semibold mb-2 text-ternary-dark dark:text-ternary-light"
       >
-        {{ projectsHeading }}
+        {{ title }}
       </p>
     </div>
 
@@ -15,7 +15,7 @@
       <h3
         class="font-general-regular text-center text-secondary-dark dark:text-ternary-light text-md sm:text-xl font-normal mb-4"
       >
-        Search projects by title or filter by category
+        {{ subTitle }}
       </h3>
       <div
         class="flex justify-between border-b border-primary-light dark:border-secondary-dark pb-3 gap-2"
@@ -65,7 +65,8 @@ import ProjectSingle from './ProjectSingle.vue'
 import projects from '../../data/projects'
 import { ref, computed, onMounted } from 'vue'
 
-const projectsHeading = 'Projects Portfolio'
+const title = 'Projects Portfolio'
+const subTitle = "Search projects by title or filter by category"
 const selectedCategory = ref(null)
 const searchProject = ref(null)
 const selectOptions = [

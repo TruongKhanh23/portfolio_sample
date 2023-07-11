@@ -7,16 +7,16 @@
       <h1
         class="font-general-semibold text-3xl md:text-3xl xl:text-4xl text-center sm:text-left text-ternary-dark dark:text-primary-light uppercase"
       >
-        Hi, Iam Chhinghor
+        {{ title }}
       </h1>
       <p
         class="font-general-medium mt-2 text-lg sm:text-xl xl:text-2xl text-center sm:text-left leading-none text-gray-400"
       >
-        Backend Developer
+        {{ subTitle }}
       </p>
       <div class="flex justify-center sm:block">
         <a
-          download="Lengchhinghor_CV_9th.pdf"
+          :download="cvFilePath"
           href="#"
           class="flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 text-gray-500 hover:text-white duration-500"
           aria-label="Download Resume"
@@ -26,7 +26,7 @@
             class="ml-0 sm:ml-1 mr-2 sm:mr-3 w-5 sm:w-6 duration-100"
           ></i>
           <span class="text-sm sm:text-lg font-general-medium duration-100">
-            Download CV
+            {{ buttonTitle }}
           </span>
         </a>
       </div>
@@ -45,24 +45,28 @@
 </template>
 
 <script setup>
-import feather from 'feather-icons'
-import { ref, onBeforeMount, onMounted, onUpdated } from 'vue'
+import feather from "feather-icons";
+import { ref, onBeforeMount, onMounted, onUpdated } from "vue";
 
-const theme = ref(null)
+const theme = ref(null);
+const title = "Hi, Iam Chhinghor";
+const subTitle = "Backend Developer";
+const buttonTitle = "Download CV";
+const cvFilePath = "Lengchhinghor_CV_9th.pdf"
 
 // onBeforeMount = created
 onBeforeMount(() => {
-  theme.value = localStorage.getItem('theme') || 'light'
-})
+  theme.value = localStorage.getItem("theme") || "light";
+});
 
 onMounted(() => {
-  feather.replace()
-  theme.value = localStorage.getItem('theme') || 'light'
-})
+  feather.replace();
+  theme.value = localStorage.getItem("theme") || "light";
+});
 
 onUpdated(() => {
-  feather.replace()
-})
+  feather.replace();
+});
 </script>
 
 <style scoped></style>
