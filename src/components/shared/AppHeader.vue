@@ -105,7 +105,7 @@ import Button from "../reusable/Button.vue";
 import { ref, onMounted, onUpdated } from "vue";
 
 const isOpen = false;
-const modal = ref(false)
+const modal = ref(false);
 const categories = [
   {
     id: 1,
@@ -127,14 +127,14 @@ const categories = [
     value: "microservice",
     name: "Spring Microservice",
   },
-]
-const switcherTheme = ref(localStorage.getItem("theme") || "light")
+];
+const switcherTheme = ref(localStorage.getItem("theme") || "light");
 onMounted(() => {
   feather.replace();
   switcherTheme.value = localStorage.getItem("theme") || "light";
-})
+});
 function updateTheme(theme) {
-	switcherTheme.value = theme
+  switcherTheme.value = theme;
 }
 function showModal() {
   if (modal.value) {
@@ -150,7 +150,7 @@ function showModal() {
 }
 onUpdated(() => {
   feather.replace();
-})
+});
 </script>
 
 <style scoped>

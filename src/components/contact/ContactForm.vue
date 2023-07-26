@@ -16,8 +16,8 @@
             :required="field.required"
             :placeholder="field.placeholder"
             :ariaLabel="field.ariaLabel"
-			:label="field.label"
-			:inputType="field.inputType"
+            :label="field.label"
+            :inputType="field.inputType"
           />
         </template>
 
@@ -47,7 +47,7 @@ const fieldsText = [
     required: "",
     placeholder: "Your Name",
     ariaLabel: "Name",
-	inputType: "string"
+    inputType: "string",
   },
   {
     id: "email",
@@ -56,7 +56,7 @@ const fieldsText = [
     required: "",
     placeholder: "Your Email",
     ariaLabel: "Email",
-	inputType: "string"
+    inputType: "string",
   },
   {
     id: "subject",
@@ -65,7 +65,7 @@ const fieldsText = [
     required: "",
     placeholder: "Subject",
     ariaLabel: "Subject",
-	inputType: "string"
+    inputType: "string",
   },
   {
     id: "message",
@@ -74,7 +74,7 @@ const fieldsText = [
     required: "",
     placeholder: "Message",
     ariaLabel: "Message",
-	inputType: "textarea"
+    inputType: "textarea",
   },
 ];
 </script>
