@@ -34,7 +34,7 @@
         <!-- Small screen hamburger menu -->
         <div class="sm:hidden">
           <button
-            @click="isOpen = !isOpen"
+            @click="updateIsOpen()"
             type="button"
             class="focus:outline-none"
             aria-label="Hamburger Menu"
@@ -104,7 +104,7 @@ import AppHeaderLinks from "./AppHeaderLinks.vue";
 import Button from "../reusable/Button.vue";
 import { ref, onMounted, onUpdated } from "vue";
 
-const isOpen = false;
+const isOpen = ref(false);
 const modal = ref(false);
 const categories = [
   {
@@ -133,6 +133,9 @@ onMounted(() => {
   feather.replace();
   switcherTheme.value = localStorage.getItem("theme") || "light";
 });
+function updateIsOpen(){
+  isOpen.value = !isOpen.value;
+}
 function updateTheme(theme) {
   switcherTheme.value = theme;
 }
