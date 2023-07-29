@@ -10,14 +10,14 @@
         <div>
           <router-link to="/"
             ><img
-              v-if="theme === 'light'"
-              src="@/assets/images/logo-light.svg"
+              v-if="switcherTheme === 'light'"
+              src="@/assets/images/logo-dark.svg"
               class="w-36"
               alt="Dark Logo"
             />
             <img
               v-else
-              src="@/assets/images/logo-dark.svg"
+              src="@/assets/images/logo-light.svg"
               class="w-36"
               alt="Light Logo"
             />
@@ -26,38 +26,13 @@
 
         <!-- Theme switcher small screen -->
         <theme-switcher
-          :theme="theme"
+          :theme="switcherTheme"
           @themeChanged="updateTheme"
           class="block sm:hidden bg-ternary-light dark:bg-ternary-dark hover:bg-hover-light dark:hover:bg-hover-dark hover:shadow-sm px-2.5 py-2 rounded-lg"
         />
 
         <!-- Small screen hamburger menu -->
-        <div class="sm:hidden">
-          <button
-            @click="updateIsOpen()"
-            type="button"
-            class="focus:outline-none"
-            aria-label="Hamburger Menu"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              class="h-7 w-7 fill-current text-secondary-dark dark:text-ternary-light"
-            >
-              <path
-                v-if="isOpen"
-                fill-rule="evenodd"
-                d="M18.278 16.864a1 1 0 0 1-1.414 1.414l-4.829-4.828-4.828 4.828a1 1 0 0 1-1.414-1.414l4.828-4.829-4.828-4.828a1 1 0 0 1 1.414-1.414l4.829 4.828 4.828-4.828a1 1 0 1 1 1.414 1.414l-4.828 4.829 4.828 4.828z"
-                clip-rule="evenodd"
-              ></path>
-              <path
-                v-if="!isOpen"
-                fill-rule="evenodd"
-                d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-              ></path>
-            </svg>
-          </button>
-        </div>
+        <ExpandMenu :isOpen="isOpen" @action:updateIsOpen="updateIsOpen" />
       </div>
 
       <!-- Header links -->
@@ -69,12 +44,7 @@
       >
         <!-- Hire me button -->
         <div class="hidden md:block">
-          <Button
-            title="Hire Me"
-            class="text-md font-general-medium bg-indigo-500 hover:bg-indigo-600 text-white shadow-sm rounded-md px-5 py-2.5 duration-300"
-            @click="showModal()"
-            aria-label="Hire Me Button"
-          />
+          <HireMeButton @action:showModal="showModal" />
         </div>
 
         <!-- Theme switcher large screen -->
@@ -101,8 +71,9 @@ import ThemeSwitcher from "../ThemeSwitcher";
 import HireMeModal from "../HireMeModal.vue";
 import feather from "feather-icons";
 import AppHeaderLinks from "./AppHeaderLinks.vue";
-import Button from "../reusable/Button.vue";
 import { ref, onMounted, onUpdated } from "vue";
+import ExpandMenu from "@/components/shared/ExpandMenu.vue";
+import HireMeButton from "@/components/reusable/HireMeButton.vue";
 
 const isOpen = ref(false);
 const modal = ref(false);
@@ -133,9 +104,9 @@ onMounted(() => {
   feather.replace();
   switcherTheme.value = localStorage.getItem("theme") || "light";
 });
-function updateIsOpen(){
-  isOpen.value = !isOpen.value;
-}
+const updateIsOpen = async (value) => {
+  isOpen.value = value;
+};
 function updateTheme(theme) {
   switcherTheme.value = theme;
 }
