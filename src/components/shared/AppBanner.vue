@@ -7,12 +7,12 @@
       <h1
         class="font-general-semibold text-3xl md:text-3xl xl:text-4xl text-center sm:text-left text-ternary-dark dark:text-primary-light uppercase"
       >
-        {{ title }}
+        {{ $t("banner.title") }}
       </h1>
       <p
         class="font-general-medium mt-2 text-lg sm:text-xl xl:text-2xl text-center sm:text-left leading-none text-gray-400"
       >
-        {{ subTitle }}
+        {{ $t("banner.subTitle") }}
       </p>
       <div class="flex justify-center sm:block">
         <a
@@ -26,7 +26,7 @@
             class="ml-0 sm:ml-1 mr-2 sm:mr-3 w-5 sm:w-6 duration-100"
           ></i>
           <span class="text-sm sm:text-lg font-general-medium duration-100">
-            {{ buttonTitle }}
+            {{ $t("banner.download.title") }}
           </span>
         </a>
       </div>
@@ -49,9 +49,6 @@ import feather from "feather-icons";
 import { ref, onBeforeMount, onMounted, onUpdated } from "vue";
 
 const theme = ref(null);
-const title = "Hi, Iam Chhinghor";
-const subTitle = "Backend Developer";
-const buttonTitle = "Download CV";
 const cvFilePath = "Lengchhinghor_CV_9th.pdf"
 
 // onBeforeMount = created

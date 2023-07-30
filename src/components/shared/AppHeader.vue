@@ -53,6 +53,8 @@
           @themeChanged="updateTheme"
           class="ml-8 bg-primary-light dark:bg-ternary-dark px-3 py-2 shadow-sm rounded-xl cursor-pointer"
         />
+        <CLocales />
+        
       </div>
     </div>
 
@@ -74,6 +76,7 @@ import AppHeaderLinks from "./AppHeaderLinks.vue";
 import { ref, onMounted, onUpdated } from "vue";
 import ExpandMenu from "@/components/shared/ExpandMenu.vue";
 import HireMeButton from "@/components/reusable/HireMeButton.vue";
+import CLocales from "@/components/core/CLocales.vue"
 
 const isOpen = ref(false);
 const modal = ref(false);

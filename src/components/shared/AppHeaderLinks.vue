@@ -9,9 +9,12 @@
         :to="link.link"
         class="font-general-medium block text-left text-lg font-medium text-primary-dark dark:text-ternary-light hover:text-indigo-600 dark:hover:text-indigo-300 sm:mx-4 mb-2 sm:py-2"
         :aria-label="link.name"
-        >{{ link.name }}</router-link
+        >{{ $t(link.name) }}</router-link
       >
     </template>
+    <div class="sm:hidden text-left">
+      <CLocales />
+    </div>
     <div
       class="border-t-2 pt-3 sm:pt-0 sm:border-t-0 border-primary-light dark:border-secondary-dark"
     >
@@ -23,6 +26,7 @@
 <script setup>
 import { defineProps } from "vue";
 import HireMeButton from "@/components/reusable/HireMeButton.vue";
+import CLocales from "@/components/core/CLocales.vue"
 
 defineProps({
   showModal: {
@@ -37,15 +41,15 @@ defineProps({
 
 const links = [
   {
-    name: "Projects",
+    name: "navigator.projects",
     link: "/projects",
   },
   {
-    name: "About Me",
+    name: "navigator.about",
     link: "/about",
   },
   {
-    name: "Contact",
+    name: "navigator.contact",
     link: "/contact",
   },
 ];
