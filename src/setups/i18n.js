@@ -21,6 +21,7 @@ export default function () {
   const localeLanguage = getLocale();
 
   i18nInstance = createI18n({
+    legacy: false,
     locale: localeLanguage, // set locale
     fallbackLocale: "vi-VN",
     messages, // set locale messages

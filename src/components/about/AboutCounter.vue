@@ -4,70 +4,23 @@
     <div
       class="font-general-regular container mx-auto py-20 block sm:flex sm:justify-between sm:items-center"
     >
-      <!-- Years of experience counter -->
-      <div class="mb-20 sm:mb-0">
+      <!-- Sử dụng v-for để lặp qua mảng các thông số cần đếm -->
+      <div
+        v-for="(counterItem, index) in counterItems"
+        :key="index"
+        class="mb-20 sm:mb-0"
+      >
         <counter
           ref="counter"
           :startAmount="0"
-          :endAmount="2"
+          :endAmount="counterItem.endAmount"
           :duration="1"
+          :suffix="counterItem.suffix"
           :autoinit="true"
-          @finished="alert(`Counting finished!`)"
-          class="font-general-medium text-4xl font-bold text-secondary-dark dark:text-secondary-light mb-2"
-          aria-label="About Status Counter"
-        />
-        <span class="block text-md text-ternary-dark dark:text-ternary-light">
-          {{ experienceTitle }}
-        </span>
-      </div>
-
-      <!-- GitHub stars counter -->
-      <div class="mb-20 sm:mb-0">
-        <counter
-          ref="counter"
-          :startAmount="0"
-          :endAmount="20"
-          :duration="1"
-          suffix=""
-          :autoinit="true"
-          @finished="alert(`Counting finished!`)"
           class="font-general-medium text-4xl font-bold text-secondary-dark dark:text-secondary-light mb-2"
         />
         <span class="block text-md text-ternary-dark dark:text-ternary-light">
-          {{ githubTitle }}
-        </span>
-      </div>
-
-      <!-- Positive feedback counter -->
-      <div class="mb-20 sm:mb-0">
-        <counter
-          ref="counter"
-          :startAmount="0"
-          :endAmount="80"
-          :duration="1"
-          suffix="%"
-          :autoinit="true"
-          @finished="alert(`Counting finished!`)"
-          class="font-general-medium text-4xl font-bold text-secondary-dark dark:text-secondary-light mb-2"
-        />
-        <span class="block text-md text-ternary-dark dark:text-ternary-light">
-          {{ feedbackTitle }}
-        </span>
-      </div>
-
-      <!-- Projects completed counter -->
-      <div class="mb-20 sm:mb-0">
-        <counter
-          ref="counter"
-          :startAmount="0"
-          :endAmount="6"
-          :duration="1"
-          :autoinit="true"
-          @finished="alert(`Counting finished!`)"
-          class="font-general-medium text-4xl font-bold text-secondary-dark dark:text-secondary-light mb-2"
-        />
-        <span class="block text-md text-ternary-dark dark:text-ternary-light">
-          {{ projectsTitle }}
+          {{ $t(counterItem.translationKey) }}
         </span>
       </div>
     </div>
@@ -75,11 +28,12 @@
 </template>
 
 <script setup>
-import counter from 'vue3-autocounter'
+import counter from "vue3-autocounter";
 
-const experienceTitle = 'Years of experience'
-const githubTitle = 'Stars on GitHub'
-const feedbackTitle = 'Positive feedback'
-const projectsTitle = 'Projects completed'
-
+const counterItems = [
+  { endAmount: 2, suffix: "", translationKey: "about.counter.experience" },
+  { endAmount: 20, suffix: "", translationKey: "about.counter.github" },
+  { endAmount: 80, suffix: "%", translationKey: "about.counter.feedback" },
+  { endAmount: 6, suffix: "", translationKey: "about.counter.projects" },
+];
 </script>

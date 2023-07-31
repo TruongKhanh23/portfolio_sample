@@ -33,7 +33,7 @@ const props = defineProps({
 });
 const locales = useLocale();
 const textColors = ref({
-  activeText: props.footer ? "text-cWhite" : "text-c1-500",
+  activeText: props.footer ? "text-cWhite" : "text-indigo-500",
   inActiveText: props.footer ? "text-c1-200" : "text-c0-600",
 });
 </script>

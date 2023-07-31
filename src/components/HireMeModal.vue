@@ -18,7 +18,7 @@
                 class="modal-header flex justify-between gap-10 p-5 border-b border-ternary-light dark:border-ternary-dark"
               >
                 <h5 class="text-primary-dark dark:text-primary-light text-xl">
-                  {{ title }}
+                  {{ $t("hireMeModal.title") }}
                 </h5>
                 <button
                   class="px-4 text-primary-dark dark:text-primary-light"
@@ -27,7 +27,9 @@
                   <i data-feather="x"></i>
                 </button>
               </div>
-              <div class="modal-body p-5 w-full h-full">
+              <div
+                class="p-5 w-full h-full modal-footer mt-2 sm:mt-0 py-5 px-8 border0-t text-right"
+              >
                 <form class="max-w-xl m-4 text-left">
                   <template v-for="field in fields" :key="field.id">
                     <div class="mt-6">
@@ -44,25 +46,26 @@
                     </div>
                   </template>
 
-                  <div class="mt-6 pb-4 sm:pb-1">
+                  <div
+                    class="w-full h-full mt-2 sm:mt-0 py-5 border0-t text-right flex justify-between"
+                  >
+                    <!-- Left-aligned button -->
                     <Button
-                      title="Send Request"
-                      class="px-4 sm:px-6 py-2 sm:py-2.5 text-white bg-indigo-500 hover:bg-indigo-600 rounded-md focus:ring-1 focus:ring-indigo-900 duration-500"
+                      :title="$t('hireMeModal.sendRequest')"
+                      class="px-4 sm:px-6 py-2 sm:py-2.5 text-white bg-indigo-500 hover:bg-ternary-dark rounded-md focus:ring-1 focus:ring-indigo-900 duration-500"
                       type="submit"
-                      aria-label="Submit Request"
+                      :aria-label="$t('hireMeModal.sendRequest')"
+                    />
+
+                    <!-- Right-aligned button -->
+                    <Button
+                      :title="$t('hireMeModal.close')"
+                      class="px-4 sm:px-6 py-2 sm:py-2.5 text-white bg-gray-600 hover:bg-indigo-600 rounded-md focus:ring-1 focus:ring-indigo-900 duration-500"
+                      @click="showModal()"
+                      :aria-label="$t('hireMeModal.close')"
                     />
                   </div>
                 </form>
-              </div>
-              <div
-                class="modal-footer mt-2 sm:mt-0 py-5 px-8 border0-t text-right"
-              >
-                <Button
-                  title="Close"
-                  class="px-4 sm:px-6 py-2 bg-gray-600 text-primary-light hover:bg-ternary-dark dark:bg-gray-200 dark:text-secondary-dark dark:hover:bg-primary-light rounded-md focus:ring-1 focus:ring-indigo-900 duration-500"
-                  @click="showModal()"
-                  aria-label="Close Modal"
-                />
               </div>
             </div>
           </div>
@@ -77,7 +80,9 @@ import feather from "feather-icons";
 import Button from "./reusable/Button.vue";
 import { defineProps, onMounted, onUpdated } from "vue";
 import CFormField from "@/components/shared/CFormField";
+import { useI18n } from "vue-i18n";
 
+const { t } = useI18n();
 const props = defineProps({
   showModal: {
     type: Function,
@@ -93,15 +98,13 @@ const props = defineProps({
   },
 });
 
-const title = "What project are you looking for?";
-
 const fields = [
   {
     id: "name",
     label: "Full Name",
     name: "name",
     required: "",
-    placeholder: "Your Name",
+    placeholder: t("hireMeModal.fields.name"),
     ariaLabel: "Name",
     inputType: "string",
   },
@@ -110,7 +113,7 @@ const fields = [
     label: "Email",
     name: "email",
     required: "",
-    placeholder: "Your Email",
+    placeholder: t("hireMeModal.fields.email"),
     ariaLabel: "Email",
     inputType: "string",
   },
@@ -119,7 +122,7 @@ const fields = [
     label: "Subject",
     name: "subject",
     required: "",
-    placeholder: "Subject",
+    placeholder: t("hireMeModal.fields.subject"),
     ariaLabel: "Subject",
     inputType: "string",
   },
@@ -138,7 +141,7 @@ const fields = [
     label: "Project Description",
     name: "Project Description",
     required: "",
-    placeholder: "Project Description",
+    placeholder: t("hireMeModal.fields.description"),
     ariaLabel: "Project Description",
     inputType: "textarea",
   },
@@ -158,11 +161,6 @@ onUpdated(() => {
 }
 .bg-gray-800-opacity {
   background-color: #2d374850;
-}
-@media screen and (max-width: 768px) {
-  .modal-body {
-    max-height: 400px;
-  }
 }
 .fade-up-down-enter-active {
   transition: all 0.3s ease;

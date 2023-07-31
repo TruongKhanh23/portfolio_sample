@@ -8,7 +8,7 @@
         <p
           class="font-general-semibold text-3xl sm:text-4xl font-semibold text-primary-dark dark:text-primary-light mb-5"
         >
-          {{ title }}
+          {{ $t("footer.title") }}
         </p>
         <ul class="flex gap-4 sm:gap-8">
           <a
@@ -34,7 +34,6 @@ import feather from "feather-icons";
 import FooterCopyright from "./FooterCopyright.vue";
 import { onMounted, onUpdated } from "vue";
 
-const title = "Follow me"
 const socials = [
   {
     id: 1,
