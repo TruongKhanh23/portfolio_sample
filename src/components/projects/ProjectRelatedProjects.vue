@@ -7,21 +7,25 @@
     >
       {{ relatedProject.relatedProjectsHeading }}
     </p>
-
-    <div class="grid grid-cols-1 sm:grid-cols-4 gap-10">
-      <div v-for="item in relatedProject.relatedProjects" :key="item.id">
+    <Slider :list="relatedProject.relatedProjects" :attrs="{ perPage: 4 }">
+      <template #content="{ data }">
         <img
-          :src="item.img"
+          :src="data.img"
           class="rounded-xl cursor-pointer"
-          :alt="item.title"
+          :alt="data.title"
         />
-      </div>
-    </div>
+      </template>
+    </Slider>
   </div>
 </template>
 
 <script>
+import Slider from "@/components/reusable/Slider.vue";
+
 export default {
+  components: {
+    Slider,
+  },
   props: {
     relatedProject: {
       type: Object,
