@@ -4,7 +4,7 @@
       <h2
         class="font-general-medium text-2xl text-primary-dark dark:text-primary-light mt-12 mb-8"
       >
-        {{ title }}
+        {{ $t("contact.title") }}
       </h2>
       <ul class="font-general-regular">
         <li class="flex" v-for="contact in contacts" :key="contact.id">
@@ -39,8 +39,6 @@ defineProps({
     default: () => {},
   },
 });
-
-const title = "Contact details"
 </script>
 
 <style lang="scss" scoped></style>

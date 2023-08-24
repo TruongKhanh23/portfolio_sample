@@ -54,4 +54,7 @@ export default {
       title: "Some of the brands I have worked with"
     }
   },
+  contact: {
+    title: "Contact Details"
+  }
 };
