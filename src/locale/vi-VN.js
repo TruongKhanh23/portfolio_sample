@@ -53,5 +53,8 @@ export default {
     clients: {
       title: "Một số thương hiệu tôi đã hợp tác"
     }
+  },
+  contact: {
+    title: "Thông tin liên hệ"
   }
 };

@@ -4,6 +4,7 @@ import router from './router';
 import './assets/css/app.css';
 import BackToTop from 'vue-backtotop';
 import i18n from "./setups/i18n"
+import VueSplide from '@splidejs/vue-splide';
 
 const feather = require('feather-icons');
 feather.replace();
@@ -14,6 +15,7 @@ createApp(App)
 	.use(router)
 	.use(BackToTop)
 	.use(i18nInstance)
+	.use(VueSplide)
 	.mount('#app');
 
 const appTheme = localStorage.getItem('theme');
