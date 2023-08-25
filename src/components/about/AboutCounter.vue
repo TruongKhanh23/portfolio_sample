@@ -10,15 +10,10 @@
         :key="index"
         class="mb-20 sm:mb-0"
       >
-        <counter
-          ref="counter"
-          :startAmount="0"
-          :endAmount="counterItem.endAmount"
-          :duration="1"
-          :suffix="counterItem.suffix"
-          :autoinit="true"
+        <span
           class="font-general-medium text-4xl font-bold text-secondary-dark dark:text-secondary-light mb-2"
-        />
+          >{{ counterItem.endAmount }}</span
+        >
         <span class="block text-md text-ternary-dark dark:text-ternary-light">
           {{ $t(counterItem.translationKey) }}
         </span>
@@ -28,8 +23,6 @@
 </template>
 
 <script setup>
-import counter from "vue3-autocounter";
-
 const counterItems = [
   { endAmount: 2, suffix: "", translationKey: "about.counter.experience" },
   { endAmount: 20, suffix: "", translationKey: "about.counter.github" },
