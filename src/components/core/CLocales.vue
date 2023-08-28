@@ -3,7 +3,7 @@
     <template v-for="(locale, i) in locales.list" :key="locale">
       <a
         :href="locales.getLinkToChange(locale)"
-        class="px-3 text-sm font-bold uppercase"
+        class="px-3 text-lg md:text-sm font-bold uppercase"
         :class="[
           locales.getCurrent() === locale
             ? textColors.activeText
