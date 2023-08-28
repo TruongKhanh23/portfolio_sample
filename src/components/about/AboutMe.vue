@@ -9,7 +9,7 @@
     <div class="w-full sm:w-3/4 text-left">
       <template v-for="bio in bios" :key="bio">
         <p
-          class="font-general-regular mb-4 text-ternakry-dark dark:text-ternary-light text-lg"
+          class="font-general-regular mb-4 text-ternakry-dark dark:text-ternary-light text-lg tracking-wider"
         >
           <i18n-t :keypath="bio"></i18n-t>
         </p>
