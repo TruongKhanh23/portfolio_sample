@@ -6,30 +6,29 @@
     >
       <!-- Header menu links and small screen hamburger menu -->
       <div class="flex justify-between items-center px-4 sm:px-0">
-        <!-- Header logos -->
-        <div>
-          <router-link to="/"
-            ><img
-              v-if="switcherTheme === 'light'"
-              src="@/assets/images/logo-dark.svg"
-              class="w-36"
-              alt="Dark Logo"
-            />
-            <img
-              v-else
-              src="@/assets/images/logo-light.svg"
-              class="w-36"
-              alt="Light Logo"
-            />
-          </router-link>
-        </div>
-
         <!-- Theme switcher small screen -->
         <theme-switcher
           :theme="switcherTheme"
           @themeChanged="updateTheme"
           class="block sm:hidden bg-ternary-light dark:bg-ternary-dark hover:bg-hover-light dark:hover:bg-hover-dark hover:shadow-sm px-2.5 py-2 rounded-lg"
         />
+        <!-- Header logos -->
+        <div>
+          <router-link to="/"
+            ><img
+              v-if="switcherTheme === 'light'"
+              src="@/assets/images/logo-light-new.svg"
+              class="w-36"
+              alt="Dark Logo"
+            />
+            <img
+              v-else
+              src="@/assets/images/logo-dark-new.svg"
+              class="w-36"
+              alt="Light Logo"
+            />
+          </router-link>
+        </div>
 
         <!-- Small screen hamburger menu -->
         <ExpandMenu :isOpen="isOpen" @action:updateIsOpen="updateIsOpen" />
@@ -54,7 +53,6 @@
           class="ml-8 bg-primary-light dark:bg-ternary-dark px-3 py-2 shadow-sm rounded-xl cursor-pointer"
         />
         <CLocales />
-        
       </div>
     </div>
 
@@ -76,7 +74,7 @@ import AppHeaderLinks from "./AppHeaderLinks.vue";
 import { ref, onMounted, onUpdated } from "vue";
 import ExpandMenu from "@/components/shared/ExpandMenu.vue";
 import HireMeButton from "@/components/reusable/HireMeButton.vue";
-import CLocales from "@/components/core/CLocales.vue"
+import CLocales from "@/components/core/CLocales.vue";
 
 const isOpen = ref(false);
 const modal = ref(false);
