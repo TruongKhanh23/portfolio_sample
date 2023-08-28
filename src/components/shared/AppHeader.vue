@@ -11,13 +11,13 @@
           <router-link to="/"
             ><img
               v-if="switcherTheme === 'light'"
-              src="@/assets/images/logo-dark.svg"
+              src="@/assets/images/logo-dark-new.svg"
               class="w-36"
               alt="Dark Logo"
             />
             <img
               v-else
-              src="@/assets/images/logo-light.svg"
+              src="@/assets/images/logo-light-new.svg"
               class="w-36"
               alt="Light Logo"
             />
