@@ -5,7 +5,7 @@
     <!-- Banner left contents -->
     <div class="w-full md:w-1/3 text-left">
       <h1
-        class="font-general-semibold text-3xl md:text-3xl xl:text-4xl text-center sm:text-left text-ternary-dark dark:text-primary-light uppercase"
+        class="font-bold text-3xl md:text-3xl xl:text-4xl text-center sm:text-left text-ternary-dark dark:text-primary-light uppercase"
       >
         {{ $t("home.banner.title") }}
       </h1>
