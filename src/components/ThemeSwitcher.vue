@@ -15,7 +15,6 @@
 
 <script setup>
 import { computed, defineProps, defineEmits } from "vue";
-import { useRouter } from "vue-router";
 
 const props = defineProps({
   theme: {
@@ -26,12 +25,11 @@ const props = defineProps({
 const theme = computed(() => props.theme);
 
 const emit = defineEmits(["themeChanged"]);
-const router = useRouter();
 
 function toggleTheme() {
   const newTheme = theme.value === "light" ? "dark" : "light";
   localStorage.setItem("theme", newTheme);
   emit("themeChanged", newTheme);
-  router.go();
+  window.location.reload()
 }
 </script>
