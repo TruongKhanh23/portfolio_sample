@@ -6,7 +6,7 @@
       <p
         class="font-general-medium text-primary-dark dark:text-primary-light text-2xl mb-8"
       >
-        {{ formName }}
+        {{ $t("contact.form.name") }}
       </p>
       <form action="#" class="font-general-regular space-y-7">
         <template v-for="field in fieldsText" :key="field.id">
@@ -37,15 +37,16 @@
 <script setup>
 import Button from "../reusable/Button.vue";
 import CFormField from "@/components/shared/CFormField";
+import { useI18n } from "vue-i18n";
 
-const formName = "Contact Form";
+const { t } = useI18n();
 const fieldsText = [
   {
     id: "name",
-    label: "Full Name",
+    label: t("contact.form.fullName.label"),
     name: "name",
     required: "",
-    placeholder: "Your Name",
+    placeholder: t("contact.form.fullName.placeholder"),
     ariaLabel: "Name",
     inputType: "string",
   },

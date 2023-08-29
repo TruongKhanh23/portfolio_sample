@@ -48,13 +48,20 @@ export default {
       experience: "Years of experience",
       github: "Stars on GitHub",
       feedback: "Positive feedback",
-      projects: "Projects completed"
+      projects: "Projects completed",
     },
     clients: {
-      title: "Some of the brands I have worked with"
-    }
+      title: "Some of the brands I have worked with",
+    },
   },
   contact: {
-    title: "Contact Details"
-  }
+    title: "Contact Details",
+    form: {
+      name: "Contact Form",
+      fullName: {
+        label: "Full Name",
+        placeholder: "Full Name",
+      },
+    },
+  },
 };
