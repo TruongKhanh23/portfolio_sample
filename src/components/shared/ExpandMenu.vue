@@ -28,12 +28,24 @@
 </template>
 
 <script setup>
-import { ref, defineEmits } from "vue";
+import { defineEmits, defineProps, toRefs, computed } from "vue";
 
-const isOpen = ref(false);
+const props = defineProps({
+  showModal: {
+    type: Function,
+    default: () => () => {},
+  },
+  isOpen: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+const { isOpen } = toRefs(props);
+const openMobileMenu = computed(() => isOpen.value);
+
 const emit = defineEmits(["action:updateIsOpen"]);
 const updateIsOpen = async () => {
-  isOpen.value = !isOpen.value;
-  emit("action:updateIsOpen", isOpen.value);
+  emit("action:updateIsOpen", !openMobileMenu.value);
 };
 </script>

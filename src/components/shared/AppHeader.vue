@@ -35,7 +35,11 @@
       </div>
 
       <!-- Header links -->
-      <AppHeaderLinks :showModal="showModal" :isOpen="isOpen" />
+      <AppHeaderLinks
+        :showModal="showModal"
+        :isOpen="isOpen"
+        @action:updateIsOpen="updateIsOpen"
+      />
 
       <!-- Header right section buttons -->
       <div
@@ -105,6 +109,7 @@ onMounted(() => {
   feather.replace();
   switcherTheme.value = localStorage.getItem("theme") || "light";
 });
+
 const updateIsOpen = async (value) => {
   isOpen.value = value;
 };
