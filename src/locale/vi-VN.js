@@ -8,7 +8,7 @@ export default {
   home: {
     banner: {
       title: "Xin chào, tôi là Trương Khánh",
-      subTitle: "Lập trình viên Front-end",
+      subTitle: "Lập trình viên Website",
       download: {
         title: "Tải về CV",
         link: "Lengchhinghor_CV_9th.pdf",
@@ -16,7 +16,7 @@ export default {
       },
     },
     projectsGrid: {
-      title: "Projects Portfolio",
+      title: "Dự án của tôi",
       subTitle: "Tìm những dự án của tôi bằng tiêu đề hoặc lọc theo danh mục",
       searchProjects: "Tìm kiếm",
       moreProjects: "Xem thêm",
@@ -62,6 +62,19 @@ export default {
         label: "Họ và Tên",
         placeholder: "Họ và Tên",
       },
+      email: {
+        label: "Email",
+        placeholder: "Email của bạn",
+      },
+      subject: {
+        label: "Tiêu đề",
+        placeholder: "Nhập tiêu đề",
+      },
+      message: {
+        label: "Nội dung",
+        placeholder: "Nội dung",
+      },
+      button: "Gửi đến Khánh",
     },
   },
 };

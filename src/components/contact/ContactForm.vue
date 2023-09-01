@@ -23,7 +23,7 @@
 
         <div>
           <Button
-            title="Send Message"
+            :title="t('contact.form.button')"
             class="px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
             type="submit"
             aria-label="Send Message"
@@ -52,28 +52,28 @@ const fieldsText = [
   },
   {
     id: "email",
-    label: "Email",
+    label: t("contact.form.email.label"),
     name: "email",
     required: "",
-    placeholder: "Your Email",
+    placeholder: t("contact.form.email.placeholder"),
     ariaLabel: "Email",
     inputType: "string",
   },
   {
     id: "subject",
-    label: "Subject",
+    label: t("contact.form.subject.label"),
     name: "subject",
     required: "",
-    placeholder: "Subject",
+    placeholder: t("contact.form.subject.placeholder"),
     ariaLabel: "Subject",
     inputType: "string",
   },
   {
     id: "message",
-    label: "Message",
+    label: t("contact.form.message.label"),
     name: "message",
     required: "",
-    placeholder: "Message",
+    placeholder: t("contact.form.message.placeholder"),
     ariaLabel: "Message",
     inputType: "textarea",
   },

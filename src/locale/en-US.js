@@ -62,6 +62,19 @@ export default {
         label: "Full Name",
         placeholder: "Full Name",
       },
+      email: {
+        label: "Email",
+        placeholder: "Your Email",
+      },
+      subject: {
+        label: "Subject",
+        placeholder: "Your Subject",
+      },
+      message: {
+        label: "Message",
+        placeholder: "Message",
+      },
+      button: "Send Message",
     },
   },
 };
