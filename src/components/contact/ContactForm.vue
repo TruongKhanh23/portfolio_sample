@@ -6,7 +6,7 @@
       <p
         class="font-general-medium text-primary-dark dark:text-primary-light text-2xl mb-8"
       >
-        {{ formName }}
+        {{ $t("contact.form.name") }}
       </p>
       <form action="#" class="font-general-regular space-y-7">
         <template v-for="field in fieldsText" :key="field.id">
@@ -23,7 +23,7 @@
 
         <div>
           <Button
-            title="Send Message"
+            :title="t('contact.form.button')"
             class="px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
             type="submit"
             aria-label="Send Message"
@@ -37,42 +37,43 @@
 <script setup>
 import Button from "../reusable/Button.vue";
 import CFormField from "@/components/shared/CFormField";
+import { useI18n } from "vue-i18n";
 
-const formName = "Contact Form";
+const { t } = useI18n();
 const fieldsText = [
   {
     id: "name",
-    label: "Full Name",
+    label: t("contact.form.fullName.label"),
     name: "name",
     required: "",
-    placeholder: "Your Name",
+    placeholder: t("contact.form.fullName.placeholder"),
     ariaLabel: "Name",
     inputType: "string",
   },
   {
     id: "email",
-    label: "Email",
+    label: t("contact.form.email.label"),
     name: "email",
     required: "",
-    placeholder: "Your Email",
+    placeholder: t("contact.form.email.placeholder"),
     ariaLabel: "Email",
     inputType: "string",
   },
   {
     id: "subject",
-    label: "Subject",
+    label: t("contact.form.subject.label"),
     name: "subject",
     required: "",
-    placeholder: "Subject",
+    placeholder: t("contact.form.subject.placeholder"),
     ariaLabel: "Subject",
     inputType: "string",
   },
   {
     id: "message",
-    label: "Message",
+    label: t("contact.form.message.label"),
     name: "message",
     required: "",
-    placeholder: "Message",
+    placeholder: t("contact.form.message.placeholder"),
     ariaLabel: "Message",
     inputType: "textarea",
   },
