@@ -5,7 +5,7 @@
     <p
       class="font-general-regular text-primary-dark dark:text-primary-light text-3xl font-bold mb-10 sm:mb-14 text-left"
     >
-      {{ relatedProject.relatedProjectsHeading }}
+      {{ $t("projects.projectInfo.relatedProjects") }}
     </p>
     <Slider :list="relatedProject.relatedProjects" :attrs="{ perPage: 4 }">
       <template #content="{ data }">
@@ -32,5 +32,5 @@ export default {
       default: () => {},
     },
   },
-}
+};
 </script>
