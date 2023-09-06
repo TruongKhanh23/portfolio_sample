@@ -84,7 +84,7 @@ export default {
       toolTechnology: "Công nghệ sử dụng",
       sharing: "Chia sẻ",
       challenge: "Thử thách",
-      relatedProjects: "Dự án khác",
+      otherProjects: "Dự án khác",
     },
   },
 };

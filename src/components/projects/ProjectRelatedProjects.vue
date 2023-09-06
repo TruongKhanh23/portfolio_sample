@@ -5,9 +5,9 @@
     <p
       class="font-general-regular text-primary-dark dark:text-primary-light text-3xl font-bold mb-10 sm:mb-14 text-left"
     >
-      {{ $t("projects.projectInfo.relatedProjects") }}
+      {{ $t("projects.projectInfo.otherProjects") }}
     </p>
-    <Slider :list="relatedProject.relatedProjects" :attrs="{ perPage: 4 }">
+    <Slider :list="otherProjects" :attrs="{ perPage: 4 }">
       <template #content="{ data }">
         <img
           :src="data.img"
@@ -27,7 +27,7 @@ export default {
     Slider,
   },
   props: {
-    relatedProject: {
+    otherProjects: {
       type: Object,
       default: () => {},
     },

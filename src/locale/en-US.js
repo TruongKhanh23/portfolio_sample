@@ -84,7 +84,7 @@ export default {
       toolTechnology: "Tool & Technology",
       sharing: "Sharing",
       challenge: "Challenge",
-      relatedProjects: "Related Projects"
+      otherProjects: "Other Projects"
     },
   },
 };
