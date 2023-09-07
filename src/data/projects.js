@@ -5,41 +5,40 @@ const projects = [
   {
     id: 1,
     header: {
-      title: "SDF Cambodia",
-      date: "Jul 26, 2020",
-      tags: "Backend/Frontend",
+      title: "Sale Online Platform",
+      date: "07/09/2023",
+      tags: "Backend/Frontend/VueJS/TailwindCSS",
     },
     category: "Web Application",
-    img: require("@/assets/images/web-project-2.jpg"),
+    img: require("@/assets/images/projects/sop/sop_2.png"),
     projectImages: [
-      require("@/assets/images/ui-project-1.jpg"),
-      require("@/assets/images/web-project-2.jpg"),
-      require("@/assets/images/mobile-project-2.jpg"),
-      require("@/assets/images/web-project-2.jpg"),
+      require("@/assets/images/projects/sop/sop_1.png"),
+      require("@/assets/images/projects/sop/sop_2.png"),
+      require("@/assets/images/projects/sop/sop_3.png"),
     ],
     projectInfo: {
       companyInfos: [
-        "MEF: Ministry of Economy and Finance",
+        "Dai-ichi: Dai-ichi Life Vietnam",
         "Services: Website/Portal",
-        "Website: <a class='hover:underline cursor-pointer'>http://www.sdfcambodia.org/kh/home</a>",
+        "Website: <a href='https://e.dai-ichi-life.com.vn' class='hover:underline cursor-pointer' target='_blank'>https://e.dai-ichi-life.com.vn</a>",
         "Phone: N/A",
       ],
       objectivesDetails:
-        "To be the most trusted financing platform for sustainable and demand-driven skill development.",
+        "Để mang đến trải nghiệm bảo hiểm thuận tiện và tin cậy, vượt bậc trong việc cung cấp dịch vụ bảo hiểm dễ dàng, linh hoạt và tiện lợi.",
       technologies: [
         {
           techs: [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "Laravel",
+            "VueJS",
             "TailwindCSS",
-            "MySql",
+            "JavaScript",
+            "Java",
+            "GraphQL",
           ],
         },
       ],
       projectDetails: [
-        "Tens of thousands of Cambodia’s young population enter the labor force each year. Labor force participation among the working age population (15–64 years) increased from 7.7 million in 2009 to 8.3 million in 2015. While the country is endowed with an ample supply of labor, the labor force is still characterized by very low levels of education and skill. The average educational attainment of the current workforce is primary school completion (grade 6) or below—a major barrier to industrial diversification efforts and moving up the value chain. The 2015 Cambodia Socio-Economic Survey found that nearly half (46%) of the labor force have either not completed primary education or never attended school. Less than 7% of workers completed high school (grade 12). There is a pressing need to respond to the growing demand for an adaptable workforce with professional skills and proper workplace behavior. In response, the government has taken steps to reform and strengthen the education and training system, including an enhanced role of the private sector in skills development and providing incentives to enterprises to train their own workforce. The pilot Skills Development Fund (SDF) is an industry-driven workforce development program. The general notion is to build confidence in industry partnership and to engage more strongly with the private sector and their training needs. Firms willing but at times hesitant to further develop their workforce may be supported by the SDF to further invest in workforce development. Motivated private workforce development initiatives and intentions shall be mainly supported by the SDF (which in turn consists of a motivated, skilled, and client-oriented team).",
+        "Xu hướng số hóa và công nghệ ngày càng thay đổi mọi người tiếp cận và sử dụng dịch vụ. Để mang đến trải nghiệm bảo hiểm thuận tiện và tin cậy, tôi trân trọng giới thiệu tới Anh/Chị nền tảng bảo hiểm trực tuyến mới Dai-ichi ON, một bước tiến vượt bậc trong việc cung cấp dịch vụ bảo hiểm dễ dàng, linh hoạt và tiện lợi",
+        "Với nền tảng Bán bảo hiểm trực tuyến Dai-ichi ON, Dai-ichi Life Việt Nam mong muốn mở rộng phạm vi tiếp cận và đáp ứng nhu cầu bảo vệ tài chính của mọi người, khách hàng không còn phải mất thời gian đến các văn phòng hay tư vấn trực tiếp, khách hàng có thể dễ dàng tham gia bảo hiểm 24/7 mọi lúc mọi nơi. Dai-ichi ON giúp khách hàng có cơ hội tự tìm hiểu, trải nghiệm sản phẩm bảo hiểm và tự tin khi tham gia các giải pháp bảo hiểm cao cấp và toàn diện hơn."
       ],
     },
   },
@@ -248,6 +247,47 @@ const projects = [
       ],
     },
   },
+  {
+    id: 7,
+    header: {
+      title: "SDF Cambodia",
+      date: "Jul 26, 2020",
+      tags: "Backend/Frontend",
+    },
+    category: "Web Application",
+    img: require("@/assets/images/web-project-2.jpg"),
+    projectImages: [
+      require("@/assets/images/ui-project-1.jpg"),
+      require("@/assets/images/web-project-2.jpg"),
+      require("@/assets/images/mobile-project-2.jpg"),
+      require("@/assets/images/web-project-2.jpg"),
+    ],
+    projectInfo: {
+      companyInfos: [
+        "MEF: Ministry of Economy and Finance",
+        "Services: Website/Portal",
+        "Website: <a class='hover:underline cursor-pointer'>http://www.sdfcambodia.org/kh/home</a>",
+        "Phone: N/A",
+      ],
+      objectivesDetails:
+        "To be the most trusted financing platform for sustainable and demand-driven skill development.",
+      technologies: [
+        {
+          techs: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Laravel",
+            "TailwindCSS",
+            "MySql",
+          ],
+        },
+      ],
+      projectDetails: [
+        "Tens of thousands of Cambodia’s young population enter the labor force each year. Labor force participation among the working age population (15–64 years) increased from 7.7 million in 2009 to 8.3 million in 2015. While the country is endowed with an ample supply of labor, the labor force is still characterized by very low levels of education and skill. The average educational attainment of the current workforce is primary school completion (grade 6) or below—a major barrier to industrial diversification efforts and moving up the value chain. The 2015 Cambodia Socio-Economic Survey found that nearly half (46%) of the labor force have either not completed primary education or never attended school. Less than 7% of workers completed high school (grade 12). There is a pressing need to respond to the growing demand for an adaptable workforce with professional skills and proper workplace behavior. In response, the government has taken steps to reform and strengthen the education and training system, including an enhanced role of the private sector in skills development and providing incentives to enterprises to train their own workforce. The pilot Skills Development Fund (SDF) is an industry-driven workforce development program. The general notion is to build confidence in industry partnership and to engage more strongly with the private sector and their training needs. Firms willing but at times hesitant to further develop their workforce may be supported by the SDF to further invest in workforce development. Motivated private workforce development initiatives and intentions shall be mainly supported by the SDF (which in turn consists of a motivated, skilled, and client-oriented team).",
+      ],
+    },
+  },  
 ];
 
 export default projects;
