@@ -44,42 +44,44 @@ const projects = [
   },
   {
     id: 2,
-    category: "Web Application",
-    img: require("@/assets/images/mobile-project-2.jpg"),
     header: {
-      title: "SDF Cambodia",
+      title: "Postkan Chat App",
       date: "Jul 26, 2020",
-      tags: "Backend/Frontend",
+      tags: "Backend/Frontend/Mobile/Android",
     },
+    category: "Mobile Android Application",
+    img: require("@/assets/images/projects/chatApp/chatApp_1.png"),
     projectImages: [
-      require("@/assets/images/ui-project-1.jpg"),
-      require("@/assets/images/web-project-2.jpg"),
-      require("@/assets/images/mobile-project-2.jpg"),
-      require("@/assets/images/web-project-2.jpg"),
+      require("@/assets/images/projects/chatApp/chatApp_1.png"),
+      require("@/assets/images/projects/chatApp/chatApp_2.png"),
+      require("@/assets/images/projects/chatApp/chatApp_3.png"),
+      require("@/assets/images/projects/chatApp/chatApp_4.png"),
+      require("@/assets/images/projects/chatApp/chatApp_5.png"),
+      require("@/assets/images/projects/chatApp/chatApp_6.png"),
+      require("@/assets/images/projects/chatApp/chatApp_7.png"),
     ],
     projectInfo: {
       companyInfos: [
-        "MEF: Ministry of Economy and Finance",
-        "Services: Website/Portal",
-        "Website: <a class='hover:underline cursor-pointer'>http://www.sdfcambodia.org/kh/home</a>",
+        "Personal: Mobile Development Course",
+        "Services: Mobile/Android Application",
+        "Mobile: N/A",
         "Phone: N/A",
       ],
       objectivesDetails:
-        "To be the most trusted financing platform for sustainable and demand-driven skill development.",
+        "The Postkan Chatting App developed for learning mobile device programming and providing the solution chat for people easily close together",
       technologies: [
         {
           techs: [
-            "HTML",
-            "CSS",
-            "JavaScript",
-            "Laravel",
-            "TailwindCSS",
-            "MySql",
+            "Java",
+            "Firebase",
           ],
         },
       ],
       projectDetails: [
-        "Tens of thousands of Cambodia’s young population enter the labor force each year. Labor force participation among the working age population (15–64 years) increased from 7.7 million in 2009 to 8.3 million in 2015. While the country is endowed with an ample supply of labor, the labor force is still characterized by very low levels of education and skill. The average educational attainment of the current workforce is primary school completion (grade 6) or below—a major barrier to industrial diversification efforts and moving up the value chain. The 2015 Cambodia Socio-Economic Survey found that nearly half (46%) of the labor force have either not completed primary education or never attended school. Less than 7% of workers completed high school (grade 12). There is a pressing need to respond to the growing demand for an adaptable workforce with professional skills and proper workplace behavior. In response, the government has taken steps to reform and strengthen the education and training system, including an enhanced role of the private sector in skills development and providing incentives to enterprises to train their own workforce. The pilot Skills Development Fund (SDF) is an industry-driven workforce development program. The general notion is to build confidence in industry partnership and to engage more strongly with the private sector and their training needs. Firms willing but at times hesitant to further develop their workforce may be supported by the SDF to further invest in workforce development. Motivated private workforce development initiatives and intentions shall be mainly supported by the SDF (which in turn consists of a motivated, skilled, and client-oriented team).",
+        "The Postkan Chatting App developed for learning mobile device programming and providing the solution chat for people easily close together.",
+        "Non Functional Requirement: Security: Validate the information from user: email, username, password, … Usability: Easy to use, see, close, chat, …Wrong input - only enter it – not completely. Supportability: The PCA operate correctly with all devices that use the android operating system",
+        "Technologies: BACK-END with JAVA: Using programming language is JAVA. A popular programming language in: Desktop, Mobile, Web, Games, …. DATABASE with FIREBASE: Build & run successful apps with NoSQL - an approach to database management a wide variety of data models, with high speed, easy to updates fields, friendly, …",
+        "Functions: SIGN UP, SIGN IN with Email, Password, SIGN IN with Google Account, FORGOT/ RESET PASSWORD, CHAT LIST – FRIEND LIST, CHAT DETAIL, FEEDBACK, ACCOUNT SETTING, ABOUT US.",
       ],
     },
   },
@@ -288,6 +290,47 @@ const projects = [
       ],
     },
   },  
+  {
+    id: 8,
+    category: "Web Application",
+    img: require("@/assets/images/mobile-project-2.jpg"),
+    header: {
+      title: "SDF Cambodia",
+      date: "Jul 26, 2020",
+      tags: "Backend/Frontend",
+    },
+    projectImages: [
+      require("@/assets/images/ui-project-1.jpg"),
+      require("@/assets/images/web-project-2.jpg"),
+      require("@/assets/images/mobile-project-2.jpg"),
+      require("@/assets/images/web-project-2.jpg"),
+    ],
+    projectInfo: {
+      companyInfos: [
+        "MEF: Ministry of Economy and Finance",
+        "Services: Website/Portal",
+        "Website: <a class='hover:underline cursor-pointer'>http://www.sdfcambodia.org/kh/home</a>",
+        "Phone: N/A",
+      ],
+      objectivesDetails:
+        "To be the most trusted financing platform for sustainable and demand-driven skill development.",
+      technologies: [
+        {
+          techs: [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Laravel",
+            "TailwindCSS",
+            "MySql",
+          ],
+        },
+      ],
+      projectDetails: [
+        "Tens of thousands of Cambodia’s young population enter the labor force each year. Labor force participation among the working age population (15–64 years) increased from 7.7 million in 2009 to 8.3 million in 2015. While the country is endowed with an ample supply of labor, the labor force is still characterized by very low levels of education and skill. The average educational attainment of the current workforce is primary school completion (grade 6) or below—a major barrier to industrial diversification efforts and moving up the value chain. The 2015 Cambodia Socio-Economic Survey found that nearly half (46%) of the labor force have either not completed primary education or never attended school. Less than 7% of workers completed high school (grade 12). There is a pressing need to respond to the growing demand for an adaptable workforce with professional skills and proper workplace behavior. In response, the government has taken steps to reform and strengthen the education and training system, including an enhanced role of the private sector in skills development and providing incentives to enterprises to train their own workforce. The pilot Skills Development Fund (SDF) is an industry-driven workforce development program. The general notion is to build confidence in industry partnership and to engage more strongly with the private sector and their training needs. Firms willing but at times hesitant to further develop their workforce may be supported by the SDF to further invest in workforce development. Motivated private workforce development initiatives and intentions shall be mainly supported by the SDF (which in turn consists of a motivated, skilled, and client-oriented team).",
+      ],
+    },
+  },
 ];
 
 export default projects;
