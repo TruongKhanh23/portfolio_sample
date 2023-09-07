@@ -17,7 +17,7 @@
 <script setup>
 import { onMounted, onUpdated } from "vue";
 import feather from "feather-icons";
-import projects from "../data/projects";
+import projects from "@/data/projects";
 // Default theme
 import "@splidejs/vue-splide/css";
 import ProjectHeader from "@/components/projects/ProjectHeader.vue";

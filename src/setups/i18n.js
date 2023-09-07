@@ -1,5 +1,5 @@
 import { createI18n } from "vue-i18n";
-import messages from "../locale/index";
+import messages from "@/locale/index";
 import { useLocale } from "@/composables/useLocale";
 
 let i18nInstance = null;
