@@ -4,10 +4,8 @@
     <div class="w-full sm:w-1/3 text-left">
       <!-- Single project client details -->
       <div class="mb-7">
-        <p
-          class="font-general-medium text-2xl text-secondary-dark dark:text-secondary-light mb-2"
-        >
-          {{ projectInfo.clientHeading }}
+        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2">
+          {{ $t("projects.projectInfo.aboutClient") }}
         </p>
         <ul class="leading-loose">
           <li
@@ -15,60 +13,39 @@
             :key="info"
             class="font-general-regular text-ternary-dark dark:text-ternary-light"
           >
-            <span>{{ info.title }}:</span>
-            <a
-              href="#"
-              :class="
-                info.title == 'Website' || info.title == 'Phone'
-                  ? 'hover:underline cursor-pointer'
-                  : ''
-              "
-              aria-label="Project Website and Phone"
-            >
-              {{ info.details }}
-            </a>
+            <span v-html="info"></span>
           </li>
         </ul>
       </div>
 
       <!-- Single project objectives -->
       <div class="mb-7">
-        <p
-          class="font-general-medium text-2xl text-ternary-dark dark:text-ternary-light mb-2"
-        >
-          {{ projectInfo.objectivesHeading }}
+        <p class="text-2xl text-ternary-dark dark:text-ternary-light mb-2">
+          {{ $t("projects.projectInfo.objective") }}
         </p>
-        <p
-          class="font-general-regular text-primary-dark dark:text-ternary-light"
-        >
+        <p class="text-primary-dark dark:text-ternary-light">
           {{ projectInfo.objectivesDetails }}
         </p>
       </div>
 
       <!-- Single project technologies -->
       <div class="mb-7">
-        <p
-          class="font-general-medium text-2xl text-ternary-dark dark:text-ternary-light mb-2"
-        >
-          {{ projectInfo.technologies[0].title }}
+        <p class="text-2xl text-ternary-dark dark:text-ternary-light mb-2">
+          {{ $t("projects.projectInfo.toolTechnology") }}
         </p>
-        <p
-          class="font-general-regular text-primary-dark dark:text-ternary-light"
-        >
-          {{ projectInfo.technologies[0].techs.join(', ') }}
+        <p class="text-primary-dark dark:text-ternary-light">
+          {{ projectInfo.technologies[0].techs.join(", ") }}
         </p>
       </div>
 
       <!-- Single project social sharing -->
       <div>
-        <p
-          class="font-general-medium text-2xl text-ternary-dark dark:text-ternary-light mb-2"
-        >
-          {{ projectInfo.socialSharingsHeading }}
+        <p class="text-2xl text-ternary-dark dark:text-ternary-light mb-2">
+          {{ $t("projects.projectInfo.sharing") }}
         </p>
         <div class="flex items-center gap-3 mt-5">
           <a
-            v-for="social in projectInfo.socialSharings"
+            v-for="social in socialSharings"
             :key="social.id"
             :href="social.url"
             target="__blank"
@@ -86,34 +63,66 @@
       <p
         class="font-general-medium text-primary-dark dark:text-primary-light text-2xl font-bold mb-7"
       >
-        {{ projectInfo.projectDetailsHeading }}
+        {{ $t("projects.projectInfo.challenge") }}
       </p>
       <p
         v-for="projectDetail in projectInfo.projectDetails"
-        :key="projectDetail.id"
-        class="font-general-regular mb-5 text-lg text-ternary-dark dark:text-ternary-light"
+        :key="projectDetail"
+        class="mb-5 text-lg text-ternary-dark dark:text-ternary-light"
       >
-        {{ projectDetail.details }}
+        {{ projectDetail }}
       </p>
     </div>
   </div>
 </template>
 
 <script setup>
-import feather from 'feather-icons'
-import { defineProps, onMounted, onUpdated } from 'vue'
+import feather from "feather-icons";
+import { defineProps, onMounted, onUpdated } from "vue";
 
+const socialSharings = [
+  {
+    id: 1,
+    name: "Twitter",
+    icon: "twitter",
+    url: "https://twitter.com/ChhinghorDev",
+  },
+  {
+    id: 2,
+    name: "Instagram",
+    icon: "instagram",
+    url: "https://www.instagram.com/seavhorrr",
+  },
+  {
+    id: 3,
+    name: "Facebook",
+    icon: "facebook",
+    url: "https://facebook.com/stom.sharow",
+  },
+  {
+    id: 4,
+    name: "LinkedIn",
+    icon: "linkedin",
+    url: "https://www.linkedin.com/in/ching-hor-bb7bb415b/",
+  },
+  {
+    id: 5,
+    name: "Youtube",
+    icon: "youtube",
+    url: "https://www.youtube.com/channel/UCSS-bVfkA2CWiAJJjJnUaaQ",
+  },
+];
 defineProps({
   projectInfo: {
     type: Object,
     default: () => {},
   },
-})
+});
 
 onMounted(() => {
-  feather.replace()
-})
+  feather.replace();
+});
 onUpdated(() => {
-  feather.replace()
-})
+  feather.replace();
+});
 </script>

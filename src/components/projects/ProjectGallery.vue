@@ -1,11 +1,7 @@
 <template>
   <Slider class="mt-12" :list="projectImages" :attrs="{ perPage: 3 }">
     <template #content="{ data }">
-      <img
-        :src="data.img"
-        class="rounded-xl cursor-pointer"
-        :alt="data.title"
-      />
+      <img :src="data" class="rounded-xl cursor-pointer h-full" />
     </template>
   </Slider>
 </template>

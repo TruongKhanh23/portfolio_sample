@@ -77,4 +77,14 @@ export default {
       button: "Send Message",
     },
   },
+  projects: {
+    projectInfo: {
+      aboutClient: "About Client",
+      objective: "Objective",
+      toolTechnology: "Tool & Technology",
+      sharing: "Sharing",
+      challenge: "Challenge",
+      otherProjects: "Other Projects"
+    },
+  },
 };

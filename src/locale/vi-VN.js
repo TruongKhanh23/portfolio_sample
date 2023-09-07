@@ -77,4 +77,14 @@ export default {
       button: "Gửi đến Khánh",
     },
   },
+  projects: {
+    projectInfo: {
+      aboutClient: "Khách hàng",
+      objective: "Mục tiêu dự án",
+      toolTechnology: "Công nghệ sử dụng",
+      sharing: "Chia sẻ",
+      challenge: "Thử thách",
+      otherProjects: "Dự án khác",
+    },
+  },
 };
