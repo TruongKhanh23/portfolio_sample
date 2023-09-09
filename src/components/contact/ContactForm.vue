@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import Button from "../reusable/Button.vue";
+import Button from "@/components/reusable/Button.vue";
 import CFormField from "@/components/shared/CFormField";
 import { useI18n } from "vue-i18n";
 

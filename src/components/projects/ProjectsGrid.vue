@@ -62,7 +62,7 @@
 import feather from 'feather-icons'
 import ProjectsFilter from './ProjectsFilter.vue'
 import ProjectSingle from './ProjectSingle.vue'
-import projects from '../../data/projects'
+import projects from '@/data/projects'
 import { ref, computed, onMounted } from 'vue'
 
 const selectedCategory = ref(null)
