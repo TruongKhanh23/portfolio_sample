@@ -6,10 +6,10 @@ export default defineConfig({
   plugins: [
     VitePWA({
       manifest: {
-        name: 'Your App Name',
-        short_name: 'App Name',
-        description: 'Your app description',
-        theme_color: '#4DBA87',
+        name: 'K Portfolio',
+        short_name: 'K Portfolio',
+        description: 'Portfolio of Truong Nguyen Khanh',
+        theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
         start_url: '/',
