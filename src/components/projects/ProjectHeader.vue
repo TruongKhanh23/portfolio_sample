@@ -48,7 +48,7 @@ export default {
       default: () => {},
     },
   },
-  setup(props) {
+  setup() {
     const colors = ["pink", "red", "orange", "green", "cyan", "blue", "purple"];
     return { colors } ;
   },
