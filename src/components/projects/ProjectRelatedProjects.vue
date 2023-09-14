@@ -11,7 +11,7 @@
       <template #content="{ data }">
         <img
           :src="data.img"
-          class="rounded-xl cursor-pointer h-full"
+          class="rounded-xl cursor-pointer md:h-full"
           :alt="data.title"
         />
       </template>
