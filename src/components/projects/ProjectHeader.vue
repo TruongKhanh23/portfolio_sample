@@ -6,7 +6,21 @@
     >
       {{ singleProjectHeader.title }}
     </p>
-    <div class="flex">
+    
+    <div class="flex flex-col">
+      <div class="flex items-center mb-4">
+        <i
+          data-feather="tag"
+          class="w-4 h-4 text-ternary-dark dark:text-ternary-light"
+        ></i>
+        <span
+          class="font-general-medium ml-2 leading-none text-primary-dark dark:text-primary-light"
+        >
+          <template v-for="(item, index) in singleProjectHeader.tags" :key="index">
+            <a-tag :color="colors[index]">{{ item }}</a-tag>
+          </template>
+        </span>
+      </div>
       <div class="flex items-center mr-10">
         <i
           data-feather="clock"
@@ -18,28 +32,25 @@
           {{ singleProjectHeader.date }}
         </span>
       </div>
-      <div class="flex items-center">
-        <i
-          data-feather="tag"
-          class="w-4 h-4 text-ternary-dark dark:text-ternary-light"
-        ></i>
-        <span
-          class="font-general-medium ml-2 leading-none text-primary-dark dark:text-primary-light"
-        >
-          {{ singleProjectHeader.tags }}
-        </span>
-      </div>
+      
     </div>
   </div>
 </template>
 
 <script>
+import { Tag } from "ant-design-vue";
+
 export default {
+  components: { ATag: Tag },
   props: {
     singleProjectHeader: {
       type: Object,
       default: () => {},
     },
+  },
+  setup(props) {
+    const colors = ["pink", "red", "orange", "green", "cyan", "blue", "purple"];
+    return { colors } ;
   },
 };
 </script>

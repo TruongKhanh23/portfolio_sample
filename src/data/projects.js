@@ -7,7 +7,7 @@ const projects = [
     header: {
       title: "Sale Online Platform",
       date: "07/09/2023",
-      tags: "Backend/Frontend/VueJS/TailwindCSS",
+      tags: ["Backend", "Frontend", "VueJS", "TailwindCSS"],
     },
     category: "Web Application",
     img: require("@/assets/images/projects/sop/sop_2.png"),
@@ -47,7 +47,7 @@ const projects = [
     header: {
       title: "Postkan Chat App",
       date: "Jul 26, 2020",
-      tags: "Backend/Frontend/Mobile/Android",
+      tags: ["Backend", "Frontend", "Mobile", "Android"],
     },
     category: "Mobile Android Application",
     img: require("@/assets/images/projects/chatApp/chatApp_1.png"),
@@ -90,7 +90,7 @@ const projects = [
     header: {
       title: "APD Website",
       date: "Jul 26, 2020",
-      tags: "Backend/Frontend",
+      tags: ["Backend", "Frontend"],
     },
     category: "API",
     img: require("@/assets/images/ui-project-1.jpg"),
@@ -131,7 +131,7 @@ const projects = [
     header: {
       title: "Staff Management",
       date: "Jul 26, 2020",
-      tags: "Backend/Frontend",
+      tags: ["Backend", "Frontend"],
     },
     category: "Microservice",
     img: require("@/assets/images/ui-project-2.jpg"),
@@ -172,7 +172,7 @@ const projects = [
     header: {
       title: "SportDate",
       date: "Jul 26, 2020",
-      tags: "Backend/Frontend",
+      tags: ["Backend", "Frontend"],
     },
     category: "Mobile Application",
     img: require("@/assets/images/mobile-project-1.jpg"),
@@ -213,7 +213,7 @@ const projects = [
     header: {
       title: "POS Camcyber",
       date: "Jul 26, 2020",
-      tags: "Backend/Frontend",
+      tags: ["Backend", "Frontend"],
     },
     category: "Web Application",
     img: require("@/assets/images/web-project-1.jpg"),
@@ -254,7 +254,7 @@ const projects = [
     header: {
       title: "SDF Cambodia",
       date: "Jul 26, 2020",
-      tags: "Backend/Frontend",
+      tags: ["Backend", "Frontend"],
     },
     category: "Web Application",
     img: require("@/assets/images/web-project-2.jpg"),
@@ -297,7 +297,7 @@ const projects = [
     header: {
       title: "SDF Cambodia",
       date: "Jul 26, 2020",
-      tags: "Backend/Frontend",
+      tags: ["Backend", "Frontend"],
     },
     projectImages: [
       require("@/assets/images/ui-project-1.jpg"),
