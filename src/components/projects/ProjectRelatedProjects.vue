@@ -11,7 +11,7 @@
       <template #content="{ data }">
         <img
           :src="data.img"
-          class="rounded-xl cursor-pointer h-[90vw] w-screen"
+          class="rounded-xl cursor-pointer h-[90vw] w-screen md:h-full md:w-auto"
           :alt="data.title"
         />
       </template>
