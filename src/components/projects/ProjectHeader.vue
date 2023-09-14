@@ -16,8 +16,8 @@
         <span
           class="font-general-medium ml-2 leading-none text-primary-dark dark:text-primary-light"
         >
-          <template v-for="(item, index) in singleProjectHeader.tags" :key="index">
-            <a-tag :color="colors[index]">{{ item }}</a-tag>
+          <template v-for="item, in singleProjectHeader.tags" :key="item">
+            <a-tag>{{ item }}</a-tag>
           </template>
         </span>
       </div>
@@ -47,10 +47,6 @@ export default {
       type: Object,
       default: () => {},
     },
-  },
-  setup() {
-    const colors = ["pink", "red", "orange", "green", "cyan", "blue", "purple"];
-    return { colors } ;
   },
 };
 </script>
