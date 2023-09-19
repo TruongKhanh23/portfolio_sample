@@ -17,6 +17,16 @@
       "src": "/favicons/android-chrome-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
+    },
+    {
+      "src": "/favicons/apple-touch-icon-57x57.png",
+      "sizes": "57x57",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicons/apple-touch-icon-60x60.png",
+      "sizes": "60x60",
+      "type": "image/png"
     }
   ]
 }
