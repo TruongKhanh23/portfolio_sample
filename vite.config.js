@@ -5,6 +5,9 @@ import { VitePWA } from "vite-plugin-pwa";
 export default defineConfig({
   plugins: [
     VitePWA({
+      injectRegister: 'inline',
+      registerType: 'autoUpdate',
+
       manifest: {
         name: "K Portfolio",
         short_name: "K Portfolio",
@@ -29,6 +32,9 @@ export default defineConfig({
       },
       workbox: {
         skipWaiting: true,
+        globDirectory: 'dist',
+        globPatterns: ['**/*.{js,css,svg,png,jpg,jpeg,gif,webp,woff,woff2,ttf,eot,ico}'],
+        navigateFallback: null,
       },
     }),
   ],
