@@ -18,9 +18,9 @@
         {{ $t("home.projectsGrid.subTitle") }}
       </h3>
       <div
-        class="flex justify-between border-b border-primary-light dark:border-secondary-dark pb-3 gap-2"
+        class="flex flex-col md:flex-row md:justify-between border-b border-primary-light dark:border-secondary-dark pb-3 gap-2"
       >
-        <div class="flex justify-between gap-2">
+        <div class="flex flex-col md:flex-row md:justify-between gap-2">
           <span
             class="hidden sm:block bg-primary-light dark:bg-ternary-dark p-2.5 shadow-sm rounded-xl cursor-pointer"
           >
@@ -59,47 +59,47 @@
 </template>
 
 <script setup>
-import feather from 'feather-icons'
-import ProjectsFilter from './ProjectsFilter.vue'
-import ProjectSingle from './ProjectSingle.vue'
-import projects from '@/data/projects'
-import { ref, computed, onMounted } from 'vue'
+import feather from "feather-icons";
+import ProjectsFilter from "./ProjectsFilter.vue";
+import ProjectSingle from "./ProjectSingle.vue";
+import projects from "@/data/projects";
+import { ref, computed, onMounted } from "vue";
 
-const selectedCategory = ref(null)
-const searchProject = ref(null)
+const selectedCategory = ref(null);
+const searchProject = ref(null);
 const selectOptions = [
-  'Web Application',
-  'Mobile Application',
-  'API Spring boot',
-  'Spring Microservice',
-]
+  "Web Application",
+  "Mobile Application",
+  "API Spring boot",
+  "Spring Microservice",
+];
 
 const filteredProjects = computed(() => {
   if (selectedCategory.value) {
-    return filterProjectsByCategory()
+    return filterProjectsByCategory();
   } else if (searchProject.value) {
-    return filterProjectsBySearch()
+    return filterProjectsBySearch();
   }
-  return projects
-})
+  return projects;
+});
 
 function filterProjectsByCategory() {
   return projects.filter((item) => {
     let category =
-      item.category.charAt(0).toUpperCase() + item.category.slice(1)
-    console.log(category)
-    return category.includes(selectedCategory.value)
-  })
+      item.category.charAt(0).toUpperCase() + item.category.slice(1);
+    console.log(category);
+    return category.includes(selectedCategory.value);
+  });
 }
 
 function filterProjectsBySearch() {
-  let project = new RegExp(searchProject.value, 'i')
-  return projects.filter((el) => el.title.match(project))
+  let project = new RegExp(searchProject.value, "i");
+  return projects.filter((el) => el.title.match(project));
 }
 
 onMounted(() => {
-  feather.replace()
-})
+  feather.replace();
+});
 </script>
 
 <style scoped></style>
