@@ -59,6 +59,10 @@ const links = [
     name: "navigator.contact",
     link: "/contact",
   },
+  {
+    name: "navigator.tool",
+    link: "/expense-management-plan",
+  },
 ];
 </script>
 
