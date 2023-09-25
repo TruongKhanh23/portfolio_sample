@@ -1,73 +1,57 @@
 <template>
   <div class="container mx-auto mt-12">
-    <div id="income">
-      <a-row>
-        <a-col :span="3">
-          <p class="my-2 font-bold">Tổng thu nhập</p>
-        </a-col>
-        <a-col :span="3">
-          <p class="my-2 font-bold text-right">
-            {{ new Intl.NumberFormat().format(totalIncome) }}
-          </p>
-        </a-col>
-      </a-row>
-      <a-row justify="left">
-        <a-col :span="6">
-          <a-table :columns="columns" :data-source="data">
-            <template #bodyCell="{ column, text }">
-              <template v-if="column.dataIndex === 'name'">
-                <a>{{ text }}</a>
-              </template>
-              <template v-if="column.dataIndex === 'amount'">
-                <a>{{ new Intl.NumberFormat().format(text) }}</a>
-              </template>
-            </template>
-          </a-table>
-        </a-col>
-      </a-row>
-    </div>
-    <a-row justify="space-around">
-      <a-col :span="3">
-        <p class="my-2 font-bold"></p>
+    <!-- Funds -->
+    <Funds :funds="funds" />
+    <!-- Limitation -->
+    <Limitation :funds="funds" :totalIncome="totalIncome" />
+    <!-- Details expense -->
+    <a-row class="my-4">
+      <!-- Estimate expense -->
+      <a-col :span="7" class="bg-[lightgrey]"
+        >Dự chi - Chi tiêu thiết yếu</a-col
+      >
+      <!-- Total income & debt -->
+      <a-col :span="10">
+        <a-tabs v-model:activeKey="activeKey" centered>
+          <a-tab-pane key="1" tab="Thu nhập">
+            <div class="px-4 min-h-[300px]">
+              <p class="my-2 font-bold">Tổng thu nhập: {{ new Intl.NumberFormat().format(totalIncome) }}</p>
+              <a-table :columns="columns" :data-source="data">
+                <template #bodyCell="{ column, text }">
+                  <template v-if="column.dataIndex === 'name'">
+                    <a>{{ text }}</a>
+                  </template>
+                  <template v-if="column.dataIndex === 'amount'">
+                    <a>{{ new Intl.NumberFormat().format(text) }}</a>
+                  </template>
+                </template>
+              </a-table>
+            </div>
+          </a-tab-pane>
+          <a-tab-pane key="2" tab="Nợ" force-render>
+            <div class="min-h-[300px]">Nợ</div>
+          </a-tab-pane>
+        </a-tabs>
       </a-col>
-      <template v-for="fund in funds" :key="fund.id">
-        <a-col :span="3">
-          <div class="flex justify-center items-center">
-            <img :src="fund.src" class="w-16 h-16" />
-          </div>
-          <h3 class="font-bold my-2">{{ fund.wallet }}</h3>
-          <div
-            class="font-bold h-12 flex justify-center items-center rounded-lg text-white"
-            :class="fund.classColor"
-          >
-            {{ fund.name }}
-          </div>
-          <p class="my-2 font-bold">{{ fund.percentage }}%</p>
-        </a-col>
-      </template>
-    </a-row>
-    <a-row justify="space-around" class="bg-[#ffdddd] rounded-full">
-      <a-col :span="3" class="border-r-2 border-r-[white]">
-        <p class="my-2 font-bold">Hạn mức</p>
-      </a-col>
-      <template v-for="fund in funds" :key="fund.id">
-        <a-col :span="3">
-          <p class="my-2 font-bold">
-            {{
-              new Intl.NumberFormat().format(
-                (totalIncome * fund.percentage) / 100
-              )
-            }}
-          </p>
-        </a-col>
-      </template>
+      <!-- Checklist handle income -->
+      <a-col :span="7" class="bg-[lightgrey]">Danh sách xử lý thu nhập</a-col>
     </a-row>
   </div>
 </template>
 <script>
-import { Row, Col, Table } from "ant-design-vue";
+import { Row, Col, Table, TabPane, Tabs } from "ant-design-vue";
+import Funds from "@/components/emp/Funds.vue"
+import Limitation from "@/components/emp/Limitation.vue"
 export default {
-  components: { ATable: Table, ARow: Row, ACol: Col },
+  components: {
+    ATable: Table,
+    ARow: Row,
+    ACol: Col,
+    ATabPane: TabPane,
+    ATabs: Tabs,
+    Funds,
+    Limitation,
+  },
   setup() {
     const columns = [
       {
