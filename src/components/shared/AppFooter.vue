@@ -23,49 +23,84 @@
         </ul>
       </div>
 
+      <div class="flex flex-col justify-center items-center my-4">
+        <input
+          v-if="isSupported"
+          class="max-w-[300px] my-2 w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
+          v-model="options.text"
+          type="text"
+          placeholder="Note"
+        />
+        <button :disabled="!isSupported" @click="startShare" class="max-w-[100px] px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500">
+          {{
+            isSupported ? "Share" : "Web share is not supported in your browser"
+          }}
+        </button>
+      </div>
+
       <!-- Footer copyright -->
       <FooterCopyright />
     </div>
   </div>
 </template>
 
-<script setup>
+<script>
 import feather from "feather-icons";
 import FooterCopyright from "./FooterCopyright.vue";
-import { onMounted, onUpdated } from "vue";
+import { ref, onMounted, onUpdated } from "vue";
+import { isClient } from "@vueuse/shared";
+import { useShare } from "@vueuse/core";
 
-const socials = [
-  {
-    id: 1,
-    name: "GitHub",
-    icon: "github",
-    url: "https://github.com/lengchhinghor",
+export default {
+  components: { FooterCopyright },
+  setup() {
+    const socials = [
+      {
+        id: 1,
+        name: "GitHub",
+        icon: "github",
+        url: "https://github.com/lengchhinghor",
+      },
+      {
+        id: 2,
+        name: "Twitter",
+        icon: "twitter",
+        url: "https://twitter.com/ChhinghorDev",
+      },
+      {
+        id: 3,
+        name: "Medium",
+        icon: "book",
+        url: "https://medium.com/@lengchhinghor",
+      },
+      {
+        id: 4,
+        name: "Instagram",
+        icon: "instagram",
+        url: "https://www.instagram.com/seavhorrr",
+      },
+    ];
+    onMounted(() => {
+      feather.replace();
+    });
+    onUpdated(() => {
+      feather.replace();
+    });
+
+    const options = ref({
+      title: "VueUse",
+      text: "Collection of essential Vue Composition Utilities!",
+      url: isClient ? location.href : "",
+    });
+
+    const { share, isSupported } = useShare(options);
+
+    function startShare() {
+      return share().catch((err) => err);
+    }
+    return { startShare, share, isSupported, options, socials };
   },
-  {
-    id: 2,
-    name: "Twitter",
-    icon: "twitter",
-    url: "https://twitter.com/ChhinghorDev",
-  },
-  {
-    id: 3,
-    name: "Medium",
-    icon: "book",
-    url: "https://medium.com/@lengchhinghor",
-  },
-  {
-    id: 4,
-    name: "Instagram",
-    icon: "instagram",
-    url: "https://www.instagram.com/seavhorrr",
-  },
-];
-onMounted(() => {
-  feather.replace();
-});
-onUpdated(() => {
-  feather.replace();
-});
+};
 </script>
 
 <style scoped></style>
