@@ -24,16 +24,14 @@
       </div>
 
       <div class="flex flex-col justify-center items-center my-4">
-        <input
-          v-if="isSupported"
-          class="max-w-[300px] my-2 w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
-          v-model="options.text"
-          type="text"
-          placeholder="Note"
-        />
-        <button :disabled="!isSupported" @click="startShare" class="max-w-[100px] px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500">
+        <button :disabled="!isSupported" @click="clickedButton('sop')" class="max-w-[200px] mb-2 px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500">
           {{
-            isSupported ? "Share" : "Web share is not supported in your browser"
+            isSupported ? "Dai-ichi On Share" : "Web share is not supported in your browser"
+          }}
+        </button>
+        <button :disabled="!isSupported" @click="clickedButton('kh')" class="max-w-[200px] px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500">
+          {{
+            isSupported ? "KH Share" : "Web share is not supported in your browser"
           }}
         </button>
       </div>
@@ -87,18 +85,31 @@ export default {
       feather.replace();
     });
 
-    const options = ref({
-      title: "VueUse",
-      text: "Collection of essential Vue Composition Utilities!",
-      url: isClient ? location.href : "",
+    const options = ref(null)
+
+    const sopOptions = ref({
+      title: "Dai-ichi On",
+      text: "Bảo hiểm trực tuyến | Dai-ichi Life Việt Nam",
+      url: isClient ? "https://e.dai-ichi-life.com.vn/product/criticalIllness/KCP104?lang=vi" : "",
     });
+    const khoptions = ref({
+      title: "KH Dai-ichi Connect",
+      text: "Cổng thông tin khách hàng | Dai-ichi Life Việt Nam",
+      url: isClient ? "https://kh.dai-ichi-life.com.vn/" : "",
+    })
+
+    function clickedButton (type) {
+      options.value = type === "sop" ? sopOptions.value : khoptions.value
+      startShare()
+    }
 
     const { share, isSupported } = useShare(options);
 
     function startShare() {
       return share().catch((err) => err);
     }
-    return { startShare, share, isSupported, options, socials };
+    
+    return { share, isSupported, options, socials, clickedButton };
   },
 };
 </script>
