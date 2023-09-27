@@ -24,16 +24,46 @@
       </div>
 
       <div class="flex flex-col justify-center items-center my-4">
-        <button :disabled="!isSupported" @click="clickedButton('sop')" class="max-w-[200px] mb-2 px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500">
+        <button
+          :disabled="!isSupported"
+          @click="clickedButton('sop')"
+          class="max-w-[200px] mb-2 px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
+        >
           {{
-            isSupported ? "Dai-ichi On Share" : "Web share is not supported in your browser"
+            isSupported
+              ? "Dai-ichi On Share"
+              : "Web share is not supported in your browser"
           }}
         </button>
-        <button :disabled="!isSupported" @click="clickedButton('kh')" class="max-w-[200px] px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500">
+        <button
+          :disabled="!isSupported"
+          @click="clickedButton('kh')"
+          class="max-w-[200px] px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
+        >
           {{
-            isSupported ? "KH Share" : "Web share is not supported in your browser"
+            isSupported
+              ? "KH Share"
+              : "Web share is not supported in your browser"
           }}
         </button>
+        <a
+          href="https://mail.google.com/mail/?view=cm&fs=1&tf=1&to=someone@example.com"
+          target="_blank"
+        >
+          <button
+            class="max-w-[200px] px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
+          >
+            {{ "Gmail" }}
+          </button>
+        </a>
+        <a @click="sendEmail" class="text-c2-500 hover:underline">
+          <button
+            class="max-w-[400px] px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
+          >
+            {{ "Mail Default: customer.services@dai-ichi-life.com.vn" }}
+          </button>
+        </a>
+        <!-- <div class="zalo-share-button" data-href="https://developers.zalo.me" data-oaid="1894205297991645701" data-layout="2" data-color="blue" data-customize="false">ABC  </div> -->
       </div>
 
       <!-- Footer copyright -->
@@ -85,22 +115,24 @@ export default {
       feather.replace();
     });
 
-    const options = ref(null)
+    const options = ref(null);
 
     const sopOptions = ref({
       title: "Dai-ichi On",
       text: "Bảo hiểm trực tuyến | Dai-ichi Life Việt Nam",
-      url: isClient ? "https://e.dai-ichi-life.com.vn/product/criticalIllness/KCP104?lang=vi" : "",
+      url: isClient
+        ? "https://e.dai-ichi-life.com.vn/product/criticalIllness/KCP104?lang=vi"
+        : "",
     });
     const khoptions = ref({
       title: "KH Dai-ichi Connect",
       text: "Cổng thông tin khách hàng | Dai-ichi Life Việt Nam",
       url: isClient ? "https://kh.dai-ichi-life.com.vn/" : "",
-    })
+    });
 
-    function clickedButton (type) {
-      options.value = type === "sop" ? sopOptions.value : khoptions.value
-      startShare()
+    function clickedButton(type) {
+      options.value = type === "sop" ? sopOptions.value : khoptions.value;
+      startShare();
     }
 
     const { share, isSupported } = useShare(options);
@@ -108,8 +140,21 @@ export default {
     function startShare() {
       return share().catch((err) => err);
     }
-    
-    return { share, isSupported, options, socials, clickedButton };
+
+    function sendEmail() {
+      const emailAddress = "customer.services@dai-ichi-life.com.vn";
+      const subject = "Chủ đề email của bạn";
+      const body = "Nội dung email của bạn";
+
+      const mailtoLink = `mailto:${emailAddress}?subject=${encodeURIComponent(
+        subject
+      )}&body=${encodeURIComponent(body)}`;
+
+      // Mở ứng dụng email mặc định với thông tin đã điền
+      window.open(mailtoLink, "_self");
+    }
+
+    return { share, isSupported, options, socials, clickedButton, sendEmail };
   },
 };
 </script>
