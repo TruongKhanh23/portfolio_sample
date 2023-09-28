@@ -1,20 +1,32 @@
 <template>
   <div class="px-4">
-    <EstimateNecessityRow :name="'Dự dư'" :amount="necessityLimitation - calculateTotalExpense(data)" :rowClass="'font-semibold bg-[#e6f4ff]'"/>
-    <EstimateNecessityRow :name="'Dự chi'" :amount="calculateTotalExpense(data)" :rowClass="'font-semibold bg-[#ffdddd]'"/>
+    <EstimateNecessityRow
+      :name="'Dự dư'"
+      :amount="necessityLimitation - calculateTotalExpense(data)"
+      :rowClass="'font-semibold bg-[#e6f4ff]'"
+    />
+    <EstimateNecessityRow
+      :name="'Dự chi'"
+      :amount="calculateTotalExpense(data)"
+      :rowClass="'font-semibold bg-[#ffdddd]'"
+    />
     <template v-for="item in data" :key="item">
       <EstimateNecessityRow
         :name="item.name"
         :amount="sumOfDetails(item)"
-        :rowClass="'bg-[#fafafa] font-semibold'"
+        :rowClass="'font-semibold bg-[#fafafa] cursor-pointer'"
+        @click="toggleDropDown(item.id)"
       />
-      <template v-for="subItem in item.details" :key="subItem">
-        <EstimateNecessityRow :name="subItem.name" :amount="subItem.amount" />
-      </template>
+      <div v-if="isDropDownOpen(item.id)">
+        <template v-for="subItem in item.details" :key="subItem">
+          <EstimateNecessityRow :name="subItem.name" :amount="subItem.amount" />
+        </template>
+      </div>
     </template>
   </div>
 </template>
 <script>
+import { ref } from "vue";
 import EstimateNecessityRow from "@/components/emp/EstimateNecessityRow.vue";
 
 export default {
@@ -24,10 +36,11 @@ export default {
   props: {
     necessityLimitation: {
       type: Number,
-      require: true
-    }
+      require: true,
+    },
   },
   setup() {
+    const dropDownOpen = ref([]);
     const data = [
       {
         id: "necessity",
@@ -119,16 +132,31 @@ export default {
     }
     function calculateTotalExpense(data) {
       return data.reduce((acc, item) => {
-        if(Object.hasOwn(item, "details")){
-          const totalSub = item.details.reduce((acc, item) => acc + item.amount, 0)
-          acc = acc + totalSub
+        if (Object.hasOwn(item, "details")) {
+          const totalSub = item.details.reduce(
+            (acc, item) => acc + item.amount,
+            0
+          );
+          acc = acc + totalSub;
         } else {
-          acc = acc + item.value
+          acc = acc + item.value;
         }
-        return acc
-      } ,0)
+        return acc;
+      }, 0);
     }
-    return { data, sumOfDetails, calculateTotalExpense };
+    function toggleDropDown(id) {
+      const index = dropDownOpen.value.indexOf(id)
+      if(index === -1){
+        dropDownOpen.value.push(id)
+      } else {
+        dropDownOpen.value.splice(index, 1)
+      }
+    }
+
+    function isDropDownOpen(id) {
+      return dropDownOpen.value.includes(id)
+    }
+    return { data, sumOfDetails, calculateTotalExpense, toggleDropDown, isDropDownOpen };
   },
 };
 </script>
