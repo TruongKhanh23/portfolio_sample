@@ -4,7 +4,7 @@
       <p class="my-2 font-bold">Hạn mức</p>
     </a-col>
     <template v-for="fund in funds" :key="fund.id">
-      <a-col :span="3">
+      <a-col v-if="fund.id" :span="3">
         <p class="my-2 font-bold">
           {{
             new Intl.NumberFormat().format(

@@ -1,9 +1,7 @@
 <template>
   <div class="container mx-auto mt-12">
     <!-- Funds -->
-    <Funds :funds="funds" />
-    <!-- Limitation -->
-    <Limitation :funds="funds" :totalIncome="totalIncome" />
+    <Funds :funds="funds" :totalIncome="totalIncome"/>
     <!-- Details expense -->
     <a-row class="my-4">
       <!-- Estimate expense -->
@@ -29,17 +27,15 @@
 <script>
 import { Row, Col } from "ant-design-vue";
 import Funds from "@/components/emp/Funds.vue";
-import Limitation from "@/components/emp/Limitation.vue";
 import IncomeDebt from "@/components/emp/IncomeDebt.vue";
 import HandleIncome from "@/components/emp/HandleIncome.vue";
-import EstimateNecessity from "@/components/emp/EstimateNecessity.vue"
+import EstimateNecessity from "@/components/emp/EstimateNecessity.vue";
 
 export default {
   components: {
     ARow: Row,
     ACol: Col,
     Funds,
-    Limitation,
     IncomeDebt,
     HandleIncome,
     EstimateNecessity,
@@ -243,6 +239,14 @@ export default {
     }
     const funds = [
       {
+        id: "",
+        src: "",
+        percentage: "",
+        wallet: "",
+        name: "",
+        classColor: "",
+      },
+      {
         id: "necessity",
         src: require("@/assets/images/tools/momo.svg"),
         percentage: 72.5,
@@ -292,7 +296,9 @@ export default {
       },
     ];
 
-    const necessityLimitation = funds.find((item) => item.id === "necessity").percentage * totalIncome / 100
+    const necessityLimitation =
+      (funds.find((item) => item.id === "necessity").percentage * totalIncome) /
+      100;
     console.log("necessityLimitation", necessityLimitation);
     return {
       columnsIncome,
@@ -301,7 +307,7 @@ export default {
       totalIncome,
       columnsHandleIncome,
       dataHandleIncome,
-      necessityLimitation
+      necessityLimitation,
     };
   },
 };
