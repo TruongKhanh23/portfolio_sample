@@ -7,18 +7,20 @@
     <!-- Details expense -->
     <a-row class="my-4">
       <!-- Estimate expense -->
-      <a-col :span="9">Dự chi - Chi tiêu thiết yếu</a-col>
-      <!-- Total income & debt -->
       <a-col :span="6">
+        <EstimateNecessity :necessityLimitation="necessityLimitation" />
+      </a-col>
+      <!-- Total income & debt -->
+      <a-col :span="8">
         <IncomeDebt
-          class="border-l border-r"
+          class="border-l border-r px-4"
           :columns="columnsIncome"
           :data="dataIncome"
           :totalIncome="totalIncome"
         />
       </a-col>
       <!-- Checklist handle income -->
-      <a-col :span="9">
+      <a-col :span="10">
         <HandleIncome :columns="columnsHandleIncome" :data="dataHandleIncome" />
       </a-col>
     </a-row>
@@ -30,6 +32,8 @@ import Funds from "@/components/emp/Funds.vue";
 import Limitation from "@/components/emp/Limitation.vue";
 import IncomeDebt from "@/components/emp/IncomeDebt.vue";
 import HandleIncome from "@/components/emp/HandleIncome.vue";
+import EstimateNecessity from "@/components/emp/EstimateNecessity.vue"
+
 export default {
   components: {
     ARow: Row,
@@ -38,6 +42,7 @@ export default {
     Limitation,
     IncomeDebt,
     HandleIncome,
+    EstimateNecessity,
   },
   setup() {
     const columnsIncome = [
@@ -72,6 +77,10 @@ export default {
     ];
     const columnsHandleIncome = [
       {
+        title: "Loại",
+        dataIndex: "type",
+      },
+      {
         title: "Ví",
         dataIndex: "wallet",
       },
@@ -83,10 +92,6 @@ export default {
       {
         title: "Số tiền",
         dataIndex: "amount",
-      },
-      {
-        title: "Loại",
-        dataIndex: "type",
       },
     ];
 
@@ -230,15 +235,15 @@ export default {
     function calculateTotalAmount(data) {
       let totalAmount = 0;
 
-      for (let i = 0; i < data.length; i++) {
-        totalAmount += data[i].amount;
+      for (const element of data) {
+        totalAmount += element.amount;
       }
 
       return totalAmount;
     }
     const funds = [
       {
-        id: "1",
+        id: "necessity",
         src: require("@/assets/images/tools/momo.svg"),
         percentage: 72.5,
         wallet: "Túi thần tài",
@@ -246,7 +251,7 @@ export default {
         classColor: "bg-[#ffabab]",
       },
       {
-        id: "2",
+        id: "freedom",
         src: require("@/assets/images/tools/momo.svg"),
         percentage: 3,
         wallet: "Qũy nhóm",
@@ -254,7 +259,7 @@ export default {
         classColor: "bg-[#63b5ff]",
       },
       {
-        id: "3",
+        id: "education",
         src: require("@/assets/images/tools/vnpay.png"),
         percentage: 3,
         wallet: "Ví chính",
@@ -262,7 +267,7 @@ export default {
         classColor: "bg-[#97a2ff]",
       },
       {
-        id: "4",
+        id: "relax",
         src: require("@/assets/images/tools/momo.svg"),
         percentage: 7.5,
         wallet: "Ví chính",
@@ -270,7 +275,7 @@ export default {
         classColor: "bg-[#76de82]",
       },
       {
-        id: "5",
+        id: "giving",
         src: require("@/assets/images/tools/zalopay.png"),
         percentage: 3,
         wallet: "Ví chính",
@@ -278,7 +283,7 @@ export default {
         classColor: "bg-[#c0c0c0]",
       },
       {
-        id: "6",
+        id: "longTermSaving",
         src: require("@/assets/images/tools/zalopay.png"),
         percentage: 11,
         wallet: "Tài khoản tích lũy",
@@ -286,6 +291,9 @@ export default {
         classColor: "bg-[#f9a484]",
       },
     ];
+
+    const necessityLimitation = funds.find((item) => item.id === "necessity").percentage * totalIncome / 100
+    console.log("necessityLimitation", necessityLimitation);
     return {
       columnsIncome,
       dataIncome,
@@ -293,6 +301,7 @@ export default {
       totalIncome,
       columnsHandleIncome,
       dataHandleIncome,
+      necessityLimitation
     };
   },
 };
