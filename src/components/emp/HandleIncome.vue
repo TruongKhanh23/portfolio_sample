@@ -1,5 +1,6 @@
 <template>
-  <div class="px-4">
+  <div class="md:px-4">
+    <p class="md:hidden font-semibold text-lg text-left my-4">Dach sách xử lý thu nhập</p>
     <a-table
       :columns="columns"
       :data-source="data"

@@ -1,31 +1,31 @@
 <template>
   <div class="container mx-auto mt-12">
     <!-- Funds -->
-    <Funds :funds="funds" :totalIncome="totalIncome"/>
+    <Funds :funds="funds" :totalIncome="totalIncome" />
     <!-- Details expense -->
-    <a-row class="my-4">
+    <div class="flex flex-col md:flex-row">
       <!-- Estimate expense -->
-      <a-col :span="6">
+      <a-col :md="{ span: 6 }">
         <EstimateNecessity :necessityLimitation="necessityLimitation" />
       </a-col>
       <!-- Total income & debt -->
-      <a-col :span="8">
+      <a-col :md="{ span: 8}">
         <IncomeDebt
-          class="border-l border-r px-4"
+          class="md:border-l md:border-r px-4"
           :columns="columnsIncome"
           :data="dataIncome"
           :totalIncome="totalIncome"
         />
       </a-col>
       <!-- Checklist handle income -->
-      <a-col :span="10">
+      <a-col :md="{ span: 10 }">
         <HandleIncome :columns="columnsHandleIncome" :data="dataHandleIncome" />
       </a-col>
-    </a-row>
+    </div>
   </div>
 </template>
 <script>
-import { Row, Col } from "ant-design-vue";
+import { Col } from "ant-design-vue";
 import Funds from "@/components/emp/Funds.vue";
 import IncomeDebt from "@/components/emp/IncomeDebt.vue";
 import HandleIncome from "@/components/emp/HandleIncome.vue";
@@ -33,7 +33,6 @@ import EstimateNecessity from "@/components/emp/EstimateNecessity.vue";
 
 export default {
   components: {
-    ARow: Row,
     ACol: Col,
     Funds,
     IncomeDebt,
