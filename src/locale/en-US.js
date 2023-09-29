@@ -4,6 +4,7 @@ export default {
     about: "About Me",
     contact: "Contact",
     hireMe: "Hire Me",
+    tool: "Tool",
   },
   home: {
     banner: {
@@ -84,7 +85,7 @@ export default {
       toolTechnology: "Tool & Technology",
       sharing: "Sharing",
       challenge: "Challenge",
-      otherProjects: "Other Projects"
+      otherProjects: "Other Projects",
     },
   },
 };
