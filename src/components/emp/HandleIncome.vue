@@ -1,16 +1,18 @@
 <template>
   <div class="md:px-4">
-    <p class="md:hidden font-semibold text-lg text-left my-4">Dach sách xử lý thu nhập</p>
     <a-table
       :columns="columns"
       :data-source="data"
     >
-      <template #bodyCell="{ column, text }">
+      <template #bodyCell="{ column, record }">
         <template v-if="column.dataIndex === 'amount'">
-          <a>{{ new Intl.NumberFormat().format(text) }}</a>
+          <a>{{ new Intl.NumberFormat().format(record.amount) }}</a>
         </template>
         <template v-if="column.dataIndex === 'type'">
-          <a-tag :color="tagColor(text)">{{ text }}</a-tag>
+          <div class="flex flex-col">
+            <p class="text-center">{{ record.wallet }}</p>
+            <a-tag :color="tagColor(record.type)" class="text-center">{{ record.type }}</a-tag>
+          </div>
         </template>
       </template>
     </a-table>

@@ -1,6 +1,5 @@
 <template>
   <div class="px-4">
-    <p class="md:hidden font-semibold text-lg text-left my-4">Dự chi - Chi tiêu thiết yếu</p>
     <EstimateNecessityRow
       :name="'Dự dư'"
       :amount="necessityLimitation - calculateTotalExpense(data)"

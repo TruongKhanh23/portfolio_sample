@@ -1,15 +1,37 @@
 <template>
   <div class="container mx-auto mt-12">
-    <!-- Funds -->
     <Funds :funds="funds" :totalIncome="totalIncome" />
-    <!-- Details expense -->
-    <div class="flex flex-col md:flex-row">
-      <!-- Estimate expense -->
+
+    <!-- Mobile View -->
+    <div class="md:hidden">
+      <a-tabs v-model:activeKey="activeKey" centered>
+        <a-tab-pane key="1" tab="Dự chi thiết yếu">
+          <EstimateNecessity :necessityLimitation="necessityLimitation" />
+        </a-tab-pane>
+        <a-tab-pane key="2" tab="Thu nhập" force-render>
+          <IncomeDebt
+            class="md:border-l md:border-r px-4"
+            :columns="columnsIncome"
+            :data="dataIncome"
+            :totalIncome="totalIncome"
+          />
+        </a-tab-pane>
+        <a-tab-pane key="3" tab="Xử lý thu nhập">
+          <HandleIncome
+            :columns="columnsHandleIncome"
+            :data="dataHandleIncome"
+          />
+        </a-tab-pane>
+      </a-tabs>
+    </div>
+
+    <!-- Desktop View-->
+    <div class="flex flex-col md:flex-row hidden md:flex">
       <a-col :md="{ span: 6 }">
         <EstimateNecessity :necessityLimitation="necessityLimitation" />
       </a-col>
-      <!-- Total income & debt -->
-      <a-col :md="{ span: 8}">
+
+      <a-col :md="{ span: 8 }">
         <IncomeDebt
           class="md:border-l md:border-r px-4"
           :columns="columnsIncome"
@@ -17,7 +39,7 @@
           :totalIncome="totalIncome"
         />
       </a-col>
-      <!-- Checklist handle income -->
+
       <a-col :md="{ span: 10 }">
         <HandleIncome :columns="columnsHandleIncome" :data="dataHandleIncome" />
       </a-col>
@@ -25,7 +47,7 @@
   </div>
 </template>
 <script>
-import { Col } from "ant-design-vue";
+import { Col, Tabs, TabPane } from "ant-design-vue";
 import Funds from "@/components/emp/Funds.vue";
 import IncomeDebt from "@/components/emp/IncomeDebt.vue";
 import HandleIncome from "@/components/emp/HandleIncome.vue";
@@ -34,6 +56,8 @@ import EstimateNecessity from "@/components/emp/EstimateNecessity.vue";
 export default {
   components: {
     ACol: Col,
+    ATabs: Tabs,
+    ATabPane: TabPane,
     Funds,
     IncomeDebt,
     HandleIncome,
@@ -74,15 +98,11 @@ export default {
       {
         title: "Loại",
         dataIndex: "type",
-      },
-      {
-        title: "Ví",
-        dataIndex: "wallet",
+        maxWidth: 50,
       },
       {
         title: "Quỹ",
         dataIndex: "fund",
-        width: 150,
       },
       {
         title: "Số tiền",
