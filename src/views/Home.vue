@@ -20,9 +20,27 @@
 </template>
 
 <script setup>
-import AppBanner from '@/components/shared/AppBanner'
-import ProjectsGrid from '@/components/projects/ProjectsGrid.vue'
-import Button from '@/components/reusable/Button.vue'
+import { ref } from "vue";
+import AppBanner from "@/components/shared/AppBanner";
+import ProjectsGrid from "@/components/projects/ProjectsGrid.vue";
+import Button from "@/components/reusable/Button.vue";
+import * as contentful from "contentful";
+
+const post = ref(null);
+
+const client = contentful.createClient({
+  space: "c6ogknoey4wh",
+  environment: "master", // defaults to 'master' if not set
+  accessToken: "XNu6t2LDvPJd43iOzlLmYXklaD85PimLxUrl72k4Hoo",
+});
+
+client
+  .getEntry("3t7Iub6Arm23Cn7wWkIJTd")
+  .then((entry) => {
+    post.value = entry;
+    console.log("post.value", post.value);
+  })
+  .catch(console.error);
 </script>
 
 <style scoped></style>
