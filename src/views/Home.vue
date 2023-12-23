@@ -34,8 +34,8 @@ const client = contentful.createClient({
   accessToken: "XNu6t2LDvPJd43iOzlLmYXklaD85PimLxUrl72k4Hoo",
 });
 
-client
-  .getEntry("3t7Iub6Arm23Cn7wWkIJTd")
+client.withAllLocales
+  .getEntry("2fh7DboJhjWwcRmWfZnC5R")
   .then((entry) => {
     post.value = entry;
     console.log("post.value", post.value);
