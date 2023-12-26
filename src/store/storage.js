@@ -30,14 +30,17 @@ export default function createStorage(options) {
     if (isPlainObject(savedState)) {
       store.replaceState(merge(store.state, savedState));
     }
-    const { reducer, paths } = options;
-    let value = reducer
-      ? reducer(store.state, options.paths)
-      : paths.reduce((acc, path) => set(acc, path, get(store.state, path)), {});
 
-    if (options.exclude) {
-      value = omit(value, options.exclude);
-    }
-    storage.setItem(key, JSON.stringify(value));
+    store.subscribe(function (mutation, state) {
+      const { reducer, paths } = options;
+      let value = reducer
+        ? reducer(state, options.paths)
+        : paths.reduce((acc, path) => set(acc, path, get(state, path)), {});
+
+      if (options.exclude) {
+        value = omit(value, options.exclude);
+      }
+      storage.setItem(key, JSON.stringify(value));
+    });
   };
 }

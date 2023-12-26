@@ -20,9 +20,21 @@
 </template>
 
 <script setup>
-import AppBanner from '@/components/shared/AppBanner'
-import ProjectsGrid from '@/components/projects/ProjectsGrid.vue'
-import Button from '@/components/reusable/Button.vue'
+import AppBanner from "@/components/shared/AppBanner";
+import ProjectsGrid from "@/components/projects/ProjectsGrid.vue";
+import Button from "@/components/reusable/Button.vue";
+import { useStore } from "vuex";
+
+const store = useStore();
+store.dispatch("aboutMe/storeAboutMe", {
+  title: "2",
+  description: "0",
+  githubStars: "0",
+  yearsExperience: "0",
+  positiveFeedback: "0",
+  projectsCompleted: "0",
+});
+console.log("store.state.aboutMe", store.state.aboutMe);
 </script>
 
 <style scoped></style>

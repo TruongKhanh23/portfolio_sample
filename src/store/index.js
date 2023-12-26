@@ -10,7 +10,7 @@ import aboutMe from "./aboutMe";
 
 const dataStorage = createStorage({
   paths: ["aboutMe"],
-  exclude: ["aboutMe.title"],
+  exclude: [],
 });
 
 const store = createStore({
