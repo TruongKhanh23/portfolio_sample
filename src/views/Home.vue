@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto">
     <!-- Banner -->
-    <AppBanner class="mb-5 sm:mb-8" />
+    <AppBanner class="mb-5 sm:mb-8" :appBanner="appBanner" />
 
     <!-- Projects -->
     <ProjectsGrid />
@@ -23,6 +23,7 @@
 import AppBanner from "@/components/shared/AppBanner";
 import ProjectsGrid from "@/components/projects/ProjectsGrid.vue";
 import Button from "@/components/reusable/Button.vue";
+
 </script>
 
 <style scoped></style>

@@ -40,18 +40,24 @@ onUpdated(() => {
   feather.replace();
 });
 
-import { convertAboutMeToLocalizedObjects } from "@/composables/aboutMe";
+import { convertToLocalizeObjects } from "@/helpers/locale.js";
 
 import * as contentful from "contentful";
 
 const store = useStore();
 
 const aboutMe = ref(null);
+const appBanner = ref(null);
 
 watch(aboutMe, async () => {
-  const { en, vi } = convertAboutMeToLocalizedObjects(aboutMe.value.fields);
-  store.dispatch("vi/storeVI", { aboutMe: vi });
-  store.dispatch("en/storeEN", { aboutMe: en });
+  const { en, vi } = convertToLocalizeObjects(aboutMe.value);
+  store.dispatch("vi/storeVI", vi);
+  store.dispatch("en/storeEN", en);
+});
+watch(appBanner, async () => {
+  const { en, vi } = convertToLocalizeObjects(appBanner.value);
+  console.log("en", en);
+  console.log("vi", vi);
 });
 
 const client = contentful.createClient({
@@ -60,10 +66,19 @@ const client = contentful.createClient({
   accessToken: process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN,
 });
 
+// Get about me and set about me
 client.withAllLocales
   .getEntry("6RjynuD3zNFdoYx9vBlce9")
   .then((entry) => {
     aboutMe.value = entry;
+  })
+  .catch(console.error);
+
+// Get home banner
+client.withAllLocales
+  .getEntry("1LHHUKyPvPcQGE6iNZm4lP")
+  .then((entry) => {
+    appBanner.value = entry;
   })
   .catch(console.error);
 </script>

@@ -47,7 +47,14 @@
 
 <script setup>
 import feather from "feather-icons";
-import { ref, onBeforeMount, onMounted, onUpdated } from "vue";
+import { ref, onBeforeMount, onMounted, onUpdated, defineProps } from "vue";
+
+defineProps({
+  appBanner: {
+    type: Object,
+    default: () => {},
+  },
+});
 
 const theme = ref(null);
 const cvFileName = "Stoman-Resume.pdf";

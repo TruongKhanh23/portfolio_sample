@@ -17,25 +17,27 @@ export function convertAboutMeToLocalizedObjects(inputObject) {
     projectsCompleted: inputObject.projectsCompleted["en-US"],
   };
 
-  return { "en": outputObjectEn, "vi": outputObjectVi };
+  return { en: outputObjectEn, vi: outputObjectVi };
 }
 
-export function getBios(inputArray){
+export function getBios(inputArray) {
   function extractTextValues(obj) {
     const textValues = [];
-    
+
     if (obj.nodeType === "text") {
       textValues.push(obj.value);
     } else if (obj.content && Array.isArray(obj.content)) {
-      obj.content.forEach(contentItem => {
+      obj.content.forEach((contentItem) => {
         textValues.push(...extractTextValues(contentItem));
       });
     }
-  
+
     return textValues;
   }
-  
-  const resultArray = inputArray.map(paragraph => extractTextValues(paragraph).join(' '));
 
-  return resultArray
+  const resultArray = inputArray.map((paragraph) =>
+    extractTextValues(paragraph).join(" ")
+  );
+
+  return resultArray;
 }

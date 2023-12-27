@@ -2,11 +2,16 @@
   <div>
     <!-- About me -->
     <div class="container mx-auto">
-      <AboutMe :bios="bios"/>
+      <AboutMe :bios="bios" />
     </div>
 
     <!-- About counter -->
-    <AboutCounter :githubStars="githubStars" :positiveFeedback="positiveFeedback" :yearsExperience="yearsExperience" :projectsCompleted="projectsCompleted"/>
+    <AboutCounter
+      :githubStars="githubStars"
+      :positiveFeedback="positiveFeedback"
+      :yearsExperience="yearsExperience"
+      :projectsCompleted="projectsCompleted"
+    />
 
     <!-- About counter -->
     <div class="container mx-auto">
@@ -38,8 +43,14 @@ onUpdated(() => {
 const store = useStore();
 const currentLocale = useLocale().getCurrent();
 
-const { description, githubStars, positiveFeedback, yearsExperience, projectsCompleted } = store.state[currentLocale].aboutMe;
-const bios = getBios(description);
+const {
+  description,
+  githubStars,
+  positiveFeedback,
+  yearsExperience,
+  projectsCompleted,
+} = store.state[currentLocale].aboutMe;
+const bios = getBios(description.content);
 </script>
 
 <style scoped></style>
