@@ -40,7 +40,7 @@ onUpdated(() => {
   feather.replace();
 });
 
-import { convertAboutMeToLocalizedObjects } from "@/composables/aboutMe"
+import { convertAboutMeToLocalizedObjects } from "@/composables/aboutMe";
 
 import * as contentful from "contentful";
 
@@ -49,15 +49,15 @@ const store = useStore();
 const aboutMe = ref(null);
 
 watch(aboutMe, async () => {
-  const { en, vi } = convertAboutMeToLocalizedObjects(aboutMe.value.fields)
-  store.dispatch("vi/storeVI", { aboutMe: vi});
-  store.dispatch("en/storeEN", { aboutMe: en});
+  const { en, vi } = convertAboutMeToLocalizedObjects(aboutMe.value.fields);
+  store.dispatch("vi/storeVI", { aboutMe: vi });
+  store.dispatch("en/storeEN", { aboutMe: en });
 });
 
 const client = contentful.createClient({
-  space: "c6ogknoey4wh",
+  space: process.env.VUE_APP_CONTENTFUL_SPACE_ID,
   environment: "master", // defaults to 'master' if not set
-  accessToken: "XNu6t2LDvPJd43iOzlLmYXklaD85PimLxUrl72k4Hoo",
+  accessToken: process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN,
 });
 
 client.withAllLocales
@@ -70,8 +70,9 @@ client.withAllLocales
 
 <style>
 #app {
-  font-family: "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont", "Segoe UI", "Roboto", "Helvetica Neue", "Arial",
-		"'Noto Sans'", "sans-serif", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Inter", "system-ui", "-apple-system", "BlinkMacSystemFont",
+    "Segoe UI", "Roboto", "Helvetica Neue", "Arial", "'Noto Sans'", "sans-serif",
+    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
