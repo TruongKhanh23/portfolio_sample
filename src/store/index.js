@@ -6,10 +6,11 @@ import state from "./state.js";
 import mutations from "./mutations.js";
 import actions from "./actions.js";
 import getters from "./getters.js";
-import aboutMe from "./aboutMe";
+import en from "./en";
+import vi from "./vi";
 
 const dataStorage = createStorage({
-  paths: ["aboutMe"],
+  paths: ["en", "vi"],
   exclude: [],
 });
 
@@ -19,7 +20,8 @@ const store = createStore({
   actions,
   getters,
   modules: {
-    aboutMe,
+    en,
+    vi,
   },
   plugins: [dataStorage],
 });
