@@ -20,42 +20,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
-import { useStore } from "vuex";
-
 import AppBanner from "@/components/shared/AppBanner";
 import ProjectsGrid from "@/components/projects/ProjectsGrid.vue";
 import Button from "@/components/reusable/Button.vue";
-
-import * as contentful from "contentful";
-
-const store = useStore();
-store.dispatch("aboutMe/storeAboutMe", {
-  title: "2",
-  description: "0",
-  githubStars: "0",
-  yearsExperience: "0",
-  positiveFeedback: "0",
-  projectsCompleted: "0",
-});
-console.log("store.state.aboutMe", store.state.aboutMe);
-
-
-const post = ref(null);
-
-const client = contentful.createClient({
-  space: "c6ogknoey4wh",
-  environment: "master", // defaults to 'master' if not set
-  accessToken: "XNu6t2LDvPJd43iOzlLmYXklaD85PimLxUrl72k4Hoo",
-});
-
-client.withAllLocales
-  .getEntry("2fh7DboJhjWwcRmWfZnC5R")
-  .then((entry) => {
-    post.value = entry;
-    console.log("post.value", post.value);
-  })
-  .catch(console.error);
 </script>
 
 <style scoped></style>

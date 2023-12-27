@@ -24,6 +24,9 @@
 </template>
 
 <script setup>
+import { ref, watch } from "vue";
+import { useStore } from "vuex";
+
 import feather from "feather-icons";
 import AppHeader from "./components/shared/AppHeader";
 import AppFooter from "./components/shared/AppFooter";
@@ -36,6 +39,33 @@ onMounted(() => {
 onUpdated(() => {
   feather.replace();
 });
+
+import { convertAboutMeToLocalizedObjects } from "@/composables/aboutMe"
+
+import * as contentful from "contentful";
+
+const store = useStore();
+
+const aboutMe = ref(null);
+
+watch(aboutMe, async () => {
+  const { en, vi } = convertAboutMeToLocalizedObjects(aboutMe.value.fields)
+  store.dispatch("vi/storeVI", { aboutMe: vi});
+  store.dispatch("en/storeEN", { aboutMe: en});
+});
+
+const client = contentful.createClient({
+  space: "c6ogknoey4wh",
+  environment: "master", // defaults to 'master' if not set
+  accessToken: "XNu6t2LDvPJd43iOzlLmYXklaD85PimLxUrl72k4Hoo",
+});
+
+client.withAllLocales
+  .getEntry("6RjynuD3zNFdoYx9vBlce9")
+  .then((entry) => {
+    aboutMe.value = entry;
+  })
+  .catch(console.error);
 </script>
 
 <style>

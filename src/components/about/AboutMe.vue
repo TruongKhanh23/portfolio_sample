@@ -11,15 +11,29 @@
         <p
           class="font-general-regular mb-4 text-ternakry-dark dark:text-ternary-light text-lg tracking-wider"
         >
-          <i18n-t :keypath="bio"></i18n-t>
+          {{ bio }}
         </p>
       </template>
     </div>
   </div>
 </template>
 
-<script setup>
-import { computed } from "vue";
+<script>
+import { useStore } from "vuex";
 
-const bios = computed(() => [...Array(2)].map((_, i) => `about.bios[${i}]`));
+import { useLocale } from "@/composables/useLocale";
+
+import { getBios } from "@/composables/aboutMe"
+
+export default {
+  setup() {
+    const store = useStore();
+    const currentLocale = useLocale().getCurrent();
+
+    const { description } = store.state[currentLocale].aboutMe
+    const bios = getBios(description)
+
+    return { bios };
+  },
+};
 </script>
