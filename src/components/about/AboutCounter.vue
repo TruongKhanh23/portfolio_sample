@@ -23,10 +23,30 @@
 </template>
 
 <script setup>
+import { defineProps } from "vue"
+
+const props = defineProps({
+  githubStars: {
+    type: Number,
+    default: 0
+  },
+  positiveFeedback: {
+    type: Number,
+    default: 0
+  },
+  projectsCompleted: {
+    type: Number,
+    default: 0
+  },
+  yearsExperience: {
+    type: Number,
+    default: 0
+  },
+})
 const counterItems = [
-  { endAmount: 2, suffix: "", translationKey: "about.counter.experience" },
-  { endAmount: 20, suffix: "", translationKey: "about.counter.github" },
-  { endAmount: 80, suffix: "%", translationKey: "about.counter.feedback" },
-  { endAmount: 6, suffix: "", translationKey: "about.counter.projects" },
+  { endAmount: props.yearsExperience, suffix: "", translationKey: "about.counter.experience" },
+  { endAmount: props.githubStars, suffix: "", translationKey: "about.counter.github" },
+  { endAmount: props.positiveFeedback, suffix: "%", translationKey: "about.counter.feedback" },
+  { endAmount: props.projectsCompleted, suffix: "", translationKey: "about.counter.projects" },
 ];
 </script>

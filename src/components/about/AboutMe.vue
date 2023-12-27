@@ -18,22 +18,12 @@
   </div>
 </template>
 
-<script>
-import { useStore } from "vuex";
-
-import { useLocale } from "@/composables/useLocale";
-
-import { getBios } from "@/composables/aboutMe"
-
-export default {
-  setup() {
-    const store = useStore();
-    const currentLocale = useLocale().getCurrent();
-
-    const { description } = store.state[currentLocale].aboutMe
-    const bios = getBios(description)
-
-    return { bios };
-  },
-};
+<script setup>
+import { defineProps } from "vue";
+defineProps({
+  bios: {
+    type: Array,
+    default: () => []
+  }
+})
 </script>

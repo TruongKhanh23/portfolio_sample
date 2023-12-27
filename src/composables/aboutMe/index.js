@@ -5,6 +5,7 @@ export function convertAboutMeToLocalizedObjects(inputObject) {
     githubStars: inputObject.githubStars["en-US"],
     yearsExperience: inputObject.yearsExperience["en-US"],
     positiveFeedback: inputObject.positiveFeedback["en-US"],
+    projectsCompleted: inputObject.projectsCompleted["en-US"],
   };
 
   const outputObjectVi = {
@@ -13,6 +14,7 @@ export function convertAboutMeToLocalizedObjects(inputObject) {
     githubStars: inputObject.githubStars["en-US"],
     yearsExperience: inputObject.yearsExperience["en-US"],
     positiveFeedback: inputObject.positiveFeedback["en-US"],
+    projectsCompleted: inputObject.projectsCompleted["en-US"],
   };
 
   return { "en": outputObjectEn, "vi": outputObjectVi };
