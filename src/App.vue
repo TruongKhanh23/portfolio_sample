@@ -48,16 +48,22 @@ const store = useStore();
 
 const aboutMe = ref(null);
 const appBanner = ref(null);
+const contact = ref(null);
 
 watch(aboutMe, async () => {
   const { en, vi } = convertToLocalizeObjects(aboutMe.value);
-  store.dispatch("vi/storeVI", vi);
-  store.dispatch("en/storeEN", en);
+  store.dispatch("vi/storeVI", { aboutMe: vi.aboutMe });
+  store.dispatch("en/storeEN", { aboutMe: en.aboutMe });
 });
 watch(appBanner, async () => {
   const { en, vi } = convertToLocalizeObjects(appBanner.value);
-  console.log("en", en);
-  console.log("vi", vi);
+  store.dispatch("vi/storeVI", { appBanner: vi.homeBanner });
+  store.dispatch("en/storeEN", { appBanner: en.homeBanner });
+});
+watch(contact, async () => {
+  const { en, vi } = convertToLocalizeObjects(contact.value);
+  store.dispatch("vi/storeVI", { contact: vi.contact });
+  store.dispatch("en/storeEN", { contact: en.contact });
 });
 
 const client = contentful.createClient({
@@ -79,6 +85,14 @@ client.withAllLocales
   .getEntry("1LHHUKyPvPcQGE6iNZm4lP")
   .then((entry) => {
     appBanner.value = entry;
+  })
+  .catch(console.error);
+
+// Get contact
+client.withAllLocales
+  .getEntry("66XHlAPt38GVlchYvQAdf4")
+  .then((entry) => {
+    contact.value = entry;
   })
   .catch(console.error);
 </script>
