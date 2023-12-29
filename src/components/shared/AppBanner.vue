@@ -7,12 +7,12 @@
       <h1
         class="font-bold text-3xl md:text-3xl xl:text-4xl text-center sm:text-left text-ternary-dark dark:text-primary-light uppercase"
       >
-        {{ $t("home.banner.title") }}
+        {{ appBanner.title }}
       </h1>
       <p
         class="font-general-medium mt-2 text-lg sm:text-xl xl:text-2xl text-center sm:text-left leading-none text-gray-400"
       >
-        {{ $t("home.banner.subTitle") }}
+        {{ appBanner.subTitle }}
       </p>
       <div class="flex justify-center sm:block">
         <a
@@ -46,16 +46,15 @@
 </template>
 
 <script setup>
+import { useStore } from "vuex";
+import { useLocale } from "@/composables/useLocale";
 import feather from "feather-icons";
-import { ref, onBeforeMount, onMounted, onUpdated, defineProps } from "vue";
+import { ref, onBeforeMount, onMounted, onUpdated } from "vue";
 
-defineProps({
-  appBanner: {
-    type: Object,
-    default: () => {},
-  },
-});
-
+const store = useStore();
+const locales = useLocale();
+const currentLocale = locales.getCurrent();
+const { appBanner } = store.state[currentLocale];
 const theme = ref(null);
 const cvFileName = "Stoman-Resume.pdf";
 

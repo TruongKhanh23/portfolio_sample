@@ -31,13 +31,34 @@
 </template>
 
 <script setup>
-import { defineProps } from "vue";
+import { computed, defineProps } from "vue";
 
-defineProps({
-  contacts: {
+const props = defineProps({
+  contact: {
     type: Object,
     default: () => {},
   },
+});
+
+const contacts = computed(() => {
+  const contact = props.contact;
+  return [
+    {
+      id: 1,
+      name: contact.address,
+      icon: "map-pin",
+    },
+    {
+      id: 2,
+      name: contact.email,
+      icon: "mail",
+    },
+    {
+      id: 3,
+      name: contact.phone,
+      icon: "phone",
+    },
+  ];
 });
 </script>
 
