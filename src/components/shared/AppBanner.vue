@@ -1,4 +1,5 @@
 <template>
+  <LoadingModal :isOpen="isOpenLoadingModal" />
   <section
     class="flex flex-col sm:justify-between items-center sm:flex-row mt-12 sm:mt-10"
   >
@@ -47,8 +48,12 @@ import { useStore } from "vuex";
 import { useLocale } from "@/composables/useLocale";
 import { ref, onBeforeMount, onMounted, onUpdated } from "vue";
 
+import LoadingModal from "@/components/reusable/LoadingModal.vue";
+
 import axios from "axios";
 import feather from "feather-icons";
+
+const isOpenLoadingModal = ref(false);
 
 const store = useStore();
 const locales = useLocale();
@@ -72,9 +77,11 @@ onUpdated(() => {
 });
 
 async function downloadFile() {
-  const { fileName, url: fileUrl } = cvFile;
+  isOpenLoadingModal.value = true;
+  document.body.style.overflow = "hidden";
 
   try {
+    const { fileName, url: fileUrl } = cvFile;
     const response = await axios.get(fileUrl, { responseType: "blob" });
     const blob = new Blob([response.data]);
     const url = window.URL.createObjectURL(blob);
@@ -87,6 +94,9 @@ async function downloadFile() {
   } catch (error) {
     console.error("Error downloading file:", error);
   }
+
+  isOpenLoadingModal.value = false;
+  document.body.style.removeProperty("overflow");
 }
 </script>
 
