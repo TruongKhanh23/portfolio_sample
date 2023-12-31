@@ -30,7 +30,10 @@ import { ref, watch, onMounted, onUpdated } from "vue";
 import AppHeader from "./components/shared/AppHeader";
 import AppFooter from "./components/shared/AppFooter";
 
-import { getProjects } from "@/composables/projects/index.js";
+import {
+  getProjects,
+  convertProjectStructure,
+} from "@/composables/projects/index.js";
 
 import feather from "feather-icons";
 
@@ -103,8 +106,12 @@ client.withAllLocales
 onMounted(async () => {
   projects.value.vi = await getProjects("vi");
   projects.value.en = await getProjects("en-US");
-  store.dispatch("vi/storeVI", { projects: projects.value.vi });
-  store.dispatch("en/storeEN", { projects: projects.value.en });
+  store.dispatch("vi/storeVI", {
+    projects: convertProjectStructure(projects.value.vi),
+  });
+  store.dispatch("en/storeEN", {
+    projects: convertProjectStructure(projects.value.en),
+  });
 });
 </script>
 

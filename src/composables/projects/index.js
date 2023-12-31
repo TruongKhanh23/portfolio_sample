@@ -6,6 +6,7 @@ export async function getProjects(locale = "vi") {
       title
     date
     category
+    tags
     thumbnail {
       fileName
       url
@@ -45,13 +46,32 @@ export async function getProjects(locale = "vi") {
     const response = await fetch(fetchUrl, fetchOptions).then((response) =>
       response.json()
     );
-    console.log(
-      "projectCollection.value",
-      response.data.projectCollection.items
-    );
     return response.data.projectCollection.items;
   } catch (error) {
     console.error("Error fetching data from Contentful:", error);
     throw new Error("Could not receive the data from Contentful!");
   }
+}
+export function convertProjectStructure(projects) {
+  const convertProjects = [];
+  for (const project of projects) {
+    convertProjects.push({
+      id: project.sys.id,
+      header: {
+        title: project.title,
+        date: project.date,
+        tags: project.tags,
+      },
+      category: project.category,
+      img: project.thumbnail,
+      projectImages: project.projectImagesCollection.items,
+      projectInfo: {
+        companyInfos: project.customerInfomations,
+        objectivesDetails: project.objectivesDetails,
+        technologies: project.technologies,
+      },
+      projectDetails: project.projectDetails,
+    });
+  }
+  return convertProjects;
 }
