@@ -15,12 +15,9 @@
         {{ appBanner.subTitle }}
       </p>
       <div class="flex justify-center sm:block">
-        <a
-          :href="`/files/${cvFileName}`"
-          :download="cvFileName"
-          target="_blank"
+        <div
+          @click="downloadFile"
           class="flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 text-gray-500 hover:text-white duration-500"
-          aria-label="Download Resume"
         >
           <i
             data-feather="arrow-down-circle"
@@ -29,7 +26,7 @@
           <span class="text-sm sm:text-lg font-general-medium duration-100">
             {{ $t("home.banner.download.title") }}
           </span>
-        </a>
+        </div>
       </div>
     </div>
 
@@ -48,15 +45,17 @@
 <script setup>
 import { useStore } from "vuex";
 import { useLocale } from "@/composables/useLocale";
-import feather from "feather-icons";
 import { ref, onBeforeMount, onMounted, onUpdated } from "vue";
+
+import axios from "axios";
+import feather from "feather-icons";
 
 const store = useStore();
 const locales = useLocale();
 const currentLocale = locales.getCurrent();
 const { appBanner } = store.state[currentLocale];
+const cvFile = appBanner.curriculumVitae.file;
 const theme = ref(null);
-const cvFileName = "Stoman-Resume.pdf";
 
 // onBeforeMount = created
 onBeforeMount(() => {
@@ -71,6 +70,24 @@ onMounted(() => {
 onUpdated(() => {
   feather.replace();
 });
+
+async function downloadFile() {
+  const { fileName, url: fileUrl } = cvFile;
+
+  try {
+    const response = await axios.get(fileUrl, { responseType: "blob" });
+    const blob = new Blob([response.data]);
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", fileName);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error("Error downloading file:", error);
+  }
+}
 </script>
 
 <style scoped></style>
