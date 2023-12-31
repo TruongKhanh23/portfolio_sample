@@ -1,6 +1,6 @@
-export async function getProjects() {
+export async function getProjects(locale = "vi") {
   const query = `{
-  projectCollection {
+  projectCollection (locale: "${locale}") {
     items{
       sys {id}
       title

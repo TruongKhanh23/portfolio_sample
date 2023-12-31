@@ -51,7 +51,7 @@ const store = useStore();
 const aboutMe = ref(null);
 const appBanner = ref(null);
 const contact = ref(null);
-const projects = ref(null);
+const projects = ref({ en: null, vi: null });
 
 watch(aboutMe, async () => {
   const { en, vi } = convertToLocalizeObjects(aboutMe.value);
@@ -101,8 +101,10 @@ client.withAllLocales
 
 // Get Projects
 onMounted(async () => {
-  projects.value = await getProjects();
-  console.log("projects.value", projects.value);
+  projects.value.vi = await getProjects("vi");
+  projects.value.en = await getProjects("en-US");
+  store.dispatch("vi/storeVI", { projects: projects.value.vi });
+  store.dispatch("en/storeEN", { projects: projects.value.en });
 });
 </script>
 
