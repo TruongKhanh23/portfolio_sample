@@ -24,13 +24,15 @@
 </template>
 
 <script setup>
-import { ref, watch } from "vue";
 import { useStore } from "vuex";
+import { ref, watch, onMounted, onUpdated } from "vue";
 
-import feather from "feather-icons";
 import AppHeader from "./components/shared/AppHeader";
 import AppFooter from "./components/shared/AppFooter";
-import { onMounted, onUpdated } from "vue";
+
+import { getProjects } from "@/composables/projects/index.js";
+
+import feather from "feather-icons";
 
 const appTheme = localStorage.getItem("theme");
 onMounted(() => {
@@ -49,6 +51,7 @@ const store = useStore();
 const aboutMe = ref(null);
 const appBanner = ref(null);
 const contact = ref(null);
+const projects = ref(null);
 
 watch(aboutMe, async () => {
   const { en, vi } = convertToLocalizeObjects(aboutMe.value);
@@ -95,6 +98,12 @@ client.withAllLocales
     contact.value = entry;
   })
   .catch(console.error);
+
+// Get Projects
+onMounted(async () => {
+  projects.value = await getProjects();
+  console.log("projects.value", projects.value);
+});
 </script>
 
 <style>
