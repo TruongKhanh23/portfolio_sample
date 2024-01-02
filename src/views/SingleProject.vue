@@ -8,7 +8,7 @@
     <ProjectGallery :projectImages="data.projectImages" />
 
     <!-- Project information -->
-    <!-- <ProjectInfo :projectInfo="data.projectInfo" /> -->
+    <ProjectInfo :projectInfo="data.projectInfo" />
 
     <!-- Project related projects -->
     <ProjectRelatedProjects v-if="otherProjects.length > 0" :otherProjects="otherProjects" />
@@ -27,7 +27,7 @@ import "@splidejs/vue-splide/css";
 
 import ProjectHeader from "@/components/projects/ProjectHeader.vue";
 import ProjectGallery from "@/components/projects/ProjectGallery.vue";
-// import ProjectInfo from "@/components/projects/ProjectInfo.vue";
+import ProjectInfo from "@/components/projects/ProjectInfo.vue";
 import ProjectRelatedProjects from "@/components/projects/ProjectRelatedProjects.vue";
 import LoadingModal from "@/components/reusable/LoadingModal.vue";
 
@@ -35,6 +35,7 @@ const store = useStore();
 const locales = useLocale();
 const currentLocale = locales.getCurrent();
 const { projects } = store.state[currentLocale];
+
 //Open popup - no scroll
 const isOpenLoadingModal = ref(true);
 document.body.style.overflow = "hidden";

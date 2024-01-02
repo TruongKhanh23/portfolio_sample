@@ -9,11 +9,11 @@
         </p>
         <ul class="leading-loose">
           <li
-            v-for="info in projectInfo.companyInfos"
-            :key="info"
+            v-for="item in projectInfo.companyInfos"
+            :key="item"
             class="font-general-regular text-ternary-dark dark:text-ternary-light"
           >
-            <span v-html="info"></span>
+            <RichTextRenderer :arrayRichText="item.content" />
           </li>
         </ul>
       </div>
@@ -23,9 +23,15 @@
         <p class="text-2xl text-ternary-dark dark:text-ternary-light mb-2">
           {{ $t("projects.projectInfo.objective") }}
         </p>
-        <p class="text-primary-dark dark:text-ternary-light">
-          {{ projectInfo.objectivesDetails }}
-        </p>
+        <ul class="leading-loose">
+          <li
+            v-for="item in projectInfo.objectivesDetails"
+            :key="item"
+            class="font-general-regular text-ternary-dark dark:text-ternary-light"
+          >
+            <RichTextRenderer :arrayRichText="item.content" />
+          </li>
+        </ul>
       </div>
 
       <!-- Single project technologies -->
@@ -34,7 +40,7 @@
           {{ $t("projects.projectInfo.toolTechnology") }}
         </p>
         <p class="text-primary-dark dark:text-ternary-light">
-          {{ projectInfo.technologies[0].techs.join(", ") }}
+          {{ projectInfo.technologies.join(", ") }}
         </p>
       </div>
 
@@ -65,13 +71,15 @@
       >
         {{ $t("projects.projectInfo.challenge") }}
       </p>
-      <p
-        v-for="projectDetail in projectInfo.projectDetails"
-        :key="projectDetail"
-        class="mb-5 text-lg text-ternary-dark dark:text-ternary-light"
-      >
-        {{ projectDetail }}
-      </p>
+      <ul class="leading-loose">
+        <li
+          v-for="item in projectInfo.projectDetails"
+          :key="item"
+          class="font-general-regular text-ternary-dark dark:text-ternary-light"
+        >
+          <RichTextRenderer :arrayRichText="item.content" />
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -79,6 +87,8 @@
 <script setup>
 import feather from "feather-icons";
 import { defineProps, onMounted, onUpdated } from "vue";
+
+import RichTextRenderer from "@/components/reusable/RichTextRenderer.vue"
 
 const socialSharings = [
   {
