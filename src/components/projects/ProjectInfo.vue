@@ -75,7 +75,7 @@
         <li
           v-for="item in projectInfo.projectDetails"
           :key="item"
-          class="font-general-regular text-ternary-dark dark:text-ternary-light"
+          class="font-general-regular text-ternary-dark dark:text-ternary-light mb-2"
         >
           <RichTextRenderer :arrayRichText="item.content" />
         </li>

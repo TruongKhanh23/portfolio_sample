@@ -1,18 +1,18 @@
 <template>
   <div>
-    <p v-for="(paragraph, index) in arrayRichText" :key="index">
-      <span v-if="paragraph.nodeType === 'text'">
+    <div v-for="(paragraph, index) in arrayRichText" :key="index">
+      <p v-if="paragraph.nodeType === 'text'">
         {{ paragraph.value }}
-      </span>
-      <span v-if="paragraph.nodeType === 'hyperlink'">
+      </p>
+      <p v-if="paragraph.nodeType === 'hyperlink'">
         <a
           :href="paragraph.data.uri"
           target="_blank"
           class="text-[blue] underline"
           >{{ paragraph.data.uri }}</a
         >
-      </span>
-    </p>
+      </p>
+    </div>
   </div>
 </template>
 
