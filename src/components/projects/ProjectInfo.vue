@@ -51,7 +51,7 @@
         </p>
         <div class="flex items-center gap-3 mt-5">
           <a
-            v-for="social in socialSharings"
+            v-for="social in socialNetwork"
             :key="social.id"
             :href="social.url"
             target="__blank"
@@ -86,48 +86,28 @@
 
 <script setup>
 import feather from "feather-icons";
-import { defineProps, onMounted, onUpdated } from "vue";
+import { defineProps, onMounted, onUpdated, toRefs } from "vue";
 
 import RichTextRenderer from "@/components/reusable/RichTextRenderer.vue"
 
-const socialSharings = [
-  {
-    id: 1,
-    name: "Twitter",
-    icon: "twitter",
-    url: "https://twitter.com/ChhinghorDev",
-  },
-  {
-    id: 2,
-    name: "Instagram",
-    icon: "instagram",
-    url: "https://www.instagram.com/seavhorrr",
-  },
-  {
-    id: 3,
-    name: "Facebook",
-    icon: "facebook",
-    url: "https://facebook.com/stom.sharow",
-  },
-  {
-    id: 4,
-    name: "LinkedIn",
-    icon: "linkedin",
-    url: "https://www.linkedin.com/in/ching-hor-bb7bb415b/",
-  },
-  {
-    id: 5,
-    name: "Youtube",
-    icon: "youtube",
-    url: "https://www.youtube.com/channel/UCSS-bVfkA2CWiAJJjJnUaaQ",
-  },
-];
-defineProps({
+import { socialSharings } from "@/data/projects";
+
+const props = defineProps({
   projectInfo: {
     type: Object,
     default: () => {},
   },
 });
+
+const { projectInfo } = toRefs(props)
+const socialNetwork = getSocialNetworks(projectInfo)
+
+function getSocialNetworks (projectInfo) {
+  for (const socialNetwork of projectInfo.value.socialNetwork) {
+    socialSharings.find((item) => socialNetwork.includes(item.id)).url = socialNetwork
+  }
+  return socialSharings.filter((item) => item.url !== "")
+}
 
 onMounted(() => {
   feather.replace();

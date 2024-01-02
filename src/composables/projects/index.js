@@ -27,6 +27,7 @@ export async function getProjects(locale = "vi") {
     projectDetails {
       json
     }
+    socialNetwork
     }
   }
 }`;
@@ -69,7 +70,8 @@ export function convertProjectStructure(projects) {
         companyInfos: project.customerInfomations.json.content,
         objectivesDetails: project.objectivesDetails.json.content,
         technologies: project.technologies,
-        projectDetails: project.projectDetails.json.content
+        projectDetails: project.projectDetails.json.content,
+        socialNetwork: project.socialNetwork
       },
     });
   }
