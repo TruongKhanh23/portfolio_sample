@@ -4,7 +4,7 @@
     <div class="w-full sm:w-1/3 text-left">
       <!-- Single project client details -->
       <div class="mb-7">
-        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2">
+        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold">
           {{ $t("projects.projectInfo.aboutClient") }}
         </p>
         <ul class="leading-loose">
@@ -20,7 +20,7 @@
 
       <!-- Single project objectives -->
       <div class="mb-7">
-        <p class="text-2xl text-ternary-dark dark:text-ternary-light mb-2">
+        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold">
           {{ $t("projects.projectInfo.objective") }}
         </p>
         <ul class="leading-loose">
@@ -36,7 +36,7 @@
 
       <!-- Single project technologies -->
       <div class="mb-7">
-        <p class="text-2xl text-ternary-dark dark:text-ternary-light mb-2">
+        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold">
           {{ $t("projects.projectInfo.toolTechnology") }}
         </p>
         <p class="text-primary-dark dark:text-ternary-light">
@@ -46,7 +46,7 @@
 
       <!-- Single project social sharing -->
       <div v-if="socialNetwork">
-        <p class="text-2xl text-ternary-dark dark:text-ternary-light mb-2">
+        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold">
           {{ $t("projects.projectInfo.sharing") }}
         </p>
         <div class="flex items-center gap-3 mt-5">
@@ -67,7 +67,7 @@
     <!-- Single project right section details -->
     <div class="w-full sm:w-2/3 text-left mt-10 sm:mt-0">
       <p
-        class="font-general-medium text-primary-dark dark:text-primary-light text-2xl font-bold mb-7"
+        class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold"
       >
         {{ $t("projects.projectInfo.challenge") }}
       </p>
