@@ -8,32 +8,40 @@
     <ProjectGallery :projectImages="data.projectImages" />
 
     <!-- Project information -->
-    <ProjectInfo :projectInfo="data.projectInfo" />
+    <!-- <ProjectInfo :projectInfo="data.projectInfo" /> -->
 
     <!-- Project related projects -->
-    <ProjectRelatedProjects :otherProjects="otherProjects" />
+    <ProjectRelatedProjects v-if="otherProjects.length > 0" :otherProjects="otherProjects" />
   </div>
 </template>
 
 <script setup>
+import { useStore } from "vuex"
 import { ref, onMounted, onUpdated } from "vue";
+
+import { useLocale } from "@/composables/useLocale";
+
 import feather from "feather-icons";
-import projects from "@/data/projects";
 // Default theme
 import "@splidejs/vue-splide/css";
+
 import ProjectHeader from "@/components/projects/ProjectHeader.vue";
 import ProjectGallery from "@/components/projects/ProjectGallery.vue";
-import ProjectInfo from "@/components/projects/ProjectInfo.vue";
+// import ProjectInfo from "@/components/projects/ProjectInfo.vue";
 import ProjectRelatedProjects from "@/components/projects/ProjectRelatedProjects.vue";
 import LoadingModal from "@/components/reusable/LoadingModal.vue";
 
+const store = useStore();
+const locales = useLocale();
+const currentLocale = locales.getCurrent();
+const { projects } = store.state[currentLocale];
 //Open popup - no scroll
 const isOpenLoadingModal = ref(true);
 document.body.style.overflow = "hidden";
 
 const id = new URLSearchParams(window.location.search).get("id");
-const data = projects.find((item) => item.id === parseInt(id));
-const otherProjects = projects.filter((item) => item.id !== parseInt(id));
+const data = projects.find((item) => item.id === id);
+const otherProjects = projects.filter((item) => item.id !== id);
 
 onMounted(() => {
   feather.replace();
