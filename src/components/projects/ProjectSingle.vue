@@ -6,7 +6,7 @@
   >
     <div>
       <img
-        :src="project.img"
+        :src="project.img.url"
         :alt="project.header.title"
         class="rounded-t-xl border-none w-full h-[350px]"
       />
@@ -31,7 +31,7 @@ export default {
   props: {
     project: Object,
   },
-}
+};
 </script>
 
 <style lang="scss" scoped></style>

@@ -11,7 +11,7 @@
         <p
           class="font-general-regular mb-4 text-ternakry-dark dark:text-ternary-light text-lg tracking-wider"
         >
-          <i18n-t :keypath="bio"></i18n-t>
+          {{ bio }}
         </p>
       </template>
     </div>
@@ -19,7 +19,11 @@
 </template>
 
 <script setup>
-import { computed } from "vue";
-
-const bios = computed(() => [...Array(2)].map((_, i) => `about.bios[${i}]`));
+import { defineProps } from "vue";
+defineProps({
+  bios: {
+    type: Array,
+    default: () => []
+  }
+})
 </script>

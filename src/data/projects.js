@@ -333,4 +333,37 @@ const projects = [
   },
 ];
 
+export const socialSharings = [
+  {
+    id: "twitter",
+    name: "Twitter",
+    icon: "twitter",
+    url: "",
+  },
+  {
+    id: "instagram",
+    name: "Instagram",
+    icon: "instagram",
+    url: "",
+  },
+  {
+    id: "facebook",
+    name: "Facebook",
+    icon: "facebook",
+    url: "",
+  },
+  {
+    id: "linkedin",
+    name: "LinkedIn",
+    icon: "linkedin",
+    url: "",
+  },
+  {
+    id: "youtube",
+    name: "Youtube",
+    icon: "youtube",
+    url: "",
+  },
+];
+
 export default projects;

@@ -4,48 +4,54 @@
     <div class="w-full sm:w-1/3 text-left">
       <!-- Single project client details -->
       <div class="mb-7">
-        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2">
+        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold">
           {{ $t("projects.projectInfo.aboutClient") }}
         </p>
         <ul class="leading-loose">
           <li
-            v-for="info in projectInfo.companyInfos"
-            :key="info"
+            v-for="item in projectInfo.companyInfos"
+            :key="item"
             class="font-general-regular text-ternary-dark dark:text-ternary-light"
           >
-            <span v-html="info"></span>
+            <RichTextRenderer :arrayRichText="item.content" />
           </li>
         </ul>
       </div>
 
       <!-- Single project objectives -->
       <div class="mb-7">
-        <p class="text-2xl text-ternary-dark dark:text-ternary-light mb-2">
+        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold">
           {{ $t("projects.projectInfo.objective") }}
         </p>
-        <p class="text-primary-dark dark:text-ternary-light">
-          {{ projectInfo.objectivesDetails }}
-        </p>
+        <ul class="leading-loose">
+          <li
+            v-for="item in projectInfo.objectivesDetails"
+            :key="item"
+            class="font-general-regular text-ternary-dark dark:text-ternary-light"
+          >
+            <RichTextRenderer :arrayRichText="item.content" />
+          </li>
+        </ul>
       </div>
 
       <!-- Single project technologies -->
       <div class="mb-7">
-        <p class="text-2xl text-ternary-dark dark:text-ternary-light mb-2">
+        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold">
           {{ $t("projects.projectInfo.toolTechnology") }}
         </p>
         <p class="text-primary-dark dark:text-ternary-light">
-          {{ projectInfo.technologies[0].techs.join(", ") }}
+          {{ projectInfo.technologies.join(", ") }}
         </p>
       </div>
 
       <!-- Single project social sharing -->
-      <div>
-        <p class="text-2xl text-ternary-dark dark:text-ternary-light mb-2">
+      <div v-if="socialNetwork">
+        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold">
           {{ $t("projects.projectInfo.sharing") }}
         </p>
         <div class="flex items-center gap-3 mt-5">
           <a
-            v-for="social in socialSharings"
+            v-for="social in socialNetwork"
             :key="social.id"
             :href="social.url"
             target="__blank"
@@ -61,63 +67,51 @@
     <!-- Single project right section details -->
     <div class="w-full sm:w-2/3 text-left mt-10 sm:mt-0">
       <p
-        class="font-general-medium text-primary-dark dark:text-primary-light text-2xl font-bold mb-7"
+        class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold"
       >
         {{ $t("projects.projectInfo.challenge") }}
       </p>
-      <p
-        v-for="projectDetail in projectInfo.projectDetails"
-        :key="projectDetail"
-        class="mb-5 text-lg text-ternary-dark dark:text-ternary-light"
-      >
-        {{ projectDetail }}
-      </p>
+      <ul class="leading-loose">
+        <li
+          v-for="item in projectInfo.projectDetails"
+          :key="item"
+          class="font-general-regular text-ternary-dark dark:text-ternary-light mb-2"
+        >
+          <RichTextRenderer :arrayRichText="item.content" />
+        </li>
+      </ul>
     </div>
   </div>
 </template>
 
 <script setup>
 import feather from "feather-icons";
-import { defineProps, onMounted, onUpdated } from "vue";
+import { defineProps, onMounted, onUpdated, toRefs } from "vue";
 
-const socialSharings = [
-  {
-    id: 1,
-    name: "Twitter",
-    icon: "twitter",
-    url: "https://twitter.com/ChhinghorDev",
-  },
-  {
-    id: 2,
-    name: "Instagram",
-    icon: "instagram",
-    url: "https://www.instagram.com/seavhorrr",
-  },
-  {
-    id: 3,
-    name: "Facebook",
-    icon: "facebook",
-    url: "https://facebook.com/stom.sharow",
-  },
-  {
-    id: 4,
-    name: "LinkedIn",
-    icon: "linkedin",
-    url: "https://www.linkedin.com/in/ching-hor-bb7bb415b/",
-  },
-  {
-    id: 5,
-    name: "Youtube",
-    icon: "youtube",
-    url: "https://www.youtube.com/channel/UCSS-bVfkA2CWiAJJjJnUaaQ",
-  },
-];
-defineProps({
+import RichTextRenderer from "@/components/reusable/RichTextRenderer.vue";
+
+import { socialSharings } from "@/data/projects";
+
+const props = defineProps({
   projectInfo: {
     type: Object,
     default: () => {},
   },
 });
+
+const { projectInfo } = toRefs(props);
+const socialNetwork = getSocialNetworks(projectInfo);
+
+function getSocialNetworks(projectInfo) {
+  if (projectInfo.value.socialNetwork) {
+    for (const socialNetwork of projectInfo.value.socialNetwork) {
+      socialSharings.find((item) => socialNetwork.includes(item.id)).url =
+        socialNetwork;
+    }
+    return socialSharings.filter((item) => item.url !== "");
+  }
+  return null
+}
 
 onMounted(() => {
   feather.replace();

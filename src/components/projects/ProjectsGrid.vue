@@ -59,12 +59,20 @@
 </template>
 
 <script setup>
-import feather from "feather-icons";
-import ProjectsFilter from "./ProjectsFilter.vue";
-import ProjectSingle from "./ProjectSingle.vue";
-import projects from "@/data/projects";
+import { useStore } from "vuex";
 import { ref, computed, onMounted } from "vue";
 
+import { useLocale } from "@/composables/useLocale";
+
+import ProjectsFilter from "./ProjectsFilter.vue";
+import ProjectSingle from "./ProjectSingle.vue";
+
+import feather from "feather-icons";
+
+const store = useStore();
+const locales = useLocale();
+const currentLocale = locales.getCurrent();
+const { projects } = store.state[currentLocale];
 const selectedCategory = ref(null);
 const searchProject = ref(null);
 const selectOptions = [

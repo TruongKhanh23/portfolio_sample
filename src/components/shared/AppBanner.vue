@@ -1,4 +1,5 @@
 <template>
+  <LoadingModal :isOpen="isOpenLoadingModal" />
   <section
     class="flex flex-col sm:justify-between items-center sm:flex-row mt-12 sm:mt-10"
   >
@@ -7,20 +8,17 @@
       <h1
         class="font-bold text-3xl md:text-3xl xl:text-4xl text-center sm:text-left text-ternary-dark dark:text-primary-light uppercase"
       >
-        {{ $t("home.banner.title") }}
+        {{ appBanner.title }}
       </h1>
       <p
         class="font-general-medium mt-2 text-lg sm:text-xl xl:text-2xl text-center sm:text-left leading-none text-gray-400"
       >
-        {{ $t("home.banner.subTitle") }}
+        {{ appBanner.subTitle }}
       </p>
       <div class="flex justify-center sm:block">
-        <a
-          :href="`/files/${cvFileName}`"
-          :download="cvFileName"
-          target="_blank"
+        <div
+          @click="downloadFile"
           class="flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 text-gray-500 hover:text-white duration-500"
-          aria-label="Download Resume"
         >
           <i
             data-feather="arrow-down-circle"
@@ -29,7 +27,7 @@
           <span class="text-sm sm:text-lg font-general-medium duration-100">
             {{ $t("home.banner.download.title") }}
           </span>
-        </a>
+        </div>
       </div>
     </div>
 
@@ -46,11 +44,23 @@
 </template>
 
 <script setup>
-import feather from "feather-icons";
+import { useStore } from "vuex";
+import { useLocale } from "@/composables/useLocale";
 import { ref, onBeforeMount, onMounted, onUpdated } from "vue";
 
+import LoadingModal from "@/components/reusable/LoadingModal.vue";
+
+import axios from "axios";
+import feather from "feather-icons";
+
+const isOpenLoadingModal = ref(false);
+
+const store = useStore();
+const locales = useLocale();
+const currentLocale = locales.getCurrent();
+const { appBanner } = store.state[currentLocale];
+const cvFile = appBanner.curriculumVitae.file;
 const theme = ref(null);
-const cvFileName = "Stoman-Resume.pdf";
 
 // onBeforeMount = created
 onBeforeMount(() => {
@@ -65,6 +75,29 @@ onMounted(() => {
 onUpdated(() => {
   feather.replace();
 });
+
+async function downloadFile() {
+  isOpenLoadingModal.value = true;
+  document.body.style.overflow = "hidden";
+
+  try {
+    const { fileName, url: fileUrl } = cvFile;
+    const response = await axios.get(fileUrl, { responseType: "blob" });
+    const blob = new Blob([response.data]);
+    const url = window.URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", fileName);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  } catch (error) {
+    console.error("Error downloading file:", error);
+  }
+
+  isOpenLoadingModal.value = false;
+  document.body.style.removeProperty("overflow");
+}
 </script>
 
 <style scoped></style>
