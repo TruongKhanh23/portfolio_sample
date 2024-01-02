@@ -66,11 +66,11 @@ export function convertProjectStructure(projects) {
       img: project.thumbnail,
       projectImages: project.projectImagesCollection.items,
       projectInfo: {
-        companyInfos: project.customerInfomations,
-        objectivesDetails: project.objectivesDetails,
+        companyInfos: project.customerInfomations.json.content,
+        objectivesDetails: project.objectivesDetails.json.content,
         technologies: project.technologies,
+        projectDetails: project.projectDetails.json.content
       },
-      projectDetails: project.projectDetails,
     });
   }
   return convertProjects;
