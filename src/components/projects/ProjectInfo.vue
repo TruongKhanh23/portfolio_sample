@@ -45,7 +45,7 @@
       </div>
 
       <!-- Single project social sharing -->
-      <div>
+      <div v-if="socialNetwork">
         <p class="text-2xl text-ternary-dark dark:text-ternary-light mb-2">
           {{ $t("projects.projectInfo.sharing") }}
         </p>
@@ -88,7 +88,7 @@
 import feather from "feather-icons";
 import { defineProps, onMounted, onUpdated, toRefs } from "vue";
 
-import RichTextRenderer from "@/components/reusable/RichTextRenderer.vue"
+import RichTextRenderer from "@/components/reusable/RichTextRenderer.vue";
 
 import { socialSharings } from "@/data/projects";
 
@@ -99,14 +99,18 @@ const props = defineProps({
   },
 });
 
-const { projectInfo } = toRefs(props)
-const socialNetwork = getSocialNetworks(projectInfo)
+const { projectInfo } = toRefs(props);
+const socialNetwork = getSocialNetworks(projectInfo);
 
-function getSocialNetworks (projectInfo) {
-  for (const socialNetwork of projectInfo.value.socialNetwork) {
-    socialSharings.find((item) => socialNetwork.includes(item.id)).url = socialNetwork
+function getSocialNetworks(projectInfo) {
+  if (projectInfo.value.socialNetwork) {
+    for (const socialNetwork of projectInfo.value.socialNetwork) {
+      socialSharings.find((item) => socialNetwork.includes(item.id)).url =
+        socialNetwork;
+    }
+    return socialSharings.filter((item) => item.url !== "");
   }
-  return socialSharings.filter((item) => item.url !== "")
+  return null
 }
 
 onMounted(() => {
