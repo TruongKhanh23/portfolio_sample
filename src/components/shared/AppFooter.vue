@@ -23,6 +23,13 @@
         </ul>
       </div>
 
+      <button
+        @click="handleShare()"
+        class="max-w-[200px] px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"
+      >
+        {{ "KH Share" }}
+      </button>
+
       <!-- Footer copyright -->
       <FooterCopyright />
     </div>
@@ -33,6 +40,7 @@
 import feather from "feather-icons";
 import FooterCopyright from "./FooterCopyright.vue";
 import { onMounted, onUpdated } from "vue";
+import { useShare } from "@vueuse/core";
 
 const socials = [
   {
@@ -66,6 +74,15 @@ onMounted(() => {
 onUpdated(() => {
   feather.replace();
 });
+
+const { share } = useShare();
+
+const handleShare = async () => {
+  share({
+    title: "Bảo hiểm Ichi An Tâm",
+    url: "https://daiichi-life-uat.quote.hk/product/MicroInsurance/MPF101?referralInfo=pmm%2Bd2kdoaLoVAeL69gQcD0BW7%2FADCog2FBtvOctbgQ%2BdEtEFlqjVtWFkdh7r0gmZCuW1u0KbYmgMRijiogqQWeMqa6ZdAiW7gMvF9%2F8T%2FRjn3FJ1vspYMVQ%2BLMIIzw9",
+  });
+};
 </script>
 
 <style scoped></style>
