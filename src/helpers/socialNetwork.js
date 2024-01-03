@@ -8,6 +8,5 @@ export default function getSocialNetworks(socialNetworks) {
     }
     return socialSharings.filter((item) => item.url !== "");
   }
-  console.log("went null");
   return null;
 }
