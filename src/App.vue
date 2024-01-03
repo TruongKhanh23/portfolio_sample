@@ -19,22 +19,27 @@
     </back-to-top>
 
     <!-- App footer -->
-    <AppFooter />
+    <AppFooter :socials="socialNetworks" />
   </div>
 </template>
 
 <script setup>
 import { useStore } from "vuex";
-import { ref, watch, onMounted, onUpdated } from "vue";
+import { ref, watch, onMounted, onUpdated, computed } from "vue";
 
-import AppHeader from "./components/shared/AppHeader";
-import AppFooter from "./components/shared/AppFooter";
-
+import { useLocale } from "@/composables/useLocale";
 import {
   getProjects,
   convertProjectStructure,
 } from "@/composables/projects/index.js";
 
+import AppHeader from "./components/shared/AppHeader";
+import AppFooter from "./components/shared/AppFooter";
+
+import getSocialNetworks from "@/helpers/socialNetwork";
+import { convertToLocalizeObjects } from "@/helpers/locale.js";
+
+import * as contentful from "contentful";
 import feather from "feather-icons";
 
 const appTheme = localStorage.getItem("theme");
@@ -45,16 +50,18 @@ onUpdated(() => {
   feather.replace();
 });
 
-import { convertToLocalizeObjects } from "@/helpers/locale.js";
-
-import * as contentful from "contentful";
-
 const store = useStore();
+const currentLocale = useLocale().getCurrent();
 
 const aboutMe = ref(null);
 const appBanner = ref(null);
 const contact = ref(null);
 const projects = ref({ en: null, vi: null });
+
+const socialNetworks = computed(() => {
+  const aboutInformation = convertToLocalizeObjects(aboutMe.value)
+  return getSocialNetworks(aboutInformation[currentLocale].aboutMe.socialNetwork)
+})
 
 watch(aboutMe, async () => {
   const { en, vi } = convertToLocalizeObjects(aboutMe.value);

@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div v-if="socials" class="container mx-auto">
     <div
       class="pt-20 sm:pt-30 pb-8 mt-20 border-t-2 border-primary-light dark:border-secondary-dark"
     >
@@ -30,36 +30,19 @@
 </template>
 
 <script setup>
-import feather from "feather-icons";
-import FooterCopyright from "./FooterCopyright.vue";
-import { onMounted, onUpdated } from "vue";
+import { onMounted, onUpdated, defineProps } from "vue";
 
-const socials = [
-  {
-    id: 1,
-    name: "GitHub",
-    icon: "github",
-    url: "https://github.com/lengchhinghor",
-  },
-  {
-    id: 2,
-    name: "Twitter",
-    icon: "twitter",
-    url: "https://twitter.com/ChhinghorDev",
-  },
-  {
-    id: 3,
-    name: "Medium",
-    icon: "book",
-    url: "https://medium.com/@lengchhinghor",
-  },
-  {
-    id: 4,
-    name: "Instagram",
-    icon: "instagram",
-    url: "https://www.instagram.com/seavhorrr",
-  },
-];
+import FooterCopyright from "./FooterCopyright.vue";
+
+import feather from "feather-icons";
+
+defineProps({
+  socials: {
+    type: Array,
+    default: () => [],
+  }
+})
+
 onMounted(() => {
   feather.replace();
 });
