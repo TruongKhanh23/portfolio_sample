@@ -1,27 +1,27 @@
 <template>
-  <div>
+  <div v-if="aboutInformation">
     <!-- About me -->
     <div class="container mx-auto">
-      <AboutMe :bios="bios" />
+      <AboutMe :bios="aboutInformation.description.content" />
     </div>
 
     <!-- About counter -->
     <AboutCounter
-      :githubStars="githubStars"
-      :positiveFeedback="positiveFeedback"
-      :yearsExperience="yearsExperience"
-      :projectsCompleted="projectsCompleted"
+      :githubStars="aboutInformation.githubStars"
+      :positiveFeedback="aboutInformation.positiveFeedback"
+      :yearsExperience="aboutInformation.yearsExperience"
+      :projectsCompleted="aboutInformation.projectsCompleted"
     />
 
     <!-- About counter -->
     <div class="container mx-auto">
-      <AboutClients />
+      <AboutClients :clients="aboutInformation.brandsWorkedWith"/>
     </div>
   </div>
 </template>
 
 <script setup>
-import { onMounted, onUpdated } from "vue";
+import { onMounted, onUpdated, computed } from "vue";
 import { useStore } from "vuex";
 
 import AboutMe from "@/components/about/AboutMe";
@@ -29,7 +29,6 @@ import AboutCounter from "@/components/about/AboutCounter";
 import AboutClients from "@/components/about/AboutClients";
 
 import { useLocale } from "@/composables/useLocale";
-import { getBios } from "@/composables/aboutMe";
 
 import feather from "feather-icons";
 
@@ -42,15 +41,7 @@ onUpdated(() => {
 
 const store = useStore();
 const currentLocale = useLocale().getCurrent();
-
-const {
-  description,
-  githubStars,
-  positiveFeedback,
-  yearsExperience,
-  projectsCompleted,
-} = store.state[currentLocale].aboutMe;
-const bios = getBios(description.content);
+const aboutInformation = computed(() => store.state[currentLocale].aboutMe)
 </script>
 
 <style scoped></style>

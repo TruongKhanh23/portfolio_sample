@@ -8,11 +8,7 @@
     <!-- About details -->
     <div class="w-full sm:w-3/4 text-left">
       <template v-for="bio in bios" :key="bio">
-        <p
-          class="font-general-regular mb-4 text-ternakry-dark dark:text-ternary-light text-lg tracking-wider"
-        >
-          {{ bio }}
-        </p>
+        <RichTextRenderer :arrayRichText="bio.content" class="font-general-regular mb-4 text-ternakry-dark dark:text-ternary-light text-lg tracking-wider"/>
       </template>
     </div>
   </div>
@@ -20,6 +16,8 @@
 
 <script setup>
 import { defineProps } from "vue";
+import RichTextRenderer from "@/components/reusable/RichTextRenderer.vue";
+
 defineProps({
   bios: {
     type: Array,
