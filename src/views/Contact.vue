@@ -24,7 +24,6 @@ const store = useStore();
 const locales = useLocale();
 const currentLocale = locales.getCurrent();
 const { contact } = store.state[currentLocale];
-console.log("contact", contact);
 
 onMounted(() => {
   feather.replace();
