@@ -108,7 +108,6 @@ function filterProjectsByCategory(projects) {
   return projects.filter((item) => {
     let category =
       item.category.charAt(0).toUpperCase() + item.category.slice(1);
-    console.log(category);
     return category.includes(selectedCategory.value);
   });
 }
