@@ -17,11 +17,18 @@ export function convertToLocalizeObjects(object) {
 
 function createLocaleObject(fields, keys, locale) {
   const result = {};
+
   for (const key of keys) {
     const localizedKey = fields[key][locale] ?? fields[key][EN];
-    result[key] = _isObject(localizedKey)
-      ? handleFieldIsObject(localizedKey, locale)
-      : localizedKey || fields[key];
+    if(_isObject(localizedKey)) {
+      if(getArrayType(localizedKey) === "strings") {
+        result[key] = localizedKey
+      } else {
+        result[key] = handleFieldIsObject(localizedKey, locale)
+      }
+    } else {
+      result[key] = localizedKey || fields[key]
+    }
   }
 
   return result;
@@ -36,7 +43,11 @@ function handleFieldIsObject(data, locale) {
   for (const key of keys) {
     const localizedKey = fields[key][locale] ?? fields[key][EN] ?? fields[key];
     if(_isObject(localizedKey)) {
-      result[key] = handleFieldIsObject(localizedKey, locale)
+      if(getArrayType(localizedKey) === "strings") {
+        result[key] = localizedKey
+      } else {
+        result[key] = handleFieldIsObject(localizedKey, locale)
+      }
     } else {
       result[key] = localizedKey || fields[key];
     }
@@ -65,4 +76,30 @@ function removeKeys(obj) {
   }
 
   return obj;
+}
+
+function getArrayType(arr) {
+  if (!Array.isArray(arr)) {
+    return "Not an array";
+  }
+
+  for (const element of arr) {
+    if (typeof element !== 'string' && typeof element !== 'object') {
+      return "mixed";
+    }
+
+    if (typeof element === 'object' && !Array.isArray(element)) {
+      return "Object with nested properties";
+    }
+  }
+
+  if (arr.every(element => typeof element === 'string')) {
+    return "strings";
+  }
+
+  if (arr.every(element => typeof element === 'object' && !Array.isArray(element))) {
+    return "objects";
+  }
+
+  return "mixed";
 }
