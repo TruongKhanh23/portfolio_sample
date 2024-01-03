@@ -1,6 +1,6 @@
 <template>
   <!-- Projects grid -->
-  <section class="pt-10 sm:pt-14">
+  <section v-if="projects" class="pt-10 sm:pt-14">
     <!-- Projects grid title -->
     <div class="text-center">
       <p
@@ -50,7 +50,7 @@
     <!-- Projects grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-6 sm:gap-10">
       <ProjectSingle
-        v-for="project in filteredProjects"
+        v-for="project in projects"
         :key="project.id"
         :project="project"
       />
@@ -72,26 +72,39 @@ import feather from "feather-icons";
 const store = useStore();
 const locales = useLocale();
 const currentLocale = locales.getCurrent();
-const { projects } = store.state[currentLocale];
+
 const selectedCategory = ref(null);
 const searchProject = ref(null);
-const selectOptions = [
-  "Web Application",
-  "Mobile Application",
-  "API Spring boot",
-  "Spring Microservice",
-];
 
-const filteredProjects = computed(() => {
+const projects = computed(() => {
+  let allProjects = store.state[currentLocale].projects;
   if (selectedCategory.value) {
-    return filterProjectsByCategory();
+    return filterProjectsByCategory(allProjects);
   } else if (searchProject.value) {
-    return filterProjectsBySearch();
+    return filterProjectsBySearch(searchProject, allProjects);
   }
-  return projects;
+  return allProjects;
 });
 
-function filterProjectsByCategory() {
+const selectOptions = computed(() => {
+  let allProjects = store.state[currentLocale].projects;
+  return extractCategories(allProjects)
+});
+
+function extractCategories(projects) {
+  const categories = [];
+
+  projects.forEach((project) => {
+    const { category } = project;
+    if (!categories.includes(category)) {
+      categories.push(category);
+    }
+  });
+
+  return categories;
+}
+
+function filterProjectsByCategory(projects) {
   return projects.filter((item) => {
     let category =
       item.category.charAt(0).toUpperCase() + item.category.slice(1);
@@ -100,7 +113,7 @@ function filterProjectsByCategory() {
   });
 }
 
-function filterProjectsBySearch() {
+function filterProjectsBySearch(searchProject, projects) {
   let project = new RegExp(searchProject.value, "i");
   return projects.filter((el) => el.title.match(project));
 }
