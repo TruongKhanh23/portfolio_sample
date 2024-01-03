@@ -90,7 +90,7 @@ import { defineProps, onMounted, onUpdated, toRefs } from "vue";
 
 import RichTextRenderer from "@/components/reusable/RichTextRenderer.vue";
 
-import { socialSharings } from "@/data/projects";
+import getSocialNetworks from "@/helpers/socialNetwork";
 
 const props = defineProps({
   projectInfo: {
@@ -100,18 +100,7 @@ const props = defineProps({
 });
 
 const { projectInfo } = toRefs(props);
-const socialNetwork = getSocialNetworks(projectInfo);
-
-function getSocialNetworks(projectInfo) {
-  if (projectInfo.value.socialNetwork) {
-    for (const socialNetwork of projectInfo.value.socialNetwork) {
-      socialSharings.find((item) => socialNetwork.includes(item.id)).url =
-        socialNetwork;
-    }
-    return socialSharings.filter((item) => item.url !== "");
-  }
-  return null
-}
+const socialNetwork = getSocialNetworks(projectInfo.value.socialNetwork);
 
 onMounted(() => {
   feather.replace();
