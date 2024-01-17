@@ -32,12 +32,12 @@ export async function getProjects(locale = "vi") {
   }
 }`;
 
-  const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${process.env.VUE_APP_CONTENTFUL_SPACE_ID}`;
+  const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${window.envConfig.CONTENTFUL_SPACE_ID}`;
 
   const fetchOptions = {
     method: "POST",
     headers: {
-      Authorization: `Bearer ${process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN}`,
+      Authorization: `Bearer ${window.envConfig.CONTENTFUL_ACCESS_TOKEN}`,
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ query }),
