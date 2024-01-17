@@ -16,7 +16,6 @@
 
 <script setup>
 import { defineProps } from "vue";
-import RichTextRenderer from "@/components/reusable/RichTextRenderer.vue";
 
 defineProps({
   bios: {

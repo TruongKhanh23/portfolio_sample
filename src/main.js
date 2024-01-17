@@ -3,7 +3,10 @@ import App from "./App.vue";
 import router from "./router";
 import "./assets/css/app.css";
 import BackToTop from "vue-backtotop";
+
 import i18n from "./setups/i18n";
+import globalComponentsRegistration from "./setups/globalComponentsRegistration"
+
 import store from "./store";
 import VueSplide from "@splidejs/vue-splide";
 
@@ -21,7 +24,11 @@ initializeApp().then(async () => {
   app.use(BackToTop)
   app.use(i18nInstance)
   app.use(VueSplide)
+
+  globalComponentsRegistration(app)
+
   app.mount("#app");
+
 })
 const appTheme = localStorage.getItem("theme");
 
@@ -34,3 +41,5 @@ if (
 } else {
   document.querySelector("body").classList.add("bg-secondary-light");
 }
+
+export { app }

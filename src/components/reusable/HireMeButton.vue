@@ -12,7 +12,6 @@
 </template>
 
 <script setup>
-import Button from "@/components/reusable/Button.vue";
 import { defineProps, defineEmits } from "vue";
 
 defineProps({
