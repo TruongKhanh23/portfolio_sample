@@ -88,8 +88,6 @@
 import feather from "feather-icons";
 import { defineProps, onMounted, onUpdated, toRefs } from "vue";
 
-import RichTextRenderer from "@/components/reusable/RichTextRenderer.vue";
-
 import getSocialNetworks from "@/helpers/socialNetwork";
 
 const props = defineProps({

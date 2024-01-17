@@ -20,12 +20,7 @@
 </template>
 
 <script>
-import Slider from "@/components/reusable/Slider.vue";
-
 export default {
-  components: {
-    Slider,
-  },
   props: {
     otherProjects: {
       type: Object,

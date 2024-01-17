@@ -29,7 +29,6 @@ import ProjectHeader from "@/components/projects/ProjectHeader.vue";
 import ProjectGallery from "@/components/projects/ProjectGallery.vue";
 import ProjectInfo from "@/components/projects/ProjectInfo.vue";
 import ProjectRelatedProjects from "@/components/projects/ProjectRelatedProjects.vue";
-import LoadingModal from "@/components/reusable/LoadingModal.vue";
 
 const store = useStore();
 const locales = useLocale();

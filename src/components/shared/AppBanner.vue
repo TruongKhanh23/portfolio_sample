@@ -49,8 +49,6 @@ import { useStore } from "vuex";
 import { useLocale } from "@/composables/useLocale";
 import { ref, onBeforeMount, onMounted, onUpdated, computed } from "vue";
 
-import LoadingModal from "@/components/reusable/LoadingModal.vue";
-
 import axios from "axios";
 import feather from "feather-icons";
 
