@@ -80,9 +80,9 @@ watch(contact, async () => {
 });
 
 const client = contentful.createClient({
-  space: process.env.VUE_APP_CONTENTFUL_SPACE_ID,
+  space: window.envConfig.CONTENTFUL_SPACE_ID,
   environment: "master", // defaults to 'master' if not set
-  accessToken: process.env.VUE_APP_CONTENTFUL_ACCESS_TOKEN,
+  accessToken: window.envConfig.CONTENTFUL_ACCESS_TOKEN,
 });
 
 // Get about me and set about me

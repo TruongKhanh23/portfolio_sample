@@ -7,19 +7,22 @@ import i18n from "./setups/i18n";
 import store from "./store";
 import VueSplide from "@splidejs/vue-splide";
 
+import initializeApp from "./initialize"
+
 const feather = require("feather-icons");
 feather.replace();
 
-const i18nInstance = i18n();
+const app = createApp(App)
 
-createApp(App)
-  .use(router)
-  .use(store)
-  .use(BackToTop)
-  .use(i18nInstance)
-  .use(VueSplide)
-  .mount("#app");
-
+initializeApp().then(async () => {
+  const i18nInstance = i18n()
+  app.use(router)
+  app.use(store)
+  app.use(BackToTop)
+  app.use(i18nInstance)
+  app.use(VueSplide)
+  app.mount("#app");
+})
 const appTheme = localStorage.getItem("theme");
 
 // Check what is the active theme and change theme when user clicks on the theme button in header.
