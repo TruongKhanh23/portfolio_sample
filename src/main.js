@@ -3,8 +3,10 @@ import App from "./App.vue";
 import router from "./router";
 import "./assets/css/app.css";
 import BackToTop from "vue-backtotop";
+import { makeGetComponentVariants } from "@/components/base/makeGetComponentVariants"
 
 import i18n from "./setups/i18n";
+import variants from "./setups/variants"
 import globalComponentsRegistration from "./setups/globalComponentsRegistration"
 
 import store from "./store";
@@ -26,6 +28,8 @@ initializeApp().then(async () => {
   app.use(VueSplide)
 
   globalComponentsRegistration(app)
+
+  app.provide("getComponentVariants", makeGetComponentVariants({ variants }))
 
   app.mount("#app");
 

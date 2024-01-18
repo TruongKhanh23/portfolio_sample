@@ -87,4 +87,7 @@ export default {
       otherProjects: "Dự án khác",
     },
   },
+  core: {
+    loading: "Đang tải...",
+  }
 };
