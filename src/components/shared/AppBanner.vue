@@ -28,6 +28,18 @@
             {{ $t("home.banner.download.title") }}
           </span>
         </div>
+        <div
+          @click="viewFile"
+          class="flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 text-gray-500 hover:text-white duration-500"
+        >
+          <i
+            data-feather="eye"
+            class="ml-0 sm:ml-1 mr-2 sm:mr-3 w-5 sm:w-6 duration-100"
+          ></i>
+          <span class="text-sm sm:text-lg font-general-medium duration-100">
+            {{ $t("home.banner.view.title") }}
+          </span>
+        </div>
       </div>
     </div>
 
@@ -47,10 +59,11 @@
 import { useStore } from "vuex";
 import { ref, onBeforeMount, onMounted, onUpdated, computed } from "vue";
 
-import useModal from "@/composables/modal"
+import useModal from "@/composables/modal";
+import usePdfViewerModal from "@/composables/usePdfViewerModal";
 import { useLocale } from "@/composables/useLocale";
 
-import LoadingModal from "@/components/reusable/LoadingModal.vue"
+import LoadingModal from "@/components/reusable/LoadingModal.vue";
 
 import axios from "axios";
 import feather from "feather-icons";
@@ -62,12 +75,14 @@ const appBanner = computed(() => store.state[currentLocale].appBanner);
 const cvFile = computed(() => appBanner.value.curriculumVitae.file);
 const theme = ref(null);
 
-const modal = useModal()
+const pdfViewerModal = usePdfViewerModal();
+
+const modal = useModal();
 const loadingModal = modal.create({
   name: "LoadingModal",
   content: LoadingModal,
   dismissable: true,
-})
+});
 
 // onBeforeMount = created
 onBeforeMount(() => {
@@ -84,7 +99,7 @@ onUpdated(() => {
 });
 
 async function downloadFile() {
-  loadingModal.open()
+  loadingModal.open();
 
   try {
     const { fileName, url: fileUrl } = cvFile.value;
@@ -101,7 +116,26 @@ async function downloadFile() {
     console.error("Error downloading file:", error);
   }
 
-  loadingModal.close()
+  loadingModal.close();
+}
+
+async function viewFile() {
+  loadingModal.open();
+
+  try {
+    const { url: fileUrl } = cvFile.value;
+    const response = await axios.get(fileUrl, { responseType: "blob" });
+    const blob = new Blob([response.data]);
+    const url = window.URL.createObjectURL(blob);
+
+    pdfViewerModal.open({ pdfSrc: url });
+  } catch (error) {
+    console.error("Error downloading file:", error);
+  } finally {
+    loadingModal.close();
+  }
+
+  loadingModal.close();
 }
 </script>
 

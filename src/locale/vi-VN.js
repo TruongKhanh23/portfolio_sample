@@ -14,6 +14,11 @@ export default {
         link: "Lengchhinghor_CV_9th.pdf",
         ariaLabel: "Download Resume",
       },
+      view: {
+        title: "Xem CV",
+        link: "Lengchhinghor_CV_9th.pdf",
+        ariaLabel: "Download Resume",
+      }
     },
     projectsGrid: {
       title: "Dự án của tôi",

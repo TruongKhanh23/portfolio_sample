@@ -3,6 +3,7 @@ import RichTextRenderer from "@/components/reusable/RichTextRenderer.vue";
 import Slider from "@/components/reusable/Slider.vue";
 import JText from "@/components/base/JText.vue";
 import JFlex from "@/components/base/JFlex.vue";
+import JIcon from "@/components/base/JIcon/index.vue";
 import JSpinner from "@/components/base/JSpinner.vue";
 
 // Register components globally
@@ -10,6 +11,7 @@ const baseComponents = {
   JFlex,
   JText,
   JSpinner,
+  JIcon,
 };
 
 const coreComponents = {
