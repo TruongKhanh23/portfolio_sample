@@ -1,5 +1,4 @@
 <template>
-  <LoadingModal :isOpen="isOpenLoadingModal" />
   <section
     v-if="appBanner"
     class="flex flex-col sm:justify-between items-center sm:flex-row mt-12 sm:mt-10"
@@ -46,13 +45,15 @@
 
 <script setup>
 import { useStore } from "vuex";
-import { useLocale } from "@/composables/useLocale";
 import { ref, onBeforeMount, onMounted, onUpdated, computed } from "vue";
+
+import useModal from "@/composables/modal"
+import { useLocale } from "@/composables/useLocale";
+
+import LoadingModal from "@/components/reusable/LoadingModal.vue"
 
 import axios from "axios";
 import feather from "feather-icons";
-
-const isOpenLoadingModal = ref(false);
 
 const store = useStore();
 const locales = useLocale();
@@ -60,6 +61,13 @@ const currentLocale = locales.getCurrent();
 const appBanner = computed(() => store.state[currentLocale].appBanner);
 const cvFile = computed(() => appBanner.value.curriculumVitae.file);
 const theme = ref(null);
+
+const modal = useModal()
+const loadingModal = modal.create({
+  name: "LoadingModal",
+  content: LoadingModal,
+  dismissable: true,
+})
 
 // onBeforeMount = created
 onBeforeMount(() => {
@@ -76,8 +84,7 @@ onUpdated(() => {
 });
 
 async function downloadFile() {
-  isOpenLoadingModal.value = true;
-  document.body.style.overflow = "hidden";
+  loadingModal.open()
 
   try {
     const { fileName, url: fileUrl } = cvFile.value;
@@ -94,8 +101,7 @@ async function downloadFile() {
     console.error("Error downloading file:", error);
   }
 
-  isOpenLoadingModal.value = false;
-  document.body.style.removeProperty("overflow");
+  loadingModal.close()
 }
 </script>
 
