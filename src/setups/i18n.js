@@ -9,14 +9,6 @@ export function getLocale() {
   return useLocale().getFull();
 }
 
-export function pluralTranslate(key, ...args) {
-  return key && i18nInstance.te(key) ? i18nInstance.tc(key, ...args) : key;
-}
-
-export function translate(key, data) {
-  return key && i18nInstance.te(key) ? i18nInstance.t(key, data) : key;
-}
-
 export default function () {
   const localeLanguage = getLocale();
 
@@ -24,6 +16,7 @@ export default function () {
     legacy: false,
     locale: localeLanguage, // set locale
     fallbackLocale: "vi-VN",
+    globalInjection: true,
     messages, // set locale messages
   });
 

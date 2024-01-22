@@ -9,6 +9,8 @@
 
     <!-- Contact details -->
     <ContactDetails :contact="contact" />
+
+    <HireMeForm />
   </div>
 </template>
 
@@ -17,6 +19,7 @@ import { useStore } from "vuex";
 import { useLocale } from "@/composables/useLocale";
 import feather from "feather-icons";
 import ContactForm from "@/components/contact/ContactForm.vue";
+import HireMeForm from "@/components/HireMeForm.vue";
 import ContactDetails from "@/components/contact/ContactDetails.vue";
 import { onMounted, onUpdated } from "vue";
 

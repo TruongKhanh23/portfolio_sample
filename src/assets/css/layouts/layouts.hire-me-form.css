@@ -1,0 +1,28 @@
+.l-hire-me-form {
+  @apply flex-wrap gap-y-1;
+
+  .c-form-field {
+    @apply w-full md:w-1/2 w-full px-2.5;
+  }
+
+  .c-form-field--fullName {
+    @apply w-full w-full;
+  }
+  .c-form-group--other {
+    @apply w-full md:w-1/2 flex-wrap;
+
+    > .c-form-field {
+      @apply w-full;
+    }
+  }
+  .c-form-group--address {
+    @apply flex-wrap w-full;
+
+    > .c-form-field {
+      @apply md:w-1/2 w-full;
+    }
+    > h4 {
+      display: none;
+    }
+  }
+}

@@ -5,6 +5,12 @@ import JText from "@/components/base/JText.vue";
 import JFlex from "@/components/base/JFlex.vue";
 import JIcon from "@/components/base/JIcon/index.vue";
 import JSpinner from "@/components/base/JSpinner.vue";
+import CTagGroup from "@/components/base/CTagGroup.vue";
+import JSelect from "@/components/base/JSelect.vue";
+import JInputLongText from "@/components/base/JInputLongText.vue";
+import JInputText from "@/components/base/JInputLongText.vue";
+import CStateMessage from "@/components/base/JInputLongText.vue";
+import CToolTip from "@/components/base/CToolTip.vue";
 
 // Register components globally
 const baseComponents = {
@@ -12,6 +18,12 @@ const baseComponents = {
   JText,
   JSpinner,
   JIcon,
+  CTagGroup,
+  JSelect,
+  JInputLongText,
+  JInputText,
+  CStateMessage,
+  CToolTip,
 };
 
 const coreComponents = {
