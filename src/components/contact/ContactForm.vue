@@ -8,17 +8,30 @@
       >
         {{ $t("contact.form.name") }}
       </p>
-      <form action="#" class="font-general-regular space-y-7">
+      <form @submit.prevent="submitForm" class="font-general-regular space-y-7">
         <template v-for="field in fieldsText" :key="field.id">
-          <CFormField
+          <input
+            v-if="field.inputType === 'string'"
+            class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
             :id="field.id"
             :name="field.name"
-            :required="field.required"
+            type="text"
+            :required="required"
             :placeholder="field.placeholder"
-            :ariaLabel="field.ariaLabel"
-            :label="field.label"
-            :inputType="field.inputType"
+            :aria-label="field.ariaLabel"
+            v-model="formData[field.id]"
           />
+          <textarea
+            v-else-if="field.inputType === 'textarea'"
+            class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
+            :id="field.id"
+            :name="field.name"
+            cols="14"
+            rows="6"
+            :placeholder="field.placeholder"
+            :aria-label="field.ariaLabel"
+            v-model="formData[field.id]"
+          ></textarea>
         </template>
 
         <div>
@@ -35,8 +48,12 @@
 </template>
 
 <script setup>
-import CFormField from "@/components/shared/CFormField";
 import { useI18n } from "vue-i18n";
+import { ref } from "vue";
+
+import LoadingModal from "@/components/reusable/LoadingModal.vue";
+
+import useModal from "@/composables/modal";
 
 const { t } = useI18n();
 const fieldsText = [
@@ -77,6 +94,50 @@ const fieldsText = [
     inputType: "textarea",
   },
 ];
+
+const modal = useModal();
+const loadingModal = modal.create({
+  name: "LoadingModal",
+  content: LoadingModal,
+  dismissable: true,
+});
+
+const formData = ref({
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+});
+
+const submitForm = async () => {
+  loadingModal.open();
+  try {
+    const response = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({
+        access_key: window.envConfig.WEB3FORM_ACCESS_KEY,
+        name: formData.value.name,
+        email: formData.value.email,
+        subject: formData.value.subject,
+        message: formData.value.message,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result.success) {
+      loadingModal.close();
+      alert(result.message);
+    }
+  } catch (error) {
+      loadingModal.close();
+      alert(`Error occured: ${error}`)
+  }
+};
 </script>
 
 <style lang="scss" scoped></style>
