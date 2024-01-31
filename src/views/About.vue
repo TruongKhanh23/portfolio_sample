@@ -7,6 +7,7 @@
 
     <!-- About counter -->
     <AboutCounter
+      v-if="false"
       :githubStars="aboutInformation.githubStars"
       :positiveFeedback="aboutInformation.positiveFeedback"
       :yearsExperience="aboutInformation.yearsExperience"
@@ -14,7 +15,7 @@
     />
 
     <!-- About counter -->
-    <div class="container mx-auto">
+    <div v-if="aboutInformation.brandsWorkedWith" class="container mx-auto">
       <AboutClients :clients="aboutInformation.brandsWorkedWith"/>
     </div>
   </div>
