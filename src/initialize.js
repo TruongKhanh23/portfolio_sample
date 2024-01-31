@@ -26,13 +26,7 @@ async function initEnvConfig(configKey) {
 
 export default async function initializeApp() {
   const host = decideHostFromUrl(window.location);
-  console.log("host", host);
   const availableHosts = Object.keys(urlHostToConfigsMap);
-  console.log("availableHosts", availableHosts);
-  const configKey = availableHosts.find((route) => {
-    console.log("host.includes(route)", host.includes(route));
-    return host.includes(route)
-  })
-  console.log("configKey", configKey);
+  const configKey = availableHosts.find((route) => host.includes(route))
   await initEnvConfig(configKey);
 }
