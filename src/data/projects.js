@@ -27,18 +27,12 @@ const projects = [
         "Để mang đến trải nghiệm bảo hiểm thuận tiện và tin cậy, vượt bậc trong việc cung cấp dịch vụ bảo hiểm dễ dàng, linh hoạt và tiện lợi.",
       technologies: [
         {
-          techs: [
-            "VueJS",
-            "TailwindCSS",
-            "JavaScript",
-            "Java",
-            "GraphQL",
-          ],
+          techs: ["VueJS", "TailwindCSS", "JavaScript", "Java", "GraphQL"],
         },
       ],
       projectDetails: [
         "Xu hướng số hóa và công nghệ ngày càng thay đổi mọi người tiếp cận và sử dụng dịch vụ. Để mang đến trải nghiệm bảo hiểm thuận tiện và tin cậy, tôi trân trọng giới thiệu tới Anh/Chị nền tảng bảo hiểm trực tuyến mới Dai-ichi ON, một bước tiến vượt bậc trong việc cung cấp dịch vụ bảo hiểm dễ dàng, linh hoạt và tiện lợi",
-        "Với nền tảng Bán bảo hiểm trực tuyến Dai-ichi ON, Dai-ichi Life Việt Nam mong muốn mở rộng phạm vi tiếp cận và đáp ứng nhu cầu bảo vệ tài chính của mọi người, khách hàng không còn phải mất thời gian đến các văn phòng hay tư vấn trực tiếp, khách hàng có thể dễ dàng tham gia bảo hiểm 24/7 mọi lúc mọi nơi. Dai-ichi ON giúp khách hàng có cơ hội tự tìm hiểu, trải nghiệm sản phẩm bảo hiểm và tự tin khi tham gia các giải pháp bảo hiểm cao cấp và toàn diện hơn."
+        "Với nền tảng Bán bảo hiểm trực tuyến Dai-ichi ON, Dai-ichi Life Việt Nam mong muốn mở rộng phạm vi tiếp cận và đáp ứng nhu cầu bảo vệ tài chính của mọi người, khách hàng không còn phải mất thời gian đến các văn phòng hay tư vấn trực tiếp, khách hàng có thể dễ dàng tham gia bảo hiểm 24/7 mọi lúc mọi nơi. Dai-ichi ON giúp khách hàng có cơ hội tự tìm hiểu, trải nghiệm sản phẩm bảo hiểm và tự tin khi tham gia các giải pháp bảo hiểm cao cấp và toàn diện hơn.",
       ],
     },
   },
@@ -71,10 +65,7 @@ const projects = [
         "The Postkan Chatting App developed for learning mobile device programming and providing the solution chat for people easily close together",
       technologies: [
         {
-          techs: [
-            "Java",
-            "Firebase",
-          ],
+          techs: ["Java", "Firebase"],
         },
       ],
       projectDetails: [
@@ -289,7 +280,7 @@ const projects = [
         "Tens of thousands of Cambodia’s young population enter the labor force each year. Labor force participation among the working age population (15–64 years) increased from 7.7 million in 2009 to 8.3 million in 2015. While the country is endowed with an ample supply of labor, the labor force is still characterized by very low levels of education and skill. The average educational attainment of the current workforce is primary school completion (grade 6) or below—a major barrier to industrial diversification efforts and moving up the value chain. The 2015 Cambodia Socio-Economic Survey found that nearly half (46%) of the labor force have either not completed primary education or never attended school. Less than 7% of workers completed high school (grade 12). There is a pressing need to respond to the growing demand for an adaptable workforce with professional skills and proper workplace behavior. In response, the government has taken steps to reform and strengthen the education and training system, including an enhanced role of the private sector in skills development and providing incentives to enterprises to train their own workforce. The pilot Skills Development Fund (SDF) is an industry-driven workforce development program. The general notion is to build confidence in industry partnership and to engage more strongly with the private sector and their training needs. Firms willing but at times hesitant to further develop their workforce may be supported by the SDF to further invest in workforce development. Motivated private workforce development initiatives and intentions shall be mainly supported by the SDF (which in turn consists of a motivated, skilled, and client-oriented team).",
       ],
     },
-  },  
+  },
   {
     id: 8,
     category: "Web Application",
@@ -335,8 +326,8 @@ const projects = [
 
 export const socialSharings = [
   {
-    id: "twitter",
-    name: "Twitter",
+    id: "x",
+    name: "x",
     icon: "twitter",
     url: "",
   },

@@ -1,12 +1,17 @@
 import { socialSharings } from "@/data/projects";
 
 export default function getSocialNetworks(socialNetworks) {
+  const arrayItems = [];
   if (socialNetworks) {
-    for (const socialNetwork of socialNetworks) {
-      socialSharings.find((item) => socialNetwork.includes(item.id)).url =
-        socialNetwork;
+    for (const item of socialSharings) {
+      for (const socialNetwork of socialNetworks) {
+        if (socialNetwork.includes(item.id)) {
+          item.url = socialNetwork;
+          arrayItems.push(item);
+        }
+      }
     }
-    return socialSharings.filter((item) => item.url !== "");
+    return arrayItems;
   }
   return null;
 }
