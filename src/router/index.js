@@ -8,7 +8,7 @@ const routes = [
     name: "HomePage",
     component: Home,
     meta: {
-      title: "Chhinghor - Home",
+      title: "Portfolio | Truong Nguyen Khanh",
     },
   },
   {
@@ -16,7 +16,7 @@ const routes = [
     name: "Home",
     component: Home,
     meta: {
-      title: "Chhinghor - Home",
+      title: "Portfolio | Truong Nguyen Khanh",
     },
   },
   {
@@ -77,9 +77,7 @@ const router = createRouter({
   },
 });
 
-[checkAuthGuard, preserveLocaleGuard].forEach((fn) =>
-  router.beforeEach(fn)
-);
+[checkAuthGuard, preserveLocaleGuard].forEach((fn) => router.beforeEach(fn));
 
 export default router;
 
