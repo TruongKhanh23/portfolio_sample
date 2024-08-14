@@ -1,6 +1,6 @@
 <template>
   <!-- Projects grid -->
-  <section v-if="projects" class="pt-10 sm:pt-14">
+  <section v-if="projects" class="pt-10 sm:pt-14 lg:pt-16">
     <!-- Projects grid title -->
     <div class="text-center">
       <p
@@ -88,7 +88,7 @@ const projects = computed(() => {
 
 const selectOptions = computed(() => {
   let allProjects = store.state[currentLocale].projects;
-  return extractCategories(allProjects)
+  return extractCategories(allProjects);
 });
 
 function extractCategories(projects) {

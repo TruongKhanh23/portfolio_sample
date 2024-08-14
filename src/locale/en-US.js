@@ -14,6 +14,11 @@ export default {
         link: "Lengchhinghor_CV_9th.pdf",
         ariaLabel: "Download Resume",
       },
+      view: {
+        title: "View CV",
+        link: "Lengchhinghor_CV_9th.pdf",
+        ariaLabel: "Download Resume",
+      }
     },
     projectsGrid: {
       title: "Projects Portfolio",
@@ -84,7 +89,7 @@ export default {
       toolTechnology: "Tool & Technology",
       sharing: "Sharing",
       challenge: "Challenge",
-      otherProjects: "Other Projects"
+      otherProjects: "Other Projects",
     },
   },
 };

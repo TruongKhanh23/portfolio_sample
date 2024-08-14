@@ -1,7 +1,7 @@
 <template>
   <div v-if="aboutInformation">
     <!-- About me -->
-    <div class="container mx-auto">
+    <div class="container mx-auto px-4 sm:px-8 lg:px-32">
       <AboutMe :bios="aboutInformation.description.content" />
     </div>
 
@@ -15,7 +15,7 @@
     />
 
     <!-- About counter -->
-    <div v-if="aboutInformation.brandsWorkedWith" class="container mx-auto">
+    <div v-if="aboutInformation.brandsWorkedWith" class="container mx-auto px-4 sm:px-8 lg:px-32">
       <AboutClients :clients="aboutInformation.brandsWorkedWith"/>
     </div>
   </div>
