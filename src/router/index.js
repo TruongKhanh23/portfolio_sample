@@ -67,6 +67,14 @@ const routes = [
       title: "Chhinghor - Contact",
     },
   },
+  {
+    path: "/expense-management-plan",
+    name: "ExpenseManagementPlan",
+    component: () => import("@/views/ExpenseManagementPlan.vue"),
+    meta: {
+      title: "Chhinghor - Expense Management Plan",
+    },
+  },
 ];
 
 const router = createRouter({
