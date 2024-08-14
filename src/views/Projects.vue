@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto px-4 sm:px-8 lg:px-32">
+  <div class="container mx-auto">
     <ProjectsGrid />
   </div>
 </template>
