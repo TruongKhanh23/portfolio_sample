@@ -1,5 +1,5 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto px-4 sm:px-8 lg:px-32">
     <!-- Banner -->
     <AppBanner class="mb-5 sm:mb-8" />
 
@@ -73,4 +73,10 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+@font-face {
+  font-family: 'Inter';
+  src: url('/src/assets/fonts/GeneralSans-Regular.woff2') format('woff2');
+  font-display: swap;
+}
+</style>
