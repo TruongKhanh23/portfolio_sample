@@ -1,5 +1,6 @@
 import Button from "@/components/reusable/Button.vue";
 import RichTextRenderer from "@/components/reusable/RichTextRenderer.vue";
+import SkeletonLoader from '@/components/reusable/SkeletonLoader.vue'
 import Slider from "@/components/reusable/Slider.vue";
 import JText from "@/components/base/JText.vue";
 import JFlex from "@/components/base/JFlex.vue";
@@ -17,6 +18,7 @@ const baseComponents = {
 const coreComponents = {
   Button,
   RichTextRenderer,
+  SkeletonLoader,
   Slider,
 };
 

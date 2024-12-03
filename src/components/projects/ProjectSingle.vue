@@ -1,5 +1,9 @@
 <template>
-  <a v-if="project"
+  <template v-if="!project">
+    <SkeletonLoader :rows="26" />
+  </template>
+  <template v-else>
+    <a v-if="project"
     :href="`/projects/single-project?id=${project.id}`"
     class="rounded-xl shadow-lg hover:shadow-xl cursor-pointer mb-10 sm:mb-0 bg-secondary-light dark:bg-ternary-dark"
     aria-label="Single Project"
@@ -24,6 +28,7 @@
       </span>
     </div>
   </a>
+  </template>
 </template>
 
 <script>
