@@ -1,6 +1,6 @@
 <template>
     <img
-      :src="observerTriggered ? src : `https://via.placeholder.com/${placeholder}`"
+      :src="observerTriggered ? src : placeholder"
       :alt="alt"
       :class="customClass"
       ref="image"
@@ -17,7 +17,7 @@
       },
       placeholder: {
         type: String,
-        default: "450", // Placeholder image
+        default: "https://via.placeholder.com/450", // Placeholder image
       },
       alt: {
         type: String,
