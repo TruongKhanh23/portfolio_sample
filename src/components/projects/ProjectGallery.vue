@@ -5,11 +5,11 @@
         <SkeletonLoader :rows="18" />
       </template>
       <template v-else>
-        <img
-        :src="data.url"
-        class="rounded-xl cursor-pointer h-[90vw] w-screen md:h-full md:w-auto"
-        alt="preview"
-      />
+        <LazyImage
+          :src="data.url"
+          customClass="rounded-xl cursor-pointer h-[90vw] w-screen md:h-full md:w-auto"
+          alt="preview"
+        />
       </template>
     </template>
   </Slider>

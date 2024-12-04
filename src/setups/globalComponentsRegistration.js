@@ -1,6 +1,7 @@
 import Button from "@/components/reusable/Button.vue";
 import RichTextRenderer from "@/components/reusable/RichTextRenderer.vue";
 import SkeletonLoader from '@/components/reusable/SkeletonLoader.vue'
+import LazyImage from "@/components/reusable/LazyImage.vue"
 import Slider from "@/components/reusable/Slider.vue";
 import JText from "@/components/base/JText.vue";
 import JFlex from "@/components/base/JFlex.vue";
@@ -20,6 +21,7 @@ const coreComponents = {
   RichTextRenderer,
   SkeletonLoader,
   Slider,
+  LazyImage
 };
 
 // Inject variant resolver function into base components
