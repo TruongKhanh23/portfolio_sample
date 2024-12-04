@@ -88,7 +88,7 @@ const projects = computed(() => {
 
 const selectOptions = computed(() => {
   let allProjects = store.state[currentLocale].projects;
-  return extractCategories(allProjects)
+  return extractCategories(allProjects);
 });
 
 function extractCategories(projects) {
