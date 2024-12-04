@@ -9,10 +9,10 @@
     aria-label="Single Project"
   >
     <div>
-      <img
+      <LazyImage
         :src="project.img.url"
         :alt="project.header.title"
-        class="rounded-t-xl border-none w-full h-[350px]"
+        customClass="rounded-t-xl border-none w-full h-[350px]"
       />
     </div>
     <div class="text-center px-4 py-6">

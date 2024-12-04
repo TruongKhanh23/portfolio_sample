@@ -9,9 +9,9 @@
     </p>
     <Slider :list="otherProjects" :attrs="{ perPage: 4, arrows: otherProjects.length > 4 }">
       <template #content="{ data }">
-        <img
+        <LazyImage
           :src="data.img.url"
-          class="rounded-xl cursor-pointer h-[90vw] w-screen md:h-full md:w-auto"
+          customClass="rounded-xl cursor-pointer h-[90vw] w-screen md:h-full md:w-auto"
           :alt="data.title"
         />
       </template>
