@@ -7,25 +7,41 @@
     >
       {{ $t("projects.projectInfo.otherProjects") }}
     </p>
-    <Slider :list="otherProjects" :attrs="{ perPage: 4, arrows: otherProjects.length > 4 }">
+    <Slider
+      :list="otherProjects"
+      :attrs="{ perPage: 4, arrows: true }"
+    >
       <template #content="{ data }">
-        <LazyImage
-          :src="data.img.url"
-          customClass="rounded-xl cursor-pointer h-[90vw] w-screen md:h-full md:w-auto"
-          :alt="data.title"
-        />
+        <a
+          :href="`/projects/single-project?id=${data.id}`"
+          class="flex flex-col items-center justify-center text-center border shadow-lg space-y-4 rounded-lg pb-4"
+        >
+          <LazyImage
+            :src="data.img.url"
+            customClass="rounded-t-xl cursor-pointer h-[90vw] w-screen md:h-full md:w-auto"
+            :alt="data.title"
+          />
+          <div class="px-4">
+            <p class="font-general-semibold font-semibold mb-2 min-h-[48px]">
+              {{ data.header.title }}
+            </p>
+            <span class="font-general-medium">
+              {{ data.category }}
+            </span>
+          </div>
+        </a>
       </template>
     </Slider>
   </div>
 </template>
 
-<script>
-export default {
-  props: {
-    otherProjects: {
-      type: Object,
-      default: () => {},
-    },
+<script setup>
+import { defineProps } from "vue";
+
+defineProps({
+  otherProjects: {
+    type: Object,
+    defaul: () => {},
   },
-};
+});
 </script>
