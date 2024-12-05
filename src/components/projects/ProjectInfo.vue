@@ -93,24 +93,16 @@ const wrapInDocument = (content) => ({
 
 // Process data for RichTextRenderer
 const processedCompanyInfos = computed(() => {
-  console.log("wrapInDocument(projectInfo.value.companyInfos)", wrapInDocument(projectInfo.value.companyInfos));
-  
-  return wrapInDocument(projectInfo.value.companyInfos)
-}
-  
-);
+  return wrapInDocument(projectInfo.value.companyInfos);
+});
 
 const processedObjectivesDetails = computed(() =>
   wrapInDocument(projectInfo.value.objectivesDetails)
 );
 
-const processedProjectDetails = computed(() =>  {
-  console.log("wrapInDocument(projectInfo.value.projectDetails)", wrapInDocument(projectInfo.value.projectDetails));
-  
-  return wrapInDocument(projectInfo.value.projectDetails)
-}
-  
-);
+const processedProjectDetails = computed(() => {
+  return wrapInDocument(projectInfo.value.projectDetails);
+});
 
 onMounted(() => {
   feather.replace();

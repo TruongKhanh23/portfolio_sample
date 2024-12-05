@@ -1,6 +1,6 @@
 <template>
   <div
-    v-html="renderedHtml"
+    v-html="renderedHtml || '<p>No content available</p>'"
     class="prose max-w-none mx-auto my-4 text-gray-700"
   ></div>
 </template>
@@ -32,12 +32,12 @@ export default {
             let paragraphHtml = `<p class="my-4 text-base leading-relaxed">`;
 
             node.content.forEach((childNode) => {
-              if (childNode.nodeType === 'hyperlink') {
+              if (childNode.nodeType === "hyperlink") {
                 const linkText = childNode.content[0]?.value; // Văn bản của hyperlink
                 const linkUrl = childNode.data.uri; // URL của hyperlink
                 // Chèn thẻ <a> vào văn bản của hyperlink, không thay đổi các mark khác của văn bản
                 paragraphHtml += `<a href="${linkUrl}" class="text-blue-500 hover:text-blue-700 dark:text-blue-300 dark:hover:text-blue-500" target="_blank">${linkText}</a>`;
-              } else if (childNode.nodeType === 'text') {
+              } else if (childNode.nodeType === "text") {
                 // Nếu là văn bản, kiểm tra nếu có marks để thêm các kiểu dáng (bold, italic, underline)
                 let textContent = childNode.value;
 

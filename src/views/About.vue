@@ -2,11 +2,11 @@
   <div v-if="aboutInformation">
     <!-- About me -->
     <div class="container mx-auto min-h-[40vh]">
-      <AboutMe :bios="aboutInformation.description.content" />
+      <AboutMe :bios="aboutInformation.description" />
     </div>
 
     <!-- About counter -->
-    <AboutCounter
+    <AboutCounter 
       v-if="false"
       :githubStars="aboutInformation.githubStars"
       :positiveFeedback="aboutInformation.positiveFeedback"
@@ -44,6 +44,7 @@ onUpdated(() => {
 const store = useStore();
 const currentLocale = useLocale().getCurrent();
 const aboutInformation = computed(() => store.state[currentLocale].aboutMe)
+
 </script>
 
 <style scoped></style>
