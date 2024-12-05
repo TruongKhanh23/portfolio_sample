@@ -1,7 +1,7 @@
 <template>
   <section
     v-if="appBanner"
-    class="flex flex-col sm:justify-between items-center sm:flex-row mt-12 sm:mt-10"
+    class="flex flex-col sm:justify-between items-center sm:flex-row mt-12 sm:mt-0"
   >
     <!-- Banner left contents -->
     <div class="w-full md:w-1/3 text-left">
@@ -44,14 +44,8 @@
     </div>
 
     <!-- Banner right illustration -->
-    <div class="w-full md:w-2/3 text-right float-right">
-      <img
-        v-if="theme === 'light'"
-        src="@/assets/images/developer.svg"
-        alt="Developer"
-        style="width: 100%; height: 100%;"
-      />
-      <img v-else src="@/assets/images/developer.svg" alt="Developer" />
+    <div class="w-full md:w-2/3 flex items-center justify-center">
+      <LazyImage :src="developer" placeholder="https://via.placeholder.com/450" alt="Developer" />
     </div>
   </section>
 </template>
@@ -68,6 +62,7 @@ import LoadingModal from "@/components/reusable/LoadingModal.vue";
 
 import axios from "axios";
 import feather from "feather-icons";
+import developer from "@/assets/images/developer.svg"
 
 const store = useStore();
 const locales = useLocale();

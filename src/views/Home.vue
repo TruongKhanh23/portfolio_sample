@@ -1,10 +1,10 @@
 <template>
-  <div class="container mx-auto">
+  <div class="container mx-auto min-h-screen">
     <!-- Banner -->
-    <AppBanner class="mb-5 sm:mb-8" />
+    <AppBanner class="mb-5 sm:mb-8 min-h-[90vh]" />
 
     <!-- Projects -->
-    <ProjectsGrid />
+    <ProjectsGrid class="min-h-screen" />
 
     <!-- Load more projects button -->
     <div class="mt-10 sm:mt-20 flex justify-center">
