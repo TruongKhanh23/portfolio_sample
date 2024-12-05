@@ -1,6 +1,6 @@
 <template>
   <div
-    class="container mx-auto flex flex-col-reverse md:flex-row py-5 md:py-10 md:mt-10"
+    class="container mx-auto flex flex-col-reverse md:flex-row sm:py-10 min-h-screen"
   >
     <Carousel />
 
