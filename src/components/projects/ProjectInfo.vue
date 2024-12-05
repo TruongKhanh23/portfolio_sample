@@ -4,39 +4,29 @@
     <div class="w-full sm:w-1/3 text-left">
       <!-- Single project client details -->
       <div class="mb-7">
-        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold">
+        <p
+          class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold"
+        >
           {{ $t("projects.projectInfo.aboutClient") }}
         </p>
-        <ul class="leading-loose">
-          <li
-            v-for="item in projectInfo.companyInfos"
-            :key="item"
-            class="font-general-regular text-ternary-dark dark:text-ternary-light"
-          >
-            <RichTextRenderer :arrayRichText="item.content" />
-          </li>
-        </ul>
+        <RichTextRenderer :content="processedCompanyInfos" />
       </div>
 
       <!-- Single project objectives -->
       <div class="mb-7">
-        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold">
+        <p
+          class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold"
+        >
           {{ $t("projects.projectInfo.objective") }}
         </p>
-        <ul class="leading-loose">
-          <li
-            v-for="item in projectInfo.objectivesDetails"
-            :key="item"
-            class="font-general-regular text-ternary-dark dark:text-ternary-light"
-          >
-            <RichTextRenderer :arrayRichText="item.content" />
-          </li>
-        </ul>
+        <RichTextRenderer :content="processedObjectivesDetails" />
       </div>
 
       <!-- Single project technologies -->
       <div class="mb-7">
-        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold">
+        <p
+          class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold"
+        >
           {{ $t("projects.projectInfo.toolTechnology") }}
         </p>
         <p class="text-primary-dark dark:text-ternary-light">
@@ -46,7 +36,9 @@
 
       <!-- Single project social sharing -->
       <div v-if="socialNetwork">
-        <p class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold">
+        <p
+          class="text-2xl text-secondary-dark dark:text-secondary-light mb-2 font-bold"
+        >
           {{ $t("projects.projectInfo.sharing") }}
         </p>
         <div class="flex items-center gap-3 mt-5">
@@ -71,34 +63,54 @@
       >
         {{ $t("projects.projectInfo.challenge") }}
       </p>
-      <ul class="leading-loose">
-        <li
-          v-for="item in projectInfo.projectDetails"
-          :key="item"
-          class="font-general-regular text-ternary-dark dark:text-ternary-light mb-2"
-        >
-          <RichTextRenderer :arrayRichText="item.content" />
-        </li>
-      </ul>
+      <RichTextRenderer :content="processedProjectDetails" />
     </div>
   </div>
 </template>
 
 <script setup>
 import feather from "feather-icons";
-import { defineProps, onMounted, onUpdated, toRefs } from "vue";
+import { defineProps, onMounted, onUpdated, computed, toRefs } from "vue";
 
 import getSocialNetworks from "@/helpers/socialNetwork";
 
 const props = defineProps({
   projectInfo: {
     type: Object,
-    default: () => {},
+    default: () => ({}),
   },
 });
 
 const { projectInfo } = toRefs(props);
+
 const socialNetwork = getSocialNetworks(projectInfo.value.socialNetwork);
+
+// Helper to wrap content in nodeType "document"
+const wrapInDocument = (content) => ({
+  nodeType: "document",
+  content,
+});
+
+// Process data for RichTextRenderer
+const processedCompanyInfos = computed(() => {
+  console.log("wrapInDocument(projectInfo.value.companyInfos)", wrapInDocument(projectInfo.value.companyInfos));
+  
+  return wrapInDocument(projectInfo.value.companyInfos)
+}
+  
+);
+
+const processedObjectivesDetails = computed(() =>
+  wrapInDocument(projectInfo.value.objectivesDetails)
+);
+
+const processedProjectDetails = computed(() =>  {
+  console.log("wrapInDocument(projectInfo.value.projectDetails)", wrapInDocument(projectInfo.value.projectDetails));
+  
+  return wrapInDocument(projectInfo.value.projectDetails)
+}
+  
+);
 
 onMounted(() => {
   feather.replace();

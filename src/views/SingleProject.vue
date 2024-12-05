@@ -49,6 +49,8 @@ onBeforeMount(async () => {
 
 const id = new URLSearchParams(window.location.search).get("id");
 const data = projects.find((item) => item.id === id);
+console.log("data", data);
+
 const otherProjects = projects.filter((item) => item.id !== id);
 
 onMounted(() => {
