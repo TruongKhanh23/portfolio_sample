@@ -5,11 +5,12 @@
     >
       {{ $t("about.clients.title") }}
     </p>
-    <div class="grid grid-cols-2 sm:grid-cols-4 mt-10 sm:mt-14 gap-2">
+    <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center mt-10 sm:mt-14 gap-8">
       <AboutClientSingle
         v-for="client in clients"
         :key="client.title"
         :client="client"
+        class="sm:flex-grow-0 sm:flex-shrink-0 sm:basis-[calc(20%-1rem)] sm:max-w-[calc(20%-1rem)]"
       />
     </div>
   </div>

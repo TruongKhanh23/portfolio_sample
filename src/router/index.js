@@ -28,7 +28,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "about" */ "@/views/About.vue"),
     meta: {
-      title: "Chhinghor - About",
+      title: "Trương Nguyễn Khánh - About",
     },
   },
   {
@@ -40,7 +40,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "projects" */ "@/views/Projects.vue"),
     meta: {
-      title: "Chhinghor - Projects",
+      title: "Trương Nguyễn Khánh - Projects",
     },
   },
   {
@@ -52,7 +52,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "projects" */ "@/views/SingleProject.vue"),
     meta: {
-      title: "Chhinghor - Single Project",
+      title: "Trương Nguyễn Khánh - Single Project",
     },
   },
   {
@@ -64,7 +64,7 @@ const routes = [
     component: () =>
       import(/* webpackChunkName: "projects" */ "@/views/Contact.vue"),
     meta: {
-      title: "Chhinghor - Contact",
+      title: "Trương Nguyễn Khánh - Contact",
     },
   },
 ];
@@ -83,7 +83,7 @@ export default router;
 
 /**
  * Below code will display the component/active page title
- * Powered by: Leng Chhinghor
+ * Powered by: Leng Trương Nguyễn Khánh
  */
 
 // This callback runs before every route change, including on page load.

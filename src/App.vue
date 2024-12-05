@@ -5,7 +5,9 @@
 
     <!-- Render active component contents with vue transition -->
     <transition name="fade" mode="out-in">
-      <router-view :theme="appTheme" />
+      <CLayout>
+        <router-view :theme="appTheme" />
+      </CLayout>
     </transition>
 
     <!-- Scroll to top -->

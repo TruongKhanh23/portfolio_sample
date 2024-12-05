@@ -7,6 +7,7 @@ import JText from "@/components/base/JText.vue";
 import JFlex from "@/components/base/JFlex.vue";
 import JIcon from "@/components/base/JIcon/index.vue";
 import JSpinner from "@/components/base/JSpinner.vue";
+import CLayout from "@/components/reusable/CLayout.vue";
 
 // Register components globally
 const baseComponents = {
@@ -14,6 +15,7 @@ const baseComponents = {
   JText,
   JSpinner,
   JIcon,
+  CLayout,
 };
 
 const coreComponents = {

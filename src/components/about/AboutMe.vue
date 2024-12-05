@@ -2,7 +2,7 @@
   <div class="block sm:flex sm:gap-10 mt-10 sm:mt-20">
     <!-- About profile image -->
     <div class="w-full sm:w-1/4 mb-7 sm:mb-0">
-      <img src="@/assets/images/author.png" class="rounded-xl w-96" alt="" />
+      <LazyImage :src="author" class="rounded-xl w-96" alt="" />
     </div>
 
     <!-- About details -->
@@ -16,6 +16,7 @@
 
 <script setup>
 import { defineProps } from "vue";
+import author from "@/assets/images/author.png"
 
 defineProps({
   bios: {
