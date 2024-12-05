@@ -35,18 +35,33 @@ function createLocaleObject(fields, keys, locale) {
 }
 
 function handleFieldIsObject(data, locale) {
-  const fields = data.fields ?? data;
+  if (Array.isArray(data)) {
+    // Nếu data là một mảng, xử lý từng phần tử trong mảng
+    return data.map(item => {
+      if (_isObject(item)) {
+        return handleFieldIsObject(item, locale);
+      }
+      return item;
+    });
+  }
 
+  const fields = data.fields ?? data;
   const keys = Object.keys(fields);
   const result = {};
 
   for (const key of keys) {
     const localizedKey = fields[key][locale] ?? fields[key][EN] ?? fields[key];
-    if(_isObject(localizedKey)) {
-      if(getArrayType(localizedKey) === "strings") {
-        result[key] = localizedKey
+    if (_isObject(localizedKey)) {
+      if (Array.isArray(localizedKey)) {
+        // Nếu localizedKey là mảng, xử lý từng phần tử trong mảng
+        result[key] = localizedKey.map(item => {
+          if (_isObject(item)) {
+            return handleFieldIsObject(item, locale);
+          }
+          return item;
+        });
       } else {
-        result[key] = handleFieldIsObject(localizedKey, locale)
+        result[key] = handleFieldIsObject(localizedKey, locale);
       }
     } else {
       result[key] = localizedKey || fields[key];
@@ -57,26 +72,26 @@ function handleFieldIsObject(data, locale) {
 }
 
 function removeKeys(obj) {
-  //Check if obj is not object or null, return object
+  if (Array.isArray(obj)) {
+    // Nếu obj là mảng, không xóa key mà chỉ xử lý từng phần tử
+    return obj.map(item => removeKeys(item));
+  }
+
   if (typeof obj !== 'object' || obj === null) {
     return obj;
   }
 
-  // Loop keys in object
   for (const key in obj) {
-    // if key is one of these "fields", "metadata", hoặc "sys", delete that key
     if (excludeFields.includes(key)) {
       delete obj[key];
-    } else {
-      // if key is an object, call removeKeys again
-      if (typeof obj[key] === 'object') {
-        removeKeys(obj[key]);
-      }
+    } else if (typeof obj[key] === 'object') {
+      obj[key] = removeKeys(obj[key]);
     }
   }
 
   return obj;
 }
+
 
 function getArrayType(arr) {
   if (!Array.isArray(arr)) {

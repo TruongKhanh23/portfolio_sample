@@ -7,9 +7,7 @@
 
     <!-- About details -->
     <div class="w-full sm:w-3/4 text-left">
-      <template v-for="bio in bios" :key="bio">
-        <RichTextRenderer :arrayRichText="bio.content" class="font-general-regular mb-4 text-ternakry-dark dark:text-ternary-light text-lg tracking-wider"/>
-      </template>
+      <RichTextRenderer :content="bios" />
     </div>
   </div>
 </template>
@@ -20,8 +18,8 @@ import author from "@/assets/images/author.png"
 
 defineProps({
   bios: {
-    type: Array,
-    default: () => []
+    type: Object,
+    default: () => ({}),
   }
 })
 </script>
