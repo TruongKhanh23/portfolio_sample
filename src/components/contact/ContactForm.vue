@@ -49,13 +49,11 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-import { ref } from "vue";
-
-import LoadingModal from "@/components/reusable/LoadingModal.vue";
-
-import useModal from "@/composables/modal";
+import useEmail from "@/composables/useEmail";
 
 const { t } = useI18n();
+const { formData, submitForm } = useEmail();
+
 const fieldsText = [
   {
     id: "name",
@@ -95,49 +93,6 @@ const fieldsText = [
   },
 ];
 
-const modal = useModal();
-const loadingModal = modal.create({
-  name: "LoadingModal",
-  content: LoadingModal,
-  dismissable: true,
-});
-
-const formData = ref({
-  name: "",
-  email: "",
-  subject: "",
-  message: "",
-});
-
-const submitForm = async () => {
-  loadingModal.open();
-  try {
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify({
-        access_key: window.envConfig.WEB3FORM_ACCESS_KEY,
-        name: formData.value.name,
-        email: formData.value.email,
-        subject: formData.value.subject,
-        message: formData.value.message,
-      }),
-    });
-
-    const result = await response.json();
-
-    if (result.success) {
-      loadingModal.close();
-      alert(result.message);
-    }
-  } catch (error) {
-      loadingModal.close();
-      alert(`Error occured: ${error}`)
-  }
-};
 </script>
 
 <style lang="scss" scoped></style>

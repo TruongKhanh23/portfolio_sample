@@ -30,19 +30,56 @@
               <div
                 class="p-5 w-full h-full modal-footer mt-2 sm:mt-0 py-5 px-8 border0-t text-right"
               >
-                <form class="max-w-xl m-4 text-left">
+                <form
+                  @submit.prevent="submitForm"
+                  class="max-w-xl m-4 text-left"
+                >
                   <template v-for="field in fields" :key="field.id">
                     <div class="mt-6">
-                      <CFormField
+                      <input
+                        v-if="field.inputType === 'string'"
+                        class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
                         :id="field.id"
                         :name="field.name"
                         :required="field.required"
                         :placeholder="field.placeholder"
                         :ariaLabel="field.ariaLabel"
                         :label="field.label"
-                        :inputType="field.inputType"
-                        :options="field.options"
+                        v-model="formData[field.id]"
                       />
+                      <textarea
+                        v-else-if="field.inputType === 'textarea'"
+                        class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
+                        :id="field.id"
+                        :name="field.name"
+                        :required="field.required"
+                        :placeholder="field.placeholder"
+                        :ariaLabel="field.ariaLabel"
+                        :label="field.label"
+                        cols="14"
+                        rows="6"
+                        v-model="formData[field.id]"
+                      ></textarea>
+                      <select
+                        v-else-if="field.inputType === 'select'"
+                        class="w-full px-5 py-2 border-1 border-gray-200 dark:border-secondary-dark rounded-md text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
+                        :id="field.id"
+                        :name="field.name"
+                        :required="field.required"
+                        :placeholder="field.placeholder"
+                        :ariaLabel="field.ariaLabel"
+                        :label="field.label"
+                        type="text"
+                        v-model="formData[field.id]"
+                      >
+                        <option
+                          v-for="option in field.options"
+                          :key="option.id"
+                          :value="option.name"
+                        >
+                          {{ option.name }}
+                        </option>
+                      </select>
                     </div>
                   </template>
 
@@ -79,10 +116,12 @@
 import feather from "feather-icons";
 import Button from "./reusable/Button.vue";
 import { defineProps, onMounted, onUpdated } from "vue";
-import CFormField from "@/components/shared/CFormField";
 import { useI18n } from "vue-i18n";
+import useEmail from "@/composables/useEmail";
 
 const { t } = useI18n();
+const { formData, submitForm } = useEmail();
+
 const props = defineProps({
   showModal: {
     type: Function,
