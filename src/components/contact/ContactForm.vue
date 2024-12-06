@@ -49,13 +49,10 @@
 
 <script setup>
 import { useI18n } from "vue-i18n";
-
-import useModal from "@/composables/modal";
 import useEmail from "@/composables/useEmail";
 
 const { t } = useI18n();
-const modal = useModal();
-const { formData, submitForm } = useEmail(modal);
+const { formData, submitForm } = useEmail();
 
 const fieldsText = [
   {
