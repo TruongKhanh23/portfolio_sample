@@ -81,6 +81,11 @@ export default {
       },
       button: "Send Message",
     },
+    email: {
+      success: "Email sent successfully!",
+      error: "Failed to send email. Please try again later.",
+      progress: "Email is being sent...",
+    }
   },
   projects: {
     projectInfo: {

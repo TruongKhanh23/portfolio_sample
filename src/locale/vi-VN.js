@@ -81,6 +81,11 @@ export default {
       },
       button: "Gửi đến Khánh",
     },
+    email: {
+      success: "Email đã được gửi thành công!",
+      error: "Có lỗi xảy ra, xin lỗi vì sự bất tiện này.",
+      progress: "Email đang được gửi đi...",
+    }
   },
   projects: {
     projectInfo: {
