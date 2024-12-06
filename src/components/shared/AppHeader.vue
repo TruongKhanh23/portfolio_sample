@@ -119,12 +119,8 @@ function updateTheme(theme) {
 function showModal() {
   if (modal.value) {
     // Stop screen scrolling
-    document
-      .getElementsByTagName("html")[0]
-      .classList.remove("overflow-y-hidden");
     modal.value = false;
   } else {
-    document.getElementsByTagName("html")[0].classList.add("overflow-y-hidden");
     modal.value = true;
   }
 }

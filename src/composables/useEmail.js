@@ -10,6 +10,7 @@ export default function useEmail() {
     name: "",
     email: "",
     subject: "",
+    projectCategory: ""
   });
 
   const submitForm = async () => {

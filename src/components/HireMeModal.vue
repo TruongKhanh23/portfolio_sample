@@ -1,77 +1,65 @@
 <template>
   <transition name="fade">
-    <div v-show="modal" class="font-general-regular fixed inset-0 z-30">
+    <div v-show="modal" class="fixed inset-0 z-30 font-general-regular">
       <!-- Modal body background as backdrop -->
       <div
         v-show="modal"
         @click="showModal()"
-        class="bg-filter bg-black bg-opacity-50 fixed inset-0 w-full h-full z-20"
+        class="fixed inset-0 w-full h-full bg-black bg-opacity-50 z-20"
       ></div>
       <!-- Modal content -->
-      <main class="flex flex-col items-center justify-center h-full w-full">
+      <main class="flex items-center justify-center w-full h-full">
         <transition name="fade-up-down">
-          <div v-show="modal" class="modal-wrapper flex items-center z-30">
+          <div v-show="modal" class="flex items-center z-30 modal-wrapper">
             <div
-              class="modal max-w-md mx-5 xl:max-w-xl lg:max-w-xl md:max-w-xl bg-secondary-light dark:bg-primary-dark max-h-screen shadow-lg flex-row rounded-lg relative"
+              class="relative flex-row max-w-md mx-5 bg-secondary-light dark:bg-primary-dark shadow-lg rounded-lg xl:max-w-xl"
             >
+              <!-- Modal Header -->
               <div
-                class="modal-header flex justify-between gap-10 p-5 border-b border-ternary-light dark:border-ternary-dark"
+                class="flex justify-end p-5 border-b border-ternary-light dark:border-ternary-dark"
               >
-                <h5 class="text-primary-dark dark:text-primary-light text-xl">
-                  {{ $t("hireMeModal.title") }}
-                </h5>
                 <button
-                  class="px-4 text-primary-dark dark:text-primary-light"
                   @click="showModal()"
+                  class="px-4 text-primary-dark dark:text-primary-light"
                 >
                   <i data-feather="x"></i>
                 </button>
               </div>
-              <div
-                class="p-5 w-full h-full modal-footer mt-2 sm:mt-0 py-5 px-8 border0-t text-right"
-              >
-                <form
-                  @submit.prevent="submitForm"
-                  class="max-w-xl m-4 text-left"
-                >
+
+              <!-- Modal Content -->
+              <div class="w-full h-full px-8">
+                <h5 class="text-xl text-primary-dark dark:text-primary-light">
+                  {{ $t("hireMeModal.title") }}
+                </h5>
+                <form @submit.prevent="submitForm" class="max-w-xl text-left">
                   <template v-for="field in fields" :key="field.id">
                     <div class="mt-6">
+                      <!-- Input Fields -->
                       <input
                         v-if="field.inputType === 'string'"
-                        class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
-                        :id="field.id"
-                        :name="field.name"
-                        :required="field.required"
-                        :placeholder="field.placeholder"
-                        :ariaLabel="field.ariaLabel"
-                        :label="field.label"
+                        class="w-full px-5 py-2 border rounded-md shadow-sm text-md border-gray-300 dark:border-primary-dark bg-ternary-light dark:bg-ternary-dark text-primary-dark dark:text-secondary-light"
+                        v-bind="field"
                         v-model="formData[field.id]"
                       />
+                      <!-- Textarea -->
                       <textarea
                         v-else-if="field.inputType === 'textarea'"
-                        class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
-                        :id="field.id"
-                        :name="field.name"
-                        :required="field.required"
-                        :placeholder="field.placeholder"
-                        :ariaLabel="field.ariaLabel"
-                        :label="field.label"
+                        class="w-full px-5 py-2 border rounded-md shadow-sm text-md border-gray-300 dark:border-primary-dark bg-ternary-light dark:bg-ternary-dark text-primary-dark dark:text-secondary-light"
                         cols="14"
                         rows="6"
+                        v-bind="field"
                         v-model="formData[field.id]"
                       ></textarea>
+                      <!-- Select -->
                       <select
                         v-else-if="field.inputType === 'select'"
-                        class="w-full px-5 py-2 border-1 border-gray-200 dark:border-secondary-dark rounded-md text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
-                        :id="field.id"
-                        :name="field.name"
-                        :required="field.required"
-                        :placeholder="field.placeholder"
-                        :ariaLabel="field.ariaLabel"
-                        :label="field.label"
-                        type="text"
+                        class="w-full px-5 py-2 border rounded-md text-md border-gray-200 dark:border-secondary-dark bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
+                        v-bind="field"
                         v-model="formData[field.id]"
                       >
+                        <option value="" disabled>
+                          {{ field.placeholder }}
+                        </option>
                         <option
                           v-for="option in field.options"
                           :key="option.id"
@@ -83,18 +71,14 @@
                     </div>
                   </template>
 
-                  <div
-                    class="w-full h-full mt-2 sm:mt-0 py-5 border0-t text-right flex justify-between"
-                  >
-                    <!-- Left-aligned button -->
+                  <!-- Buttons -->
+                  <div class="flex justify-between py-5 mt-2">
                     <Button
                       :title="$t('hireMeModal.sendRequest')"
                       class="px-4 sm:px-6 py-2 sm:py-2.5 text-white bg-indigo-500 hover:bg-ternary-dark rounded-md focus:ring-1 focus:ring-indigo-900 duration-500"
                       type="submit"
                       :aria-label="$t('hireMeModal.sendRequest')"
                     />
-
-                    <!-- Right-aligned button -->
                     <Button
                       :title="$t('hireMeModal.close')"
                       class="px-4 sm:px-6 py-2 sm:py-2.5 text-white bg-gray-600 hover:bg-indigo-600 rounded-md focus:ring-1 focus:ring-indigo-900 duration-500"
