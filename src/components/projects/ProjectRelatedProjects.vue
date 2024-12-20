@@ -18,7 +18,7 @@
         >
           <LazyImage
             :src="data.img.url"
-            customClass="rounded-t-xl cursor-pointer h-[90vw] w-screen md:h-full md:w-auto"
+            customClass="rounded-t-xl cursor-pointer h-[260px] w-screen"
             :alt="data.title"
           />
           <div class="px-4">
