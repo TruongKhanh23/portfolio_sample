@@ -1,7 +1,7 @@
 <template>
   <div class="block sm:flex gap-0 sm:gap-10 mt-14">
     <!-- Single project left section details -->
-    <div class="w-full sm:w-1/3 text-left">
+    <div class="w-full sm:w-1/3 text-left min-h-[400px]">
       <!-- Single project client details -->
       <div class="mb-7">
         <p
@@ -9,7 +9,7 @@
         >
           {{ $t("projects.projectInfo.aboutClient") }}
         </p>
-        <RichTextRenderer :content="processedCompanyInfos" />
+        <RichTextRenderer class="min-h-[100px]" :content="processedCompanyInfos" />
       </div>
 
       <!-- Single project objectives -->
@@ -19,7 +19,7 @@
         >
           {{ $t("projects.projectInfo.objective") }}
         </p>
-        <RichTextRenderer :content="processedObjectivesDetails" />
+        <RichTextRenderer class="min-h-[100px]" :content="processedObjectivesDetails" />
       </div>
 
       <!-- Single project technologies -->
@@ -29,7 +29,7 @@
         >
           {{ $t("projects.projectInfo.toolTechnology") }}
         </p>
-        <p class="text-primary-dark dark:text-ternary-light">
+        <p class="text-primary-dark dark:text-ternary-light min-h-[20px]">
           {{ projectInfo.technologies?.join(", ") }}
         </p>
       </div>

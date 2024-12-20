@@ -7,7 +7,7 @@
       <template v-else>
         <LazyImage
           :src="data.url"
-          customClass="rounded-xl cursor-pointer h-[90vw] w-screen md:h-full md:w-auto"
+          customClass="rounded-xl cursor-pointer h-[350px] w-screen"
           alt="preview"
         />
       </template>

@@ -4,7 +4,7 @@
     <ProjectHeader :singleProjectHeader="data.header || {}" />
 
     <!-- Project gallery -->
-    <ProjectGallery :projectImages="data.projectImages || []" />
+    <ProjectGallery class="min-h-[350px]" :projectImages="data.projectImages || []" />
 
     <!-- Project information -->
     <ProjectInfo :projectInfo="data.projectInfo || {}" />
