@@ -21,7 +21,8 @@
     </back-to-top>
 
     <!-- App footer -->
-    <AppFooter :socials="socialNetworks" />
+    <AppFooter :socials="socialNetworks || []" />
+
   </div>
 </template>
 
@@ -61,25 +62,33 @@ const contact = ref(null);
 const projects = ref({ en: null, vi: null });
 
 const socialNetworks = computed(() => {
-  const aboutInformation = convertToLocalizeObjects(aboutMe.value)
-  return getSocialNetworks(aboutInformation[currentLocale].aboutMe.socialNetwork)
-})
+  if (!aboutMe.value) return [];
+  const aboutInformation = convertToLocalizeObjects(aboutMe.value);
+  if (!aboutInformation[currentLocale]?.aboutMe?.socialNetwork) return [];
+  return getSocialNetworks(aboutInformation[currentLocale].aboutMe.socialNetwork);
+});
 
 watch(aboutMe, async () => {
+  if (!aboutMe.value) return;
   const { en, vi } = convertToLocalizeObjects(aboutMe.value);
   store.dispatch("vi/storeVI", { aboutMe: vi.aboutMe });
   store.dispatch("en/storeEN", { aboutMe: en.aboutMe });
 });
+
 watch(appBanner, async () => {
+  if (!appBanner.value) return;
   const { en, vi } = convertToLocalizeObjects(appBanner.value);
   store.dispatch("vi/storeVI", { appBanner: vi.homeBanner });
   store.dispatch("en/storeEN", { appBanner: en.homeBanner });
 });
+
 watch(contact, async () => {
+  if (!contact.value) return;
   const { en, vi } = convertToLocalizeObjects(contact.value);
   store.dispatch("vi/storeVI", { contact: vi.contact });
   store.dispatch("en/storeEN", { contact: en.contact });
 });
+
 
 const client = contentful.createClient({
   space: window.envConfig.CONTENTFUL_SPACE_ID,
@@ -87,41 +96,61 @@ const client = contentful.createClient({
   accessToken: window.envConfig.CONTENTFUL_ACCESS_TOKEN,
 });
 
-// Get about me and set about me
 client.withAllLocales
   .getEntry("6RjynuD3zNFdoYx9vBlce9")
   .then((entry) => {
-    aboutMe.value = entry;
+    aboutMe.value = entry || null;
   })
-  .catch(console.error);
+  .catch((error) => {
+    console.error("Error fetching aboutMe:", error);
+    aboutMe.value = null;
+  });
 
-// Get home banner
 client.withAllLocales
   .getEntry("1LHHUKyPvPcQGE6iNZm4lP")
   .then((entry) => {
-    appBanner.value = entry;
+    appBanner.value = entry || null;
   })
-  .catch(console.error);
+  .catch((error) => {
+    console.error("Error fetching appBanner:", error);
+    appBanner.value = null;
+  });
 
-// Get contact
 client.withAllLocales
   .getEntry("66XHlAPt38GVlchYvQAdf4")
   .then((entry) => {
-    contact.value = entry;
+    contact.value = entry || null;
   })
-  .catch(console.error);
+  .catch((error) => {
+    console.error("Error fetching contact:", error);
+    contact.value = null;
+  });
+
 
 // Get Projects
 onMounted(async () => {
-  projects.value.vi = await getProjects("vi");
-  projects.value.en = await getProjects("en-US");
-  store.dispatch("vi/storeVI", {
-    projects: convertProjectStructure(projects.value.vi),
-  });
-  store.dispatch("en/storeEN", {
-    projects: convertProjectStructure(projects.value.en),
-  });
+  try {
+    const viProjects = await getProjects("vi");
+    const enProjects = await getProjects("en-US");
+
+    if (viProjects) {
+      projects.value.vi = viProjects;
+      store.dispatch("vi/storeVI", {
+        projects: convertProjectStructure(viProjects),
+      });
+    }
+
+    if (enProjects) {
+      projects.value.en = enProjects;
+      store.dispatch("en/storeEN", {
+        projects: convertProjectStructure(enProjects),
+      });
+    }
+  } catch (error) {
+    console.error("Error fetching projects:", error);
+  }
 });
+
 </script>
 
 <style>
