@@ -30,7 +30,7 @@
           {{ $t("projects.projectInfo.toolTechnology") }}
         </p>
         <p class="text-primary-dark dark:text-ternary-light">
-          {{ projectInfo.technologies.join(", ") }}
+          {{ projectInfo.technologies?.join(", ") }}
         </p>
       </div>
 

@@ -47,7 +47,6 @@
     <meta name="author" content="Nguyen Khanh Truong" />
     <meta name="image" content="https://khanhtn.online/author.png" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
-    <link rel="preload" href="/src/assets/images/developer.svg" as="image">
     <script
       type="text/javascript"
       src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
@@ -60,22 +59,25 @@
     </script>
     <script type="text/javascript">
       window.onload = function () {
-        document
-          .getElementById("contact-form")
-          .addEventListener("submit", function (event) {
-            event.preventDefault();
-            // generate a five digit number for the contact_number variable
-            this.contact_number.value = (Math.random() * 100000) | 0;
-            // these IDs from the previous steps
-            emailjs.sendForm("service_ssnqh8w", "template_zy0rvao", this).then(
-              function () {
-                console.log("SUCCESS!");
-              },
-              function (error) {
-                console.log("FAILED...", error);
-              }
-            );
-          });
+        const contactForm = document.getElementById("contact-form");
+        if (contactForm) {
+            contactForm.addEventListener("submit", function (event) {
+              event.preventDefault();
+              // generate a five digit number for the contact_number variable
+              this.contact_number.value = (Math.random() * 100000) | 0;
+              // these IDs from the previous steps
+              emailjs.sendForm("service_ssnqh8w", "template_zy0rvao", this).then(
+                function () {
+                  console.log("SUCCESS!");
+                },
+                function (error) {
+                  console.log("FAILED...", error);
+                }
+              );
+            });
+          } else {
+            console.warn("Contact form not found.");
+          }
       };
     </script>
     <title><%= htmlWebpackPlugin.options.title %></title>
