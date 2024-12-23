@@ -1,10 +1,10 @@
 <template>
   <div class="w-full md:w-1/2">
     <div
-      class="leading-loose max-w-xl m-4 p-7 bg-secondary-light dark:bg-secondary-dark rounded-xl shadow-xl text-left"
+      class="leading-loose max-w-xl m-4 sm:p-7 sm:bg-secondary-light sm:dark:bg-secondary-dark sm:rounded-xl sm:shadow-xl text-left"
     >
       <p
-        class="font-general-medium text-primary-dark dark:text-primary-light text-2xl mb-8"
+        class="font-semibold text-center text-primary-dark dark:text-primary-light text-2xl mb-8"
       >
         {{ $t("contact.form.name") }}
       </p>
@@ -12,7 +12,7 @@
         <template v-for="field in fieldsText" :key="field.id">
           <input
             v-if="field.inputType === 'string'"
-            class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
+            class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
             :id="field.id"
             :name="field.name"
             type="text"
@@ -23,7 +23,7 @@
           />
           <textarea
             v-else-if="field.inputType === 'textarea'"
-            class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light bg-ternary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
+            class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
             :id="field.id"
             :name="field.name"
             cols="14"
@@ -35,7 +35,7 @@
           ></textarea>
         </template>
 
-        <div>
+        <div class="flex items-center justify-center">
           <Button
             :title="t('contact.form.button')"
             class="px-4 py-2.5 text-white tracking-wider bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 rounded-lg duration-500"

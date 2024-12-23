@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-12 sm:mt-0 mb-5 sm:mb-8 min-h-screen">
+  <div class="mt-12 sm:mt-0 sm:mb-8 sm:min-h-screen">
     <section
       class="flex flex-col sm:justify-between justiy-center items-center sm:flex-row"
     >
@@ -54,11 +54,7 @@
           <SkeletonLoader :rows="40" />
         </template>
         <template v-else>
-          <LazyImage
-            :src="developer"
-            placeholder="https://via.placeholder.com/450"
-            alt="Developer"
-          />
+          <img src="/img/developer.svg" alt="Developer" width="900" height="900">
         </template>
       </div>
     </section>
@@ -77,7 +73,6 @@ import LoadingModal from "@/components/reusable/LoadingModal.vue";
 
 import axios from "axios";
 import feather from "feather-icons";
-import developer from "@/assets/images/developer.svg";
 
 const store = useStore();
 const locales = useLocale();
