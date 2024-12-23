@@ -47,6 +47,15 @@ export default defineConfig({
     legacy({
       targets: ['defaults', 'not IE 11'], // Hỗ trợ các trình duyệt hiện đại, bỏ qua IE 11.
       additionalLegacyPolyfills: ['regenerator-runtime/runtime'] // Thêm polyfill nếu cần.
+    }),
+    VitePluginStaticCopy({
+      targets: [
+        {
+          src: 'path/to/static/assets',
+          dest: 'path/to/destination',
+          cacheControl: 'public, max-age=31536000, immutable', // Cấu hình cache cho các tài nguyên
+        }
+      ]
     })
   ],
   resolve: {
@@ -76,6 +85,9 @@ export default defineConfig({
               .toString();
           }
         },
+        entryFileNames: 'assets/[name].[hash].js',
+        chunkFileNames: 'assets/[name].[hash].js',
+        assetFileNames: 'assets/[name].[hash].[ext]',
       },
     },
     maxFileSizeToCacheInBytes: 5 * 1024 * 1024,
