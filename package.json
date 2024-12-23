@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "dev": "vue-cli-service serve"
+    "dev": "vue-cli-service serve",
+    "generate-critical": "critical src/index.html --inline --css dist/style.css --base dist/"
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^17.0.0",
@@ -34,15 +35,20 @@
     "vuex": "^4.0.2"
   },
   "devDependencies": {
+    "@vitejs/plugin-legacy": "^6.0.0",
     "@vue/cli-plugin-pwa": "^5.0.8",
     "@vue/cli-service": "~5.0.4",
     "@vue/compiler-sfc": "^3.2.35",
     "autoprefixer": "^10.4.7",
     "babel-eslint": "^10.1.0",
+    "critical": "^7.2.1",
     "eslint": "^7.5.0",
     "eslint-plugin-vue": "^7.0.0",
     "postcss": "^8.4.14",
+    "postcss-nesting": "^13.0.1",
+    "rollup-plugin-critical": "^1.0.14",
     "tailwindcss": "^3.0.24",
+    "vite-plugin-static-copy": "^2.2.0",
     "vue-cli-plugin-tailwind": "3.0.0"
   },
   "eslintConfig": {
@@ -60,8 +66,9 @@
     "rules": {}
   },
   "browserslist": [
-    "> 1%",
+    "> 0.5%",
     "last 2 versions",
-    "not dead"
+    "not dead",
+    "not IE 11"
   ]
 }
