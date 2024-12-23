@@ -11,17 +11,21 @@
           {{ $t("footer.title") }}
         </p>
         <ul class="flex gap-4 sm:gap-8">
-          <a
+          <li
             v-for="social in socials"
             :key="social.id"
-            :href="social.url"
-            target="__blank"
-            class="text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400 cursor-pointer rounded-lg bg-gray-50 dark:bg-ternary-dark hover:bg-gray-100 shadow-sm p-4 duration-500 focus:ring-2 focus:ring-indigo-400"
-            :aria-label="`Visit ${social.name} on ${social.url}`"
-            :title="`Visit ${social.name}`"
+            class="rounded-lg bg-gray-50 dark:bg-ternary-dark hover:bg-gray-100 shadow-sm p-4 duration-500 focus:ring-2 focus:ring-indigo-400 cursor-pointer"
           >
-            <i :data-feather="social.icon" class="w-5 sm:w-8 h-5 sm:h-8"></i>
-          </a>
+            <a
+              :href="social.url"
+              target="__blank"
+              class="text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400"
+              :aria-label="`Visit ${social.name} on ${social.url}`"
+              :title="`Visit ${social.name}`"
+            >
+              <i :data-feather="social.icon" class="w-5 sm:w-8 h-5 sm:h-8"></i>
+            </a>
+          </li>
         </ul>
       </div>
 
