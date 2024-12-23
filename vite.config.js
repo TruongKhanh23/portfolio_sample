@@ -44,6 +44,10 @@ export default defineConfig({
       criticalBase: 'dist/',
       criticalPages: [{ uri: '', template: 'index' }],
     }),
+    legacy({
+      targets: ['defaults', 'not IE 11'], // Hỗ trợ các trình duyệt hiện đại, bỏ qua IE 11.
+      additionalLegacyPolyfills: ['regenerator-runtime/runtime'] // Thêm polyfill nếu cần.
+    })
   ],
   resolve: {
     alias: {
