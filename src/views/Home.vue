@@ -10,7 +10,7 @@
     <div class="mt-10 sm:mt-20 flex justify-center">
       <router-link
         to="/projects"
-        class="font-semibold flex items-center px-6 py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-lg sm:text-xl duration-300"
+        class="font-semibold flex items-center px-8 py-4 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-900 text-white text-lg sm:text-xl duration-300"
         :aria-label="$t('home.projectsGrid.moreProjects')"
       >
         <Button :title="$t('home.projectsGrid.moreProjects')" />
@@ -72,5 +72,3 @@ export default {
   },
 };
 </script>
-
-<style scoped></style>

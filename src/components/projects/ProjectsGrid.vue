@@ -1,17 +1,17 @@
 <template>
   <!-- Projects grid -->
-  <section v-if="projects" class="pt-10 sm:pt-14">
+  <section v-if="projects" class="pt-10 sm:pt-10">
     <!-- Projects grid title -->
     <div class="text-center">
-      <p
+      <h2
         class="font-general-semibold text-2xl sm:text-5xl font-semibold mb-2 text-ternary-dark dark:text-ternary-light"
       >
         {{ $t("home.projectsGrid.title") }}
-      </p>
+      </h2>
     </div>
 
     <!-- Filter and search projects -->
-    <div class="mt-10 sm:mt-10">
+    <div class="mt-6 sm:mt-6">
       <h3
         class="font-general-regular text-center text-secondary-dark dark:text-ternary-light text-md sm:text-xl font-normal mb-4"
       >
@@ -22,7 +22,7 @@
       >
         <div class="flex flex-col md:flex-row md:justify-between gap-2">
           <span
-            class="hidden sm:block bg-primary-light dark:bg-ternary-dark p-2.5 shadow-sm rounded-xl cursor-pointer"
+            class="hidden sm:block bg-primary-light dark:bg-ternary-dark p-4 shadow-sm rounded-xl cursor-pointer"
           >
             <i
               data-feather="search"
@@ -31,11 +31,11 @@
           </span>
           <input
             v-model="searchProject"
-            class="font-general-medium pl-3 pr-1 sm:px-4 py-2 border-1 border-gray-200 dark:border-secondary-dark rounded-lg text-sm sm:text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
+            class="font-general-medium pl-3 pr-4 sm:px-4 py-3 border-1 border-gray-200 dark:border-secondary-dark rounded-lg text-sm sm:text-md bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
             id="name"
             name="name"
             type="search"
-            required=""
+            required
             :placeholder="$t('home.projectsGrid.searchProjects')"
             aria-label="Name"
           />
@@ -57,6 +57,7 @@
     </div>
   </section>
 </template>
+
 
 <script setup>
 import { useStore } from "vuex";
