@@ -1,6 +1,7 @@
 import path from "path";
 import { defineConfig } from "vite";
 import { VitePWA } from "vite-plugin-pwa";
+import critical from 'rollup-plugin-critical';
 
 export default defineConfig({
   plugins: [
@@ -35,12 +36,45 @@ export default defineConfig({
         globDirectory: 'dist',
         globPatterns: ['**/*.{js,css,svg,png,jpg,jpeg,gif,webp,woff,woff2,ttf,eot,ico}'],
         navigateFallback: null,
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024,
       },
+    }),
+    critical({
+      inline: true,
+      criticalBase: 'dist/',
+      criticalPages: [{ uri: '', template: 'index' }],
     }),
   ],
   resolve: {
     alias: {
       "@/": `${path.resolve(__dirname, "src")}/`,
     },
+  },
+  build: {
+    minify: "terser", // Dùng Terser để loại bỏ mã không cần thiết
+    rollupOptions: {
+      treeshake: true, // Bật Tree-shaking
+      output: {
+        manualChunks(id) {
+          // Tách các thư viện lớn thành các chunk riêng
+          if (id.includes("node_modules")) {
+            // Tách lodash và vue-pdf-embed thành chunk riêng
+            if (id.includes("lodash")) {
+              return "lodash";
+            }
+            if (id.includes("vue-pdf-embed")) {
+              return "vue-pdf-embed";
+            }
+            return id
+              .toString()
+              .split("node_modules/")[1]
+              .split("/")[0]
+              .toString();
+          }
+        },
+      },
+    },
+    maxFileSizeToCacheInBytes: 5 * 1024 * 1024,
+    chunkSizeWarningLimit: 512,
   },
 });
