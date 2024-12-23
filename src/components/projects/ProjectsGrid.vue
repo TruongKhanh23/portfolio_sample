@@ -18,7 +18,7 @@
         {{ $t("home.projectsGrid.subTitle") }}
       </h3>
       <div
-        class="flex flex-col md:flex-row md:justify-between border-b border-primary-light dark:border-secondary-dark pb-3 gap-2"
+        class="flex flex-col md:flex-row md:justify-between border-b border-primary-light dark:border-secondary-dark gap-2"
       >
         <div class="flex flex-col md:flex-row md:justify-between gap-2">
           <span
