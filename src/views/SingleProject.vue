@@ -19,13 +19,12 @@
 
 <script setup>
 import { useStore } from "vuex";
-import { ref, onBeforeMount, onMounted } from "vue";
-
+import { reactive, computed, onBeforeMount, onMounted } from "vue";
 import useModal from "@/composables/modal";
 import { useLocale } from "@/composables/useLocale";
+import { useRoute } from "vue-router";
 
 import feather from "feather-icons";
-// Default theme
 import "@splidejs/vue-splide/css";
 
 import ProjectHeader from "@/components/projects/ProjectHeader.vue";
@@ -35,9 +34,10 @@ import ProjectRelatedProjects from "@/components/projects/ProjectRelatedProjects
 import LoadingModal from "@/components/reusable/LoadingModal.vue";
 import { getProjectById } from "../composables/projects";
 
+const route = useRoute();
 const store = useStore();
 const currentLocale = useLocale().getCurrent();
-const projects = store.state[currentLocale]?.projects || [];
+const projects = computed(() => store.state[currentLocale]?.projects || []);
 
 const modal = useModal();
 const loadingModal = modal.create({
@@ -46,17 +46,19 @@ const loadingModal = modal.create({
   dismissable: true,
 });
 
-const id = new URLSearchParams(window.location.search).get("id");
-if (!id) {
-  console.error("Project ID is missing in the URL.");
+const id = computed(() => {
+  return route.query.id
+});
+if (!id.value) {
+  alert("Project ID is missing in the URL.");
 }
-const data = ref(
-  projects.find((item) => item.id === id) ?? {
-    header: null,
-    projectImages: [],
-    projectInfo: null,
-  }
-);
+
+// Reactive data object
+const data = reactive({
+  header: null,
+  projectImages: [],
+  projectInfo: null,
+});
 
 onBeforeMount(async () => {
   await loadingModal.open();
@@ -64,28 +66,28 @@ onBeforeMount(async () => {
 
 onMounted(async () => {
   try {
-    const response = await getProjectById(id);
-    const projectById = projects.find((item) => item.id === id);
+    const response = await getProjectById(id.value);
+    const projectById = projects.value.find((item) => item.id === id.value);
     if (projectById) {
-      data.value = projectById;
-    } else {
-      data.value = {
-        header: response.header || {},
-        projectImages: response.projectImages || [],
-        projectInfo: response.projectInfo || {},
-      };
+      Object.assign(data, projectById); // Update reactive object properties
+    } else if (response) {
+      data.header = response.header || {};
+      data.projectImages = response.projectImages || [];
+      data.projectInfo = response.projectInfo || {};
     }
   } catch (error) {
     console.error("Failed to fetch project data:", error);
+  } finally {
+    feather.replace();
+    setTimeout(() => {
+      loadingModal.close();
+    }, 1500);
   }
-
-  feather.replace();
-  setTimeout(() => {
-    loadingModal.close();
-  }, 1500);
 });
 
-const otherProjects = Array.isArray(projects)
-  ? projects.filter((item) => item.id !== id)
-  : [];
+const otherProjects = computed(() =>
+  Array.isArray(projects.value)
+    ? projects.value.filter((item) => item.id !== id.value)
+    : []
+);
 </script>
