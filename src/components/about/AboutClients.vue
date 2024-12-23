@@ -5,26 +5,34 @@
     >
       {{ $t("about.clients.title") }}
     </p>
-    <div class="flex flex-col sm:flex-row flex-wrap items-center justify-center mt-10 sm:mt-14 gap-8">
-      <AboutClientSingle
-        v-for="client in clients"
-        :key="client.title"
-        :client="client"
-        class="sm:flex-grow-0 sm:flex-shrink-0 sm:basis-[calc(20%-1rem)] sm:max-w-[calc(20%-1rem)]"
-      />
+    <div class="mt-10 sm:mt-14">
+      <template v-if="!clients[0].title">
+        <SkeletonLoader :rows="16" />
+      </template>
+      <template v-else>
+        <div
+          class="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-8"
+        >
+          <AboutClientSingle
+            v-for="client in clients"
+            :key="client.title"
+            :client="client"
+            class="sm:flex-grow-0 sm:flex-shrink-0 sm:basis-[calc(20%-1rem)] sm:max-w-[calc(20%-1rem)]"
+          />
+        </div>
+      </template>
     </div>
   </div>
 </template>
 
 <script setup>
-import { defineProps } from "vue"
-import AboutClientSingle from './AboutClientSingle.vue'
+import { defineProps } from "vue";
+import AboutClientSingle from "./AboutClientSingle.vue";
 
 defineProps({
   clients: {
     type: Array,
-    default: () => []
-  }
-})
-
+    default: () => [],
+  },
+});
 </script>
