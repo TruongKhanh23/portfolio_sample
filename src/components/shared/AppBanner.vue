@@ -1,24 +1,35 @@
 <template>
-  <div class="mt-12 sm:mt-0 sm:mb-8 sm:min-h-screen">
-    <section class="flex flex-col sm:justify-between justify-center items-center sm:flex-row">
+  <div class="mt-12 sm:mt-0 sm:mb-8 sm:min-h-screen min-h-[500px]">
+    <section
+      class="flex flex-col sm:justify-between justify-center items-center sm:flex-row gap-8"
+    >
       <!-- Banner left contents -->
       <div class="w-full md:w-1/3 text-left">
         <template v-if="!appBanner">
-          <SkeletonLoader :rows="24" :width="'80%'" :height="'300px'" />
+          <SkeletonLoader
+            :rows="24"
+            :width="'100%'"
+            :height="'300px'"
+            class="h-64"
+          />
         </template>
         <template v-else>
-          <h1 class="font-bold text-3xl md:text-3xl xl:text-4xl text-center sm:text-left text-ternary-dark dark:text-primary-light uppercase">
+          <h1
+            class="font-bold text-3xl md:text-3xl xl:text-4xl text-center sm:text-left text-ternary-dark dark:text-primary-light uppercase"
+          >
             {{ appBanner.title }}
           </h1>
-          <p class="font-general-medium mt-2 text-lg sm:text-xl xl:text-2xl text-center sm:text-left leading-none">
+          <p
+            class="font-general-medium mt-2 text-lg sm:text-xl xl:text-2xl text-center sm:text-left leading-none"
+          >
             {{ appBanner.subTitle }}
           </p>
           <div class="flex justify-center sm:block gap-2">
             <div
               @click="downloadFile"
-              tabindex="0" 
-              aria-label="Download CV"  
-              class="flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 hover:text-white duration-500"
+              tabindex="0"
+              aria-label="Download CV"
+              class="flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 hover:text-white transition-colors duration-500"
             >
               <i data-feather="arrow-down-circle" class="ml-0 sm:ml-1 mr-2 sm:mr-3 w-5 sm:w-6 duration-100"></i>
               <span class="text-sm sm:text-lg font-general-medium duration-100">
@@ -28,10 +39,13 @@
             <div
               @click="viewFile"
               tabindex="0"
-              aria-label="View CV"  
+              aria-label="View CV"
               class="flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 hover:text-white duration-500"
             >
-              <i data-feather="eye" class="ml-0 sm:ml-1 mr-2 sm:mr-3 w-5 sm:w-6 duration-100"></i>
+              <i
+                data-feather="eye"
+                class="ml-0 sm:ml-1 mr-2 sm:mr-3 w-5 sm:w-6 duration-100"
+              ></i>
               <span class="text-sm sm:text-lg font-general-medium duration-100">
                 {{ $t("home.banner.view.title") }}
               </span>
@@ -46,7 +60,14 @@
           <SkeletonLoader :rows="40" :height="'300px'" />
         </template>
         <template v-else>
-          <img src="/img/developer.svg" alt="Developer" width="900" height="900" style="object-fit: cover;" />
+          <img
+            src="/img/developer.svg"
+            alt="Developer"
+            width="900"
+            height="900"
+            style="object-fit: cover;"
+            class="block"
+          />
         </template>
       </div>
     </section>
