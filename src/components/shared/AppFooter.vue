@@ -14,12 +14,12 @@
           <li
             v-for="social in socials"
             :key="social.id"
-            class="rounded-lg bg-gray-50 dark:bg-ternary-dark hover:bg-gray-100 shadow-sm p-4 duration-500 focus:ring-2 focus:ring-indigo-400 cursor-pointer"
+            class="rounded-lg bg-gray-50 dark:bg-ternary-dark hover:bg-gray-100 shadow-sm p-4 duration-500 focus-within:ring-2 focus-within:ring-indigo-400 cursor-pointer"
           >
             <a
               :href="social.url"
               target="__blank"
-              class="text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400"
+              class="text-gray-400 hover:text-indigo-500 dark:hover:text-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 rounded"
               :aria-label="`Visit ${social.name} on ${social.url}`"
               :title="`Visit ${social.name}`"
             >
@@ -44,8 +44,8 @@ defineProps({
   socials: {
     type: Array,
     default: () => [],
-  }
-})
+  },
+});
 
 onMounted(() => {
   feather.replace();
@@ -54,10 +54,3 @@ onUpdated(() => {
   feather.replace();
 });
 </script>
-
-<style scoped>
-/* Optionally add more focus styles */
-a:focus {
-  outline: 2px solid #4c51bf; /* Add focus outline to improve accessibility */
-}
-</style>
