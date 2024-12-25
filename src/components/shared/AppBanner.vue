@@ -25,9 +25,8 @@
             {{ appBanner.subTitle }}
           </p>
           <div class="flex justify-center sm:block gap-2">
-            <div
+            <button
               @click="downloadFile"
-              tabindex="0"
               aria-label="Download CV"
               class="flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 hover:text-white transition-colors duration-500"
             >
@@ -35,10 +34,9 @@
               <span class="text-sm sm:text-lg font-general-medium duration-100">
                 {{ $t("home.banner.download.title") }}
               </span>
-            </div>
-            <div
+            </button>
+            <button
               @click="viewFile"
-              tabindex="0"
               aria-label="View CV"
               class="flex justify-center items-center w-36 sm:w-48 mt-12 mb-6 sm:mb-0 text-lg border border-indigo-200 dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-indigo-50 focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 hover:text-white duration-500"
             >
@@ -49,7 +47,7 @@
               <span class="text-sm sm:text-lg font-general-medium duration-100">
                 {{ $t("home.banner.view.title") }}
               </span>
-            </div>
+            </button>
           </div>
         </template>
       </div>
@@ -63,10 +61,8 @@
           <img
             src="/img/developer.svg"
             alt="Developer"
-            width="900"
-            height="900"
-            style="object-fit: cover;"
-            class="block"
+            class="block max-w-full h-auto object-cover"
+            loading="lazy"
           />
         </template>
       </div>
@@ -100,7 +96,6 @@ const loadingModal = modal.create({
   dismissable: true,
 });
 
-// onBeforeMount = created
 onBeforeMount(() => {
   theme.value = localStorage.getItem("theme") || "light";
 });
@@ -154,5 +149,3 @@ async function viewFile() {
   loadingModal.close();
 }
 </script>
-
-<style scoped></style>
