@@ -10,8 +10,9 @@
     <div class="mt-10 sm:mt-20 flex justify-center">
       <router-link
         to="/projects"
-        class="font-semibold flex items-center px-8 py-4 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-2 focus:ring-indigo-900 text-white text-lg sm:text-xl duration-300"
+        class="flex items-center justify-center px-10 py-5 rounded-lg shadow-lg bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-900 text-white text-lg sm:text-xl font-semibold duration-300"
         :aria-label="$t('home.projectsGrid.moreProjects')"
+        style="min-width: 48px; min-height: 48px; line-height: 1.5;"
       >
         <Button :title="$t('home.projectsGrid.moreProjects')" />
       </router-link>
