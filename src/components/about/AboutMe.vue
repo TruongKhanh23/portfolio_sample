@@ -15,7 +15,7 @@
       <template v-if="!bios.content && !author">
         <SkeletonLoader :rows="16" />
       </template>
-      <template v-else>
+      <template v-else>        
         <RichTextRenderer :content="bios" />
       </template>
     </div>

@@ -18,7 +18,8 @@ export default {
         title: "Xem CV",
         link: "Lengchhinghor_CV_9th.pdf",
         ariaLabel: "Download Resume",
-      }
+      },
+      freeConsultant: "Tư vấn miễn phí"
     },
     projectsGrid: {
       title: "Dự án của tôi",
@@ -70,6 +71,10 @@ export default {
       email: {
         label: "Email",
         placeholder: "Email của bạn",
+      },
+      phoneNumber: {
+        label: "Số điện thoại",
+        placeholder: "Số điện thoại của bạn",
       },
       subject: {
         label: "Tiêu đề",
