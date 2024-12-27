@@ -40,7 +40,7 @@ import AppHeader from "./components/shared/AppHeader";
 import AppFooter from "./components/shared/AppFooter";
 
 import getSocialNetworks from "@/helpers/socialNetwork";
-import { convertToLocalizeObjects } from "@/helpers/locale.js";
+import { convertToLocalizeObjects, convertAppBannerObject } from "@/helpers/locale.js";
 
 import * as contentful from "contentful";
 import feather from "feather-icons";
@@ -77,7 +77,7 @@ watch(aboutMe, async () => {
 
 watch(appBanner, async () => {
   if (!appBanner.value) return;
-  const { en, vi } = convertToLocalizeObjects(appBanner.value);
+  const { en, vi } = convertAppBannerObject(appBanner.value);
   store.dispatch("vi/storeVI", { appBanner: vi.homeBanner });
   store.dispatch("en/storeEN", { appBanner: en.homeBanner });
 });

@@ -21,6 +21,20 @@
             :aria-label="field.ariaLabel"
             v-model="formData[field.id]"
           />
+          <input
+            v-if="field.inputType === 'number'"
+            class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
+            :id="field.id"
+            :name="field.name"
+            type="text"
+            :required="field.required"
+            :placeholder="field.placeholder"
+            :aria-label="field.ariaLabel"
+            v-model="formData[field.id]"
+            @input="validatePhoneNumber(field.id)"
+            @keydown="restrictNonNumericInput"
+            maxlength="10"
+          />
           <textarea
             v-else-if="field.inputType === 'textarea'"
             class="w-full px-5 py-2 border border-gray-300 dark:border-primary-dark border-opacity-50 text-primary-dark dark:text-secondary-light dark:bg-ternary-dark rounded-md shadow-sm text-md"
@@ -75,6 +89,15 @@ const fieldsText = [
     inputType: "string",
   },
   {
+    id: "phoneNumber",
+    label: t("contact.form.phoneNumber.label"),
+    name: "phoneNumber",
+    required: "",
+    placeholder: t("contact.form.phoneNumber.placeholder"),
+    ariaLabel: "Phone Number",
+    inputType: "number",
+  },
+  {
     id: "subject",
     label: t("contact.form.subject.label"),
     name: "subject",
@@ -93,6 +116,30 @@ const fieldsText = [
     inputType: "textarea",
   },
 ];
+
+// Chặn các ký tự không phải số khi gõ phím
+const restrictNonNumericInput = (event) => {
+  const allowedKeys = [
+    "Backspace", "Tab", "ArrowLeft", "ArrowRight", // Phím điều hướng
+    "Delete", "Enter", // Xóa và xuống dòng
+  ];
+  // Cho phép các phím số (0-9) và các phím điều hướng
+  if (
+    !allowedKeys.includes(event.key) && // Không thuộc các phím cho phép
+    !/^\d$/.test(event.key) // Không phải ký tự số
+  ) {
+    event.preventDefault();
+  }
+};
+
+// Validate số điện thoại khi người dùng nhập
+const validatePhoneNumber = (fieldId) => {
+  const phone = formData[fieldId];
+  // Loại bỏ toàn bộ ký tự không phải số
+  const cleanedPhone = phone.replace(/\D/g, "");
+  // Giới hạn số ký tự là 10
+  formData[fieldId] = cleanedPhone.slice(0, 10);
+};
 
 </script>
 

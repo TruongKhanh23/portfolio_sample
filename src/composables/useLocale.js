@@ -2,14 +2,13 @@ import { useRoute } from "vue-router";
 
 export function useLocale(
   supportedLocales = ["en", "vi"],
-  defaultLocale = "vi"
+  defaultLocale = "vi"  // Đảm bảo mặc định là "vi" nếu không truyền vào
 ) {
   const queryParamName = "lang";
   const route = useRoute();
+  
   // trying to find one of the supported locales in the url
-  const urlLocale = new URLSearchParams(window.location.search).get(
-    queryParamName
-  );
+  const urlLocale = new URLSearchParams(window.location.search).get(queryParamName);
   const browserLocale = navigator.language;
 
   /**
@@ -29,7 +28,7 @@ export function useLocale(
       browserLocale.includes(locale)
     );
 
-    return preferredLocale || defaultLocale;
+    return preferredLocale || defaultLocale;  // Trả về defaultLocale nếu không có locale hợp lệ
   };
 
   /**

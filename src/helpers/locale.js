@@ -118,3 +118,33 @@ function getArrayType(arr) {
 
   return "mixed";
 }
+
+export function convertAppBannerObject(appBanner){
+  const { fields, sys } = appBanner;
+  const name = sys.contentType.sys.id;
+  const keys = Object.keys(fields);
+
+  const vi = createAppBannerObject(fields, keys, VI);
+  const en = createAppBannerObject(fields, keys, EN);
+
+  return { vi: { [name]: vi }, en: { [name]: en } };
+}
+
+function createAppBannerObject(fields, keys, locale) {
+  const result = {};
+
+  for (const key of keys) {
+    const localizedKey = fields[key][locale] ?? fields[key][EN];
+    if(_isObject(localizedKey)) {
+      if (key == "curriculumVitae") {
+        result[key] = handleFieldIsObject(localizedKey, locale)
+      } else {
+        result[key] = localizedKey
+      }
+    } else {
+      result[key] = localizedKey || fields[key]
+    }
+  }
+
+  return result;
+}

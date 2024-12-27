@@ -18,7 +18,8 @@ export default {
         title: "View CV",
         link: "Lengchhinghor_CV_9th.pdf",
         ariaLabel: "Download Resume",
-      }
+      },
+      freeConsultant: "Free consultation"
     },
     projectsGrid: {
       title: "Projects Portfolio",
@@ -66,6 +67,10 @@ export default {
       fullName: {
         label: "Full Name",
         placeholder: "Full Name",
+      },
+      phoneNumber: {
+        label: "Phone Number",
+        placeholder: "Your Phone Number",
       },
       email: {
         label: "Email",

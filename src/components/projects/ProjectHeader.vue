@@ -23,11 +23,11 @@
             class="w-4 h-4 text-ternary-dark dark:text-ternary-light"
           ></i>
           <span
-            class="font-general-medium ml-2 leading-none text-primary-dark dark:text-primary-light"
+            class="font-general-medium ml-2 leading-none text-primary-dark dark:text-white"
           >
             <template v-for="item in singleProjectHeader.tags" :key="item">
-              <a-tag>{{ item }}</a-tag>
-            </template>
+              <span class="border rounded-md px-2 py-1 text-xs mr-2 bg-gray-50 dark:bg-white dark:text-black">{{ item }}</span>
+              </template>
           </span>
         </div>
       </template>
@@ -55,10 +55,7 @@
 </template>
 
 <script>
-import { Tag } from "ant-design-vue";
-
 export default {
-  components: { ATag: Tag },
   props: {
     singleProjectHeader: {
       type: Object,
