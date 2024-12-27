@@ -1,11 +1,11 @@
 <!-- CVButtons.vue -->
 <template>
   <div class="space-y-4">
-    <div class="flex justify-between items-center gap-2">
+    <div class="flex justify-between items-center gap-4">
       <button
         @click="downloadFile"
         aria-label="Download CV"
-        class="flex justify-center items-center w-full mb-6 sm:mb-0 text-lg border dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-white focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 hover:text-white transition-colors duration-500"
+        class="flex justify-center items-center w-full sm:mb-0 text-lg border dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-white focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 hover:text-white transition-colors duration-500"
       >
         <i
           data-feather="arrow-down-circle"
@@ -18,7 +18,7 @@
       <button
         @click="viewFile"
         aria-label="View CV"
-        class="flex justify-center items-center w-full p-2 mb-6 sm:mb-0 text-lg border dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-white focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 hover:text-white duration-500"
+        class="flex justify-center items-center w-full p-2 sm:mb-0 text-lg border dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-white focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 hover:text-white duration-500"
       >
         <i
           data-feather="eye"

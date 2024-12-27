@@ -1,7 +1,7 @@
 export default {
   navigator: {
     projects: "Dự án",
-    about: "Về chúng tôi",
+    about: "Tôi là ai",
     contact: "Liên hệ",
     hireMe: "Thuê tôi",
   },

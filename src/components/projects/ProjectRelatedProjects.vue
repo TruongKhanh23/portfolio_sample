@@ -7,29 +7,12 @@
     >
       {{ $t("projects.projectInfo.otherProjects") }}
     </p>
-    <Slider
-      :list="otherProjects"
-      :attrs="{ perPage: 4, arrows: true }"
-    >
+    <Slider :list="otherProjects" :attrs="{ perPage: 4, arrows: true }">
       <template #content="{ data }">
-        <a
-          :href="`/projects/single-project?id=${data.id}`"
-          class="flex flex-col items-center justify-center text-center border shadow-lg space-y-4 rounded-lg pb-4"
-        >
-          <LazyImage
-            :src="data.img.url"
-            customClass="rounded-t-xl cursor-pointer h-[260px] w-screen"
-            :alt="data.title"
-          />
-          <div class="px-4">
-            <p class="font-general-semibold font-semibold mb-2 min-h-[48px]">
-              {{ data.header.title }}
-            </p>
-            <span class="font-general-medium">
-              {{ data.category }}
-            </span>
-          </div>
-        </a>
+        <ProjectSingle
+          :key="data.id"
+          :project="data"
+        />
       </template>
     </Slider>
   </div>
@@ -37,6 +20,7 @@
 
 <script setup>
 import { defineProps } from "vue";
+import ProjectSingle from "./ProjectSingle.vue";
 
 defineProps({
   otherProjects: {

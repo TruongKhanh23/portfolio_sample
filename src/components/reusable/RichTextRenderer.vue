@@ -1,7 +1,7 @@
 <template>
   <div
     v-html="renderedHtml || '<p>No content available</p>'"
-    class="prose max-w-none mx-auto my-4 text-gray-700"
+    class="prose max-w-none mx-auto text-gray-700 dark:text-gray-300"
   ></div>
 </template>
 
@@ -22,14 +22,14 @@ export default {
       const options = {
         renderMark: {
           [MARKS.BOLD]: (text) =>
-            `<strong class="font-bold text-black">${text}</strong>`,
+            `<strong class="font-bold text-black dark:text-white">${text}</strong>`,
           [MARKS.ITALIC]: (text) =>
-            `<em class="italic text-gray-600">${text}</em>`,
+            `<em class="italic text-gray-600 dark:text-gray-300">${text}</em>`,
           [MARKS.UNDERLINE]: (text) => `<span class="underline">${text}</span>`,
         },
         renderNode: {
           [BLOCKS.PARAGRAPH]: (node) => {
-            let paragraphHtml = `<p class="my-4 text-base leading-relaxed">`;
+            let paragraphHtml = `<p class="mb-4 text-base leading-relaxed dark:text-gray-300">`;
 
             node.content.forEach((childNode) => {
               if (childNode.nodeType === "hyperlink") {
@@ -45,10 +45,10 @@ export default {
                 if (childNode.marks.length > 0) {
                   childNode.marks.forEach((mark) => {
                     if (mark.type === MARKS.BOLD) {
-                      textContent = `<strong class="font-bold text-black">${textContent}</strong>`;
+                      textContent = `<strong class="font-bold text-black dark:text-white">${textContent}</strong>`;
                     }
                     if (mark.type === MARKS.ITALIC) {
-                      textContent = `<em class="italic text-gray-600">${textContent}</em>`;
+                      textContent = `<em class="italic text-gray-600 dark:text-gray-300">${textContent}</em>`;
                     }
                     if (mark.type === MARKS.UNDERLINE) {
                       textContent = `<span class="underline">${textContent}</span>`;
@@ -67,55 +67,44 @@ export default {
             `<h1 class="text-4xl font-extrabold mb-6 text-primary dark:text-primary-light">${next(
               node.content
             )}</h1>`,
-
           [BLOCKS.HEADING_2]: (node, next) =>
             `<h2 class="text-3xl font-semibold mb-5 text-primary dark:text-primary-light">${next(
               node.content
             )}</h2>`,
-
           [BLOCKS.HEADING_3]: (node, next) =>
             `<h3 class="text-2xl font-semibold mb-4 text-primary dark:text-primary-light">${next(
               node.content
             )}</h3>`,
-
           [BLOCKS.HEADING_4]: (node, next) =>
             `<h4 class="text-xl font-medium mb-3 text-primary dark:text-primary-light">${next(
               node.content
             )}</h4>`,
-
           [BLOCKS.HEADING_5]: (node, next) =>
             `<h5 class="text-lg font-medium mb-2 text-primary dark:text-primary-light">${next(
               node.content
             )}</h5>`,
-
           [BLOCKS.HEADING_6]: (node, next) =>
             `<h6 class="text-md font-medium mb-2 text-primary dark:text-primary-light">${next(
               node.content
             )}</h6>`,
-
           [BLOCKS.HYPERLINK]: (node, next) =>
             `<a href="${
               node.data.uri
             }" class="text-blue-500 hover:text-blue-700 dark:text-blue-300 dark:hover:text-blue-500" target="_blank">${next(
               node.content
             )}</a>`,
-
           [BLOCKS.UL_LIST]: (node, next) =>
-            `<ul class="list-disc pl-6">${next(node.content)}</ul>`,
-
+            `<ul class="list-disc pl-6 dark:text-gray-300">${next(node.content)}</ul>`,
           [BLOCKS.OL_LIST]: (node, next) =>
-            `<ol class="list-decimal pl-6">${next(node.content)}</ol>`,
-
+            `<ol class="list-decimal pl-6 dark:text-gray-300">${next(node.content)}</ol>`,
           [BLOCKS.LIST_ITEM]: (node, next) =>
-            `<li class="mb-1">${next(node.content)}</li>`,
-
+            `<li class="mb-1 dark:text-gray-300">${next(node.content)}</li>`,
           [BLOCKS.QUOTE]: (node, next) =>
-            `<blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-500 my-4">${next(
+            `<blockquote class="border-l-4 border-indigo-500 pl-4 italic text-gray-500 my-4 dark:text-gray-300 dark:border-indigo-400">${next(
               node.content
             )}</blockquote>`,
-
           [BLOCKS.EMBEDDED_ENTRY]: (node) =>
-            `<div class="border border-gray-200 p-4 rounded-md">Embedded content: ${JSON.stringify(
+            `<div class="border border-gray-200 p-4 rounded-md dark:border-gray-700">Embedded content: ${JSON.stringify(
               node.data
             )}</div>`,
         },
