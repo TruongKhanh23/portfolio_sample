@@ -22,7 +22,6 @@
 
     <!-- App footer -->
     <AppFooter :socials="socialNetworks || []" />
-
   </div>
 </template>
 
@@ -40,7 +39,10 @@ import AppHeader from "./components/shared/AppHeader";
 import AppFooter from "./components/shared/AppFooter";
 
 import getSocialNetworks from "@/helpers/socialNetwork";
-import { convertToLocalizeObjects, convertAppBannerObject } from "@/helpers/locale.js";
+import {
+  convertToLocalizeObjects,
+  convertAppBannerObject,
+} from "@/helpers/locale.js";
 
 import * as contentful from "contentful";
 import feather from "feather-icons";
@@ -65,7 +67,9 @@ const socialNetworks = computed(() => {
   if (!aboutMe.value) return [];
   const aboutInformation = convertToLocalizeObjects(aboutMe.value);
   if (!aboutInformation[currentLocale]?.aboutMe?.socialNetwork) return [];
-  return getSocialNetworks(aboutInformation[currentLocale].aboutMe.socialNetwork);
+  return getSocialNetworks(
+    aboutInformation[currentLocale].aboutMe.socialNetwork
+  );
 });
 
 watch(aboutMe, async () => {
@@ -77,7 +81,12 @@ watch(aboutMe, async () => {
 
 watch(appBanner, async () => {
   if (!appBanner.value) return;
+  console.log("appBanner.value", appBanner.value);
+
   const { en, vi } = convertAppBannerObject(appBanner.value);
+  console.log("en", en);
+  console.log("vi", vi);
+
   store.dispatch("vi/storeVI", { appBanner: vi.homeBanner });
   store.dispatch("en/storeEN", { appBanner: en.homeBanner });
 });
@@ -89,10 +98,9 @@ watch(contact, async () => {
   store.dispatch("en/storeEN", { contact: en.contact });
 });
 
-
 const client = contentful.createClient({
   space: window.envConfig.CONTENTFUL_SPACE_ID,
-  environment: "master", // defaults to 'master' if not set
+  environment: window.envConfig.ENVIRONMENT, // defaults to 'master' if not set
   accessToken: window.envConfig.CONTENTFUL_ACCESS_TOKEN,
 });
 
@@ -126,7 +134,6 @@ client.withAllLocales
     contact.value = null;
   });
 
-
 // Get Projects
 onMounted(async () => {
   try {
@@ -150,7 +157,6 @@ onMounted(async () => {
     console.error("Error fetching projects:", error);
   }
 });
-
 </script>
 
 <style>
