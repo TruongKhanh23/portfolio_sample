@@ -7,10 +7,6 @@
         aria-label="Download CV"
         class="flex justify-center items-center w-full sm:mb-0 text-lg border dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-white focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 hover:text-white transition-colors duration-500"
       >
-        <i
-          data-feather="arrow-down-circle"
-          class="ml-0 sm:ml-1 mr-2 sm:mr-3 w-5 sm:w-6 duration-100"
-        ></i>
         <span class="text-sm sm:text-lg font-general-medium duration-100">
           {{ $t("home.banner.download.title") }}
         </span>
@@ -20,10 +16,6 @@
         aria-label="View CV"
         class="flex justify-center items-center w-full p-2 sm:mb-0 text-lg border dark:border-ternary-dark py-2.5 sm:py-3 shadow-lg rounded-lg bg-white focus:ring-1 focus:ring-indigo-900 hover:bg-indigo-500 hover:text-white duration-500"
       >
-        <i
-          data-feather="eye"
-          class="ml-0 sm:ml-1 mr-2 sm:mr-3 w-5 sm:w-6 duration-100"
-        ></i>
         <span class="text-sm sm:text-lg font-general-medium duration-100">
           {{ $t("home.banner.view.title") }}
         </span>
@@ -49,9 +41,9 @@ import LoadingModal from "@/components/reusable/LoadingModal.vue";
 import { useStore } from "vuex";
 import { computed } from "vue";
 import { useLocale } from "@/composables/useLocale";
-import { useRouter } from "vue-router"
+import { useRouter } from "vue-router";
 
-const router = useRouter()
+const router = useRouter();
 const store = useStore();
 const locales = useLocale();
 const currentLocale = locales.getCurrent();
@@ -105,6 +97,6 @@ async function viewFile() {
 }
 
 function freeConsultant() {
-  router.push("/contact")
+  router.push("/contact");
 }
 </script>
