@@ -1,9 +1,7 @@
 <template>
-  <div
-    class="container mx-auto flex flex-col-reverse md:flex-row sm:py-10 min-h-screen"
-  >
-    <Carousel />
+  <div class="min-h-[10vh] sm:min-h-[15vh]"></div>
 
+  <div class="container mx-auto flex flex-col-reverse md:flex-row">
     <!-- Contact form -->
     <ContactForm />
 

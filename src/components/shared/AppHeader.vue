@@ -1,11 +1,14 @@
 <template>
-  <nav id="nav" class="sm:container sm:mx-auto">
+  <div
+    id="nav"
+    class="fixed top-0 left-0 right-0 z-50 w-full bg-white dark:bg-primary-dark shadow-sm sm:container sm:mx-auto"
+  >
     <!-- Header start -->
     <div
-      class="z-10 max-w-screen-lg xl:max-w-screen-xl block sm:flex sm:justify-between sm:items-center mt-6"
+      class="z-10 max-w-screen-lg xl:max-w-screen-xl block sm:flex sm:justify-between sm:items-center py-4 px-4 sm:px-0"
     >
       <!-- Header menu links and small screen hamburger menu -->
-      <div class="flex justify-between items-center px-4 sm:px-0">
+      <div class="flex justify-between items-center">
         <!-- Theme switcher small screen -->
         <theme-switcher
           :theme="switcherTheme"
@@ -14,18 +17,22 @@
         />
         <!-- Header logos -->
         <div>
-          <router-link to="/"
-            ><img
-              v-if="switcherTheme === 'light'"
+          <router-link to="/">
+            <img
+              :class="{ hidden: switcherTheme !== 'light' }"
               src="@/assets/images/logo-light-new.svg"
-              alt="Dark Logo"
-              width="144" height="36"
+              alt="Light Logo"
+              class="transition-opacity duration-300"
+              width="144"
+              height="36"
             />
             <img
-              v-else
+              :class="{ hidden: switcherTheme === 'light' }"
               src="@/assets/images/logo-dark-new.svg"
-              alt="Light Logo"
-              width="144" height="36"
+              alt="Dark Logo"
+              class="transition-opacity duration-300"
+              width="144"
+              height="36"
             />
           </router-link>
         </div>
@@ -46,7 +53,7 @@
         class="hidden sm:flex justify-between items-center flex-col md:flex-row"
       >
         <!-- Hire me button -->
-        <div class="hidden md:block">
+        <div class="hidden sm:block">
           <HireMeButton @action:showModal="showModal" />
         </div>
 
@@ -67,7 +74,7 @@
       :categories="categories"
       aria-modal="Hire Me Modal"
     />
-  </nav>
+  </div>
 </template>
 
 <script setup>
@@ -83,26 +90,10 @@ import CLocales from "@/components/core/CLocales.vue";
 const isOpen = ref(false);
 const modal = ref(false);
 const categories = [
-  {
-    id: 1,
-    value: "web",
-    name: "Web Application",
-  },
-  {
-    id: 2,
-    value: "mobile",
-    name: "Mobile Application",
-  },
-  {
-    id: 3,
-    value: "api",
-    name: "API Spring boot",
-  },
-  {
-    id: 4,
-    value: "microservice",
-    name: "Spring Microservice",
-  },
+  { id: 1, value: "web", name: "Web Application" },
+  { id: 2, value: "mobile", name: "Mobile Application" },
+  { id: 3, value: "api", name: "API Spring boot" },
+  { id: 4, value: "microservice", name: "Spring Microservice" },
 ];
 const switcherTheme = ref(localStorage.getItem("theme") || "light");
 onMounted(() => {
@@ -117,15 +108,26 @@ function updateTheme(theme) {
   switcherTheme.value = theme;
 }
 function showModal() {
-  if (modal.value) {
-    // Stop screen scrolling
-    modal.value = false;
-  } else {
-    modal.value = true;
-  }
+  modal.value = !modal.value;
 }
 onUpdated(() => {
   feather.replace();
+});
+
+const preloadImages = () => {
+  const images = [
+    require("@/assets/images/logo-light-new.svg"),
+    require("@/assets/images/logo-dark-new.svg"),
+  ];
+  images.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+};
+onMounted(() => {
+  preloadImages();
+  feather.replace();
+  switcherTheme.value = localStorage.getItem("theme") || "light";
 });
 </script>
 
@@ -134,5 +136,10 @@ onUpdated(() => {
   @apply text-indigo-700;
   @apply dark:text-indigo-400;
   @apply font-medium;
+}
+
+.transition-opacity {
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
 }
 </style>
