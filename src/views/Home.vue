@@ -1,7 +1,8 @@
 <template>
   <div class="container mx-auto min-h-screen">
+    <div class="min-h-[11vh] sm:min-h-[0vh]"></div>
     <!-- Banner -->
-    <AppBanner class="mt-6 sm:mt-0" />
+    <AppBanner />
 
     <!-- Projects -->
     <ProjectsGrid class="min-h-screen" />

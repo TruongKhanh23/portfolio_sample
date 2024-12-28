@@ -1,7 +1,7 @@
 <!-- Parent Component Update -->
 <template>
   <div
-    class="flex flex-col sm:flex-row gap-8 justify-center items-center min-h-screen py-6"
+    class="flex flex-col sm:flex-row gap-8 justify-start sm:justify-center items-center min-h-screen py-6"
   >
     <div class="w-full md:w-2/5 text-left space-y-4">
       <template v-if="!appBanner">
