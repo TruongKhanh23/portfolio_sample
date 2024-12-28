@@ -8,7 +8,11 @@
       >
         {{ $t("contact.form.name") }}
       </p>
-      <form @submit.prevent="submitForm" class="font-general-regular space-y-7">
+      <form
+        @submit.prevent="submitForm"
+        class="font-general-regular space-y-7"
+        id="contact-form"
+      >
         <template v-for="field in fieldsText" :key="field.id">
           <input
             v-if="field.inputType === 'string'"
@@ -120,8 +124,12 @@ const fieldsText = [
 // Chặn các ký tự không phải số khi gõ phím
 const restrictNonNumericInput = (event) => {
   const allowedKeys = [
-    "Backspace", "Tab", "ArrowLeft", "ArrowRight", // Phím điều hướng
-    "Delete", "Enter", // Xóa và xuống dòng
+    "Backspace",
+    "Tab",
+    "ArrowLeft",
+    "ArrowRight", // Phím điều hướng
+    "Delete",
+    "Enter", // Xóa và xuống dòng
   ];
   // Cho phép các phím số (0-9) và các phím điều hướng
   if (
@@ -140,7 +148,6 @@ const validatePhoneNumber = (fieldId) => {
   // Giới hạn số ký tự là 10
   formData[fieldId] = cleanedPhone.slice(0, 10);
 };
-
 </script>
 
 <style lang="scss" scoped></style>

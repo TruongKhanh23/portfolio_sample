@@ -47,7 +47,6 @@ export async function getProjects(locale = "vi") {
     const response = await fetch(fetchUrl, fetchOptions).then((response) =>
       response.json()
     );
-    console.log("Items: ", response.data.projectCollection.items);
 
     return response.data.projectCollection.items;
   } catch (error) {
