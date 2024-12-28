@@ -1,12 +1,13 @@
 <template>
   <div>
     <!-- About me -->
+    <div class="min-h-[15vh] sm:min-h-[20vh]"></div>
     <div class="container mx-auto min-h-[40vh]">
       <AboutMe :bios="aboutInformation.description" />
     </div>
 
     <!-- About counter -->
-    <AboutCounter 
+    <AboutCounter
       v-if="false"
       :githubStars="aboutInformation.githubStars"
       :positiveFeedback="aboutInformation.positiveFeedback"
@@ -17,7 +18,10 @@
 
     <!-- About counter -->
     <div class="container mx-auto">
-      <AboutClients :clients="aboutInformation.brandsWorkedWith" class="min-h-[40vh]"/>
+      <AboutClients
+        :clients="aboutInformation.brandsWorkedWith"
+        class="min-h-[40vh]"
+      />
     </div>
   </div>
 </template>
@@ -43,8 +47,7 @@ onUpdated(() => {
 
 const store = useStore();
 const currentLocale = useLocale().getCurrent();
-const aboutInformation = computed(() => store.state[currentLocale].aboutMe)
-
+const aboutInformation = computed(() => store.state[currentLocale].aboutMe);
 </script>
 
 <style scoped></style>

@@ -81,11 +81,8 @@ watch(aboutMe, async () => {
 
 watch(appBanner, async () => {
   if (!appBanner.value) return;
-  console.log("appBanner.value", appBanner.value);
 
   const { en, vi } = convertAppBannerObject(appBanner.value);
-  console.log("en", en);
-  console.log("vi", vi);
 
   store.dispatch("vi/storeVI", { appBanner: vi.homeBanner });
   store.dispatch("en/storeEN", { appBanner: en.homeBanner });

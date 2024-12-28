@@ -1,7 +1,7 @@
 <template>
   <div class="container mx-auto min-h-screen">
     <!-- Banner -->
-    <AppBanner />
+    <AppBanner class="mt-6 sm:mt-0" />
 
     <!-- Projects -->
     <ProjectsGrid class="min-h-screen" />
@@ -12,7 +12,7 @@
         to="/projects"
         class="flex items-center justify-center px-10 py-5 rounded-lg shadow-lg bg-indigo-500 hover:bg-indigo-600 focus:ring-4 focus:ring-indigo-900 text-white text-lg sm:text-xl font-semibold duration-300"
         :aria-label="$t('home.projectsGrid.moreProjects')"
-        style="min-width: 48px; min-height: 48px; line-height: 1.5;"
+        style="min-width: 48px; min-height: 48px; line-height: 1.5"
       >
         <Button :title="$t('home.projectsGrid.moreProjects')" />
       </router-link>

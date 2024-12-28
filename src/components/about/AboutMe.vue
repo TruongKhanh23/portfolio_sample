@@ -1,5 +1,5 @@
 <template>
-  <div class="block sm:flex sm:gap-10 mt-10 sm:mt-20">
+  <div class="flex flex-col sm:flex-row items-center justify-center space-x-4">
     <!-- About profile image -->
     <div class="w-full sm:w-1/4 mb-7 sm:mb-0">
       <template v-if="!bios.content && !author">
@@ -15,7 +15,7 @@
       <template v-if="!bios.content && !author">
         <SkeletonLoader :rows="16" />
       </template>
-      <template v-else>        
+      <template v-else>
         <RichTextRenderer :content="bios" />
       </template>
     </div>

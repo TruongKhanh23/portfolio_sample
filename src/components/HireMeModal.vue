@@ -54,7 +54,6 @@
                       <select
                         v-else-if="field.inputType === 'select'"
                         class="w-full px-5 py-2 border rounded-md text-md border-gray-200 dark:border-secondary-dark bg-secondary-light dark:bg-ternary-dark text-primary-dark dark:text-ternary-light"
-                        v-bind="field"
                         v-model="formData[field.id]"
                       >
                         <option value="" disabled>
