@@ -18,17 +18,24 @@
       </template>
       <template v-else>
         <div class="flex items-center">
-          <i
-            data-feather="tag"
-            class="w-4 h-4 text-ternary-dark dark:text-ternary-light"
-          ></i>
-          <span
-            class="font-general-medium ml-2 leading-none text-primary-dark dark:text-white"
+          <div>
+            <i
+              data-feather="tag"
+              class="w-4 h-4 text-ternary-dark dark:text-ternary-light"
+            ></i>
+          </div>
+
+          <div
+            class="flex flex-wrap gap-2 ml-2 text-primary-dark dark:text-white"
           >
             <template v-for="item in singleProjectHeader.tags" :key="item">
-              <span class="border rounded-md px-2 py-1 text-xs mr-2 bg-gray-50 dark:bg-white dark:text-black">{{ item }}</span>
-              </template>
-          </span>
+              <span
+                class="inline-block rounded-full bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-gray-200 px-3 py-1 text-sm font-medium shadow-sm hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+              >
+                {{ item }}
+              </span>
+            </template>
+          </div>
         </div>
       </template>
 
