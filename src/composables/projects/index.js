@@ -32,7 +32,7 @@ export async function getProjects(locale = "vi") {
   }
 }`;
 
-  const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${window.envConfig.CONTENTFUL_SPACE_ID}`;
+  const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${window.envConfig.CONTENTFUL_SPACE_ID}/environments/${window.envConfig.ENVIRONMENT}`;
 
   const fetchOptions = {
     method: "POST",
@@ -47,6 +47,8 @@ export async function getProjects(locale = "vi") {
     const response = await fetch(fetchUrl, fetchOptions).then((response) =>
       response.json()
     );
+    console.log("Items: ", response.data.projectCollection.items);
+
     return response.data.projectCollection.items;
   } catch (error) {
     console.error("Error fetching data from Contentful:", error);
@@ -88,7 +90,7 @@ export async function getProjectById(id, locale = "vi") {
     }
   }`;
 
-  const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${window.envConfig.CONTENTFUL_SPACE_ID}`;
+  const fetchUrl = `https://graphql.contentful.com/content/v1/spaces/${window.envConfig.CONTENTFUL_SPACE_ID}/environments/${window.envConfig.ENVIRONMENT}`;
 
   const fetchOptions = {
     method: "POST",
@@ -105,7 +107,7 @@ export async function getProjectById(id, locale = "vi") {
     );
     const items = response.data.projectCollection.items;
     if (items.length > 0) {
-      return convertSingleProjectStructure(items[0])
+      return convertSingleProjectStructure(items[0]);
     } else {
       throw new Error(`Project with id "${id}" not found`);
     }
@@ -117,29 +119,27 @@ export async function getProjectById(id, locale = "vi") {
 
 export function convertSingleProjectStructure(project) {
   const convertProject = {
-      id: project.sys.id,
-      header: {
-        title: project.title,
-        date: project.date,
-        tags: project.tags,
-      },
-      category: project.category,
-      img: project.thumbnail,
-      projectImages: project.projectImagesCollection.items,
-      projectInfo: {
-        companyInfos: project.customerInfomations.json.content,
-        objectivesDetails: project.objectivesDetails.json.content,
-        technologies: project.technologies,
-        projectDetails: project.projectDetails.json.content,
-        socialNetwork: project.socialNetwork
-      },
-    };
-    console.log("convertProjectStructure", convertProject);
-    
+    id: project.sys.id,
+    header: {
+      title: project.title,
+      date: project.date,
+      tags: project.tags,
+    },
+    category: project.category,
+    img: project.thumbnail,
+    projectImages: project.projectImagesCollection.items,
+    projectInfo: {
+      companyInfos: project.customerInfomations.json.content,
+      objectivesDetails: project.objectivesDetails.json.content,
+      technologies: project.technologies,
+      projectDetails: project.projectDetails.json.content,
+      socialNetwork: project.socialNetwork,
+    },
+  };
+  console.log("convertProjectStructure", convertProject);
+
   return convertProject;
 }
-
-
 
 export function convertProjectStructure(projects) {
   const convertProjects = [];
@@ -159,7 +159,7 @@ export function convertProjectStructure(projects) {
         objectivesDetails: project.objectivesDetails.json.content,
         technologies: project.technologies,
         projectDetails: project.projectDetails.json.content,
-        socialNetwork: project.socialNetwork
+        socialNetwork: project.socialNetwork,
       },
     });
   }
