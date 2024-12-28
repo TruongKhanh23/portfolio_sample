@@ -1,7 +1,7 @@
 <!-- Parent Component Update -->
 <template>
   <div
-    class="flex flex-col sm:flex-row gap-8 justify-center items-center min-h-[87vh] py-6"
+    class="flex flex-col sm:flex-row gap-8 justify-center items-center min-h-screen py-6"
   >
     <div class="w-full md:w-2/5 text-left space-y-4">
       <template v-if="!appBanner">
@@ -19,7 +19,10 @@
           {{ appBanner.title }}
         </h1>
 
-        <RichTextRenderer class="text-center sm:text-left" :content="appBanner.subTitle" />
+        <RichTextRenderer
+          class="text-center sm:text-left"
+          :content="appBanner.subTitle"
+        />
       </template>
       <template v-if="!appBanner">
         <SkeletonLoader

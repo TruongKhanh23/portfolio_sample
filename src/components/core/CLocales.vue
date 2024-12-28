@@ -15,7 +15,7 @@
 
       <span
         v-if="i !== locales.list.length - 1"
-        class="pointer-events-none text-c0-600"
+        class="pointer-events-none text-c0-600 dark:text-white"
         >|</span
       >
     </template>
@@ -34,6 +34,8 @@ const props = defineProps({
 const locales = useLocale();
 const textColors = ref({
   activeText: props.footer ? "text-cWhite" : "text-indigo-500",
-  inActiveText: props.footer ? "text-c1-200" : "text-c0-600",
+  inActiveText: props.footer
+    ? "dark:text-white text-c1-200"
+    : "dark:text-white text-c0-600",
 });
 </script>

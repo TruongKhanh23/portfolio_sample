@@ -1,6 +1,6 @@
 <template>
   <!-- Projects grid -->
-  <section v-if="projects" class="pt-10 sm:pt-10">
+  <section v-if="projects">
     <!-- Projects grid title -->
     <div class="text-center">
       <h2
@@ -57,7 +57,6 @@
     </div>
   </section>
 </template>
-
 
 <script setup>
 import { useStore } from "vuex";

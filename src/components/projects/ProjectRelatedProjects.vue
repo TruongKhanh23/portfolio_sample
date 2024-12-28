@@ -1,20 +1,15 @@
 <template>
   <div
-    class="mt-10 pt-10 sm:pt-14 sm:mt-20 border-t-2 border-primary-light dark:border-secondary-dark"
+    class="mt-10 pt-10 sm:pt-14 sm:mt-20 border-t-2 border-primary-light dark:border-secondary-dark text-primary-dark dark:text-primary-light"
   >
-    <p
-      class="font-general-regular text-primary-dark dark:text-primary-light text-3xl font-bold mb-10 sm:mb-14 text-left"
-    >
+    <p class="font-general-regular text-3xl font-bold mb-10 sm:mb-14 text-left">
       {{ $t("projects.projectInfo.otherProjects") }}
     </p>
-    <Slider
-      :list="otherProjects"
-      :attrs="{ perPage: perPage, arrows: true }"
-    >
+    <Slider :list="otherProjects" :attrs="{ perPage: perPage, arrows: true }">
       <template #content="{ data }">
         <a
           :href="`/projects/single-project?id=${data.id}`"
-          class="flex flex-col items-center justify-center text-center border shadow-lg space-y-4 rounded-lg pb-4"
+          class="flex flex-col items-center justify-center text-center bg-secondary-light dark:bg-ternary-dark border border-primary-light dark:border-secondary-dark shadow-lg space-y-4 rounded-lg pb-4"
         >
           <LazyImage
             :src="data.img.url"
@@ -52,10 +47,10 @@ const perPage = ref(4);
 const checkIsMobile = () => {
   if (window.innerWidth <= 768) {
     isMobile.value = true;
-    perPage.value = 1;  // Mobile: chỉ hiển thị 1 project mỗi lần
+    perPage.value = 1; // Mobile: chỉ hiển thị 1 project mỗi lần
   } else {
     isMobile.value = false;
-    perPage.value = 4;  // Không phải mobile: hiển thị 4 project mỗi lần
+    perPage.value = 4; // Không phải mobile: hiển thị 4 project mỗi lần
   }
 };
 
@@ -71,3 +66,9 @@ onUnmounted(() => {
   window.removeEventListener("resize", checkIsMobile);
 });
 </script>
+
+<style>
+.splide__pagination {
+  bottom: -2.5em !important;
+}
+</style>

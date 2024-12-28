@@ -1,10 +1,14 @@
 <template>
-  <div class="container mx-auto mt-10 sm:mt-20">
+  <div class="container mx-auto">
+    <div class="min-h-[10vh]"></div>
     <!-- Project header -->
     <ProjectHeader :singleProjectHeader="data.header || {}" />
 
     <!-- Project gallery -->
-    <ProjectGallery class="min-h-[350px]" :projectImages="data.projectImages || []" />
+    <ProjectGallery
+      class="min-h-[350px]"
+      :projectImages="data.projectImages || []"
+    />
 
     <!-- Project information -->
     <ProjectInfo :projectInfo="data.projectInfo || {}" />
@@ -47,7 +51,7 @@ const loadingModal = modal.create({
 });
 
 const id = computed(() => {
-  return route.query.id
+  return route.query.id;
 });
 if (!id.value) {
   alert("Project ID is missing in the URL.");
