@@ -1,4 +1,1 @@
-export default {
-  vi: {},
-  en: {},
-};
+export default {};
