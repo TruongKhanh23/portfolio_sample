@@ -1,7 +1,5 @@
 <template>
-  <label :for="select" class="sr-only">
-    {{ $t("home.projectsFilter.filterLabel") }}
-  </label>
+  <label :for="select" class="sr-only"></label>
   <select
     @change="$emit('filter', $event.target.value)"
     :name="select"
