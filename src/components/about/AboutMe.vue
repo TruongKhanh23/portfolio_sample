@@ -1,7 +1,7 @@
 <template>
   <div class="flex flex-col sm:flex-row items-center justify-center space-x-4">
     <!-- About profile image -->
-    <div class="w-full sm:w-1/4 mb-7 sm:mb-0">
+    <div class="w-full sm:w-1/4 mb-7 sm:mb-0 min-h-[344px]">
       <template v-if="!bios.content && !author">
         <SkeletonLoader :rows="16" />
       </template>
