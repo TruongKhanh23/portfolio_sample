@@ -15,13 +15,20 @@
             ></i>
           </div>
           <a
-            href="#"
+            v-if="contact.icon === 'mail'"
+            @click.prevent="handleEmailClick(contact.name)"
+            class="mb-4 text-ternary-dark dark:text-ternary-light hover:underline cursor-pointer"
+            aria-label="Email"
+          >
+            {{ contact.name }}
+          </a>
+          <a
+            v-else
+            :href="getHref(contact)"
             class="mb-4 text-ternary-dark dark:text-ternary-light"
-            :class="
-              contact.icon === 'mail' || contact.icon === 'phone'
-                ? 'hover:underline cursor-pointer'
-                : ''
-            "
+            :class="{
+              'hover:underline cursor-pointer': contact.icon === 'phone',
+            }"
             aria-label="Website and Phone"
           >
             {{ contact.name }}
@@ -38,7 +45,7 @@ import { computed, defineProps } from "vue";
 const props = defineProps({
   contact: {
     type: Object,
-    default: () => {},
+    default: () => ({}),
   },
 });
 
@@ -62,6 +69,32 @@ const contacts = computed(() => {
     },
   ];
 });
+
+// Hàm để tạo href phù hợp với loại liên kết
+const getHref = (contact) => {
+  if (contact.icon === "phone") {
+    return `tel:${contact.name}`;
+  } else {
+    return "#";
+  }
+};
+
+// Hàm xử lý click vào email
+const handleEmailClick = (email) => {
+  if (isMobileDevice()) {
+    // Trên thiết bị di động, mở ứng dụng Gmail
+    window.location.href = `mailto:${email}`;
+  } else {
+    // Trên máy tính, mở Gmail trong tab mới
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${email}`;
+    window.open(gmailUrl, "_blank");
+  }
+};
+
+// Hàm nhận diện thiết bị di động
+const isMobileDevice = () => {
+  return /Mobi|Android/i.test(navigator.userAgent);
+};
 </script>
 
 <style lang="scss" scoped></style>

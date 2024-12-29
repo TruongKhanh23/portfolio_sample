@@ -19,7 +19,7 @@ export default {
         link: "Lengchhinghor_CV_9th.pdf",
         ariaLabel: "Download Resume",
       },
-      freeConsultant: "Tư vấn miễn phí"
+      freeConsultant: "Tư vấn miễn phí",
     },
     projectsGrid: {
       title: "Dự án của tôi",
@@ -41,6 +41,7 @@ export default {
       email: "Email",
       subject: "Tiêu đề",
       description: "Mô tả",
+      projectCategory: "Loại dự án",
     },
     sendRequest: "Gửi yêu cầu",
     close: "Đóng",
@@ -90,7 +91,7 @@ export default {
       success: "Email đã được gửi thành công!",
       error: "Có lỗi xảy ra, xin lỗi vì sự bất tiện này.",
       progress: "Email đang được gửi đi...",
-    }
+    },
   },
   projects: {
     projectInfo: {
@@ -104,5 +105,5 @@ export default {
   },
   core: {
     loading: "Đang tải...",
-  }
+  },
 };

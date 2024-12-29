@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto">
-    <div class="min-h-[10vh]"></div>
+    <div class="min-h-[15vh]"></div>
     <!-- Project header -->
     <ProjectHeader :singleProjectHeader="data.header || {}" />
 

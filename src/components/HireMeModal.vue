@@ -19,7 +19,7 @@
                 class="flex justify-end p-5 border-b border-ternary-light dark:border-ternary-dark"
               >
                 <button
-                  @click="showModal()"
+                  @click="$emit('close')"
                   class="px-4 text-primary-dark dark:text-primary-light"
                 >
                   <i data-feather="x"></i>
@@ -71,18 +71,12 @@
                   </template>
 
                   <!-- Buttons -->
-                  <div class="flex justify-between py-5 mt-2">
+                  <div class="flex justify-center py-5 mt-2">
                     <Button
                       :title="$t('hireMeModal.sendRequest')"
                       class="px-4 sm:px-6 py-2 sm:py-2.5 text-white bg-indigo-500 hover:bg-ternary-dark rounded-md focus:ring-1 focus:ring-indigo-900 duration-500"
                       type="submit"
                       :aria-label="$t('hireMeModal.sendRequest')"
-                    />
-                    <Button
-                      :title="$t('hireMeModal.close')"
-                      class="px-4 sm:px-6 py-2 sm:py-2.5 text-white bg-gray-600 hover:bg-indigo-600 rounded-md focus:ring-1 focus:ring-indigo-900 duration-500"
-                      @click="showModal()"
-                      :aria-label="$t('hireMeModal.close')"
                     />
                   </div>
                 </form>
@@ -98,7 +92,7 @@
 <script setup>
 import feather from "feather-icons";
 import Button from "./reusable/Button.vue";
-import { defineProps, onMounted, onUpdated } from "vue";
+import { defineProps, onMounted, onUpdated, defineEmits } from "vue";
 import { useI18n } from "vue-i18n";
 import useEmail from "@/composables/useEmail";
 
@@ -153,7 +147,7 @@ const fields = [
     label: "Project Category",
     name: "Project Category",
     required: "",
-    placeholder: "Project Category",
+    placeholder: t("hireMeModal.fields.projectCategory"),
     ariaLabel: "Project Category",
     inputType: "select",
     options: props.categories,
@@ -168,6 +162,8 @@ const fields = [
     inputType: "textarea",
   },
 ];
+
+defineEmits(["close"]);
 
 onMounted(() => {
   feather.replace();

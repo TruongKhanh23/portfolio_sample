@@ -19,7 +19,7 @@ export default {
         link: "Lengchhinghor_CV_9th.pdf",
         ariaLabel: "Download Resume",
       },
-      freeConsultant: "Free consultation"
+      freeConsultant: "Free consultation",
     },
     projectsGrid: {
       title: "Projects Portfolio",
@@ -41,6 +41,7 @@ export default {
       email: "Your email",
       subject: "Subject",
       description: "Description",
+      projectCategory: "Project Category",
     },
     sendRequest: "Send Request",
     close: "Close",
@@ -90,7 +91,7 @@ export default {
       success: "Email sent successfully!",
       error: "Failed to send email. Please try again later.",
       progress: "Email is being sent...",
-    }
+    },
   },
   projects: {
     projectInfo: {
