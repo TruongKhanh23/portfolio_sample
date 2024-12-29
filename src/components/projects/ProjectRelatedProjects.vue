@@ -71,4 +71,7 @@ onUnmounted(() => {
 .splide__pagination {
   bottom: -2.5em !important;
 }
+.splide__pagination__page.is-active {
+  background: #6366f1 !important;
+}
 </style>

@@ -37,14 +37,14 @@
                       <!-- Input Fields -->
                       <input
                         v-if="field.inputType === 'string'"
-                        class="w-full px-5 py-2 border rounded-md shadow-sm text-md border-gray-300 dark:border-primary-dark bg-ternary-light dark:bg-ternary-dark text-primary-dark dark:text-secondary-light"
+                        class="w-full px-5 py-2 border rounded-md shadow-sm text-md border-gray-300 dark:border-primary-dark dark:bg-ternary-dark text-primary-dark dark:text-secondary-light"
                         v-bind="field"
                         v-model="formData[field.id]"
                       />
                       <!-- Textarea -->
                       <textarea
                         v-else-if="field.inputType === 'textarea'"
-                        class="w-full px-5 py-2 border rounded-md shadow-sm text-md border-gray-300 dark:border-primary-dark bg-ternary-light dark:bg-ternary-dark text-primary-dark dark:text-secondary-light"
+                        class="w-full px-5 py-2 border rounded-md shadow-sm text-md border-gray-300 dark:border-primary-dark dark:bg-ternary-dark text-primary-dark dark:text-secondary-light"
                         cols="14"
                         rows="6"
                         v-bind="field"
@@ -71,10 +71,10 @@
                   </template>
 
                   <!-- Buttons -->
-                  <div class="flex justify-center py-5 mt-2">
+                  <div class="flex justify-center">
                     <Button
                       :title="$t('hireMeModal.sendRequest')"
-                      class="px-4 sm:px-6 py-2 sm:py-2.5 text-white bg-indigo-500 hover:bg-ternary-dark rounded-md focus:ring-1 focus:ring-indigo-900 duration-500"
+                      class="mt-4 mb-6 p-4 text-white bg-indigo-500 hover:bg-ternary-dark rounded-md focus:ring-1 focus:ring-indigo-900 duration-500"
                       type="submit"
                       :aria-label="$t('hireMeModal.sendRequest')"
                     />
