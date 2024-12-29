@@ -2,7 +2,7 @@
   <div>
     <!-- About me -->
     <div class="min-h-[15vh] sm:min-h-[20vh]"></div>
-    <div class="container mx-auto min-h-[40vh]">
+    <div class="container mx-auto min-h-[30vh]">
       <AboutMe :bios="aboutInformation.description" />
     </div>
 
