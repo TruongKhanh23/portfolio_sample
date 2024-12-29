@@ -6,6 +6,7 @@ export async function getProjects(locale = "vi") {
       title
     date
     category
+    demo
     tags
     thumbnail {
       fileName
@@ -123,6 +124,7 @@ export function convertSingleProjectStructure(project) {
       title: project.title,
       date: project.date,
       tags: project.tags,
+      demo: project.demo,
     },
     category: project.category,
     img: project.thumbnail,
@@ -149,6 +151,7 @@ export function convertProjectStructure(projects) {
         title: project.title,
         date: project.date,
         tags: project.tags,
+        demo: project.demo,
       },
       category: project.category,
       img: project.thumbnail,
