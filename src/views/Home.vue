@@ -1,6 +1,6 @@
 <template>
   <div class="container mx-auto min-h-screen">
-    <div class="min-h-[11vh] sm:min-h-[0vh]"></div>
+    <div class="min-h-[13vh] sm:min-h-[0vh]"></div>
     <!-- Banner -->
     <AppBanner />
 
