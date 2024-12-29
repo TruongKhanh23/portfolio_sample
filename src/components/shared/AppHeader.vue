@@ -54,7 +54,7 @@
       >
         <!-- Hire me button -->
         <div class="hidden sm:block">
-          <HireMeButton @action:showModal="showModal" />
+          <HireMeButton />
         </div>
 
         <!-- Theme switcher large screen -->
@@ -66,20 +66,11 @@
         <CLocales />
       </div>
     </div>
-
-    <!-- Hire me modal -->
-    <HireMeModal
-      :showModal="showModal"
-      :modal="modal"
-      :categories="categories"
-      aria-modal="Hire Me Modal"
-    />
   </div>
 </template>
 
 <script setup>
 import ThemeSwitcher from "../ThemeSwitcher";
-import HireMeModal from "../HireMeModal.vue";
 import feather from "feather-icons";
 import AppHeaderLinks from "./AppHeaderLinks.vue";
 import { ref, onMounted, onUpdated } from "vue";
@@ -89,12 +80,7 @@ import CLocales from "@/components/core/CLocales.vue";
 
 const isOpen = ref(false);
 const modal = ref(false);
-const categories = [
-  { id: 1, value: "web", name: "Web Application" },
-  { id: 2, value: "mobile", name: "Mobile Application" },
-  { id: 3, value: "api", name: "API Spring boot" },
-  { id: 4, value: "microservice", name: "Spring Microservice" },
-];
+
 const switcherTheme = ref(localStorage.getItem("theme") || "light");
 onMounted(() => {
   feather.replace();
