@@ -5,7 +5,7 @@
     >
       {{ $t("about.clients.title") }}
     </p>
-    <div class="mt-10 sm:mt-14">
+    <div class="mt-8">
       <template v-if="!clients[0].title">
         <SkeletonLoader :rows="16" />
       </template>

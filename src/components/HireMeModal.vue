@@ -147,7 +147,7 @@ const fields = [
     label: "Project Category",
     name: "Project Category",
     required: "",
-    placeholder: "Project Category",
+    placeholder: t("hireMeModal.fields.projectCategory"),
     ariaLabel: "Project Category",
     inputType: "select",
     options: props.categories,

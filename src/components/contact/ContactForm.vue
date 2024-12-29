@@ -10,7 +10,7 @@
       </p>
       <form
         @submit.prevent="submitForm"
-        class="font-general-regular space-y-7"
+        class="font-general-regular space-y-4"
         id="contact-form"
       >
         <template v-for="field in fieldsText" :key="field.id">
@@ -45,7 +45,7 @@
             :id="field.id"
             :name="field.name"
             cols="14"
-            rows="6"
+            rows="4"
             :required="field.required"
             :placeholder="field.placeholder"
             :aria-label="field.ariaLabel"
