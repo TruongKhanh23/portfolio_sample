@@ -29,7 +29,7 @@ export default {
         },
         renderNode: {
           [BLOCKS.PARAGRAPH]: (node) => {
-            let paragraphHtml = `<p class="mb-4 text-base leading-relaxed dark:text-gray-300">`;
+            let paragraphHtml = `<p class="mb-4 text-base leading-relaxed dark:text-gray-300 text-justify">`;
 
             node.content.forEach((childNode) => {
               if (childNode.nodeType === "hyperlink") {
@@ -94,9 +94,13 @@ export default {
               node.content
             )}</a>`,
           [BLOCKS.UL_LIST]: (node, next) =>
-            `<ul class="list-disc pl-6 dark:text-gray-300">${next(node.content)}</ul>`,
+            `<ul class="list-disc pl-6 dark:text-gray-300">${next(
+              node.content
+            )}</ul>`,
           [BLOCKS.OL_LIST]: (node, next) =>
-            `<ol class="list-decimal pl-6 dark:text-gray-300">${next(node.content)}</ol>`,
+            `<ol class="list-decimal pl-6 dark:text-gray-300">${next(
+              node.content
+            )}</ol>`,
           [BLOCKS.LIST_ITEM]: (node, next) =>
             `<li class="mb-1 dark:text-gray-300">${next(node.content)}</li>`,
           [BLOCKS.QUOTE]: (node, next) =>
