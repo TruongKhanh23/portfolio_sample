@@ -4,6 +4,7 @@ import router from "./router";
 import "./assets/css/app.css";
 import BackToTop from "vue-backtotop";
 import { makeGetComponentVariants } from "@/components/base/makeGetComponentVariants";
+import VueGtag from "vue-gtag-next";
 
 import i18n from "./setups/i18n";
 import variants from "./setups/variants";
@@ -28,6 +29,11 @@ initializeApp().then(async () => {
   app.use(i18nInstance);
   app.use(VueSplide);
   app.use(createMetaManager());
+  app.use(VueGtag, {
+    property: {
+      id: "G-WFBSJRSBT2", // Thay bằng ID đo lường của bạn
+    },
+  });
 
   globalComponentsRegistration(app);
 
