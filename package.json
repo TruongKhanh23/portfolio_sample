@@ -26,6 +26,7 @@
     "postcss-preset-env": "^7.6.0",
     "vue": "^3.2.35",
     "vue-backtotop": "^1.6.1",
+    "vue-gtag-next": "^1.14.0",
     "vue-i18n": "^9.2.2",
     "vue-meta": "^3.0.0-alpha.2",
     "vue-pdf-embed": "^1.2.1",
