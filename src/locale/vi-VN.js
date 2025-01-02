@@ -4,6 +4,7 @@ export default {
     about: "Tôi là ai",
     contact: "Liên hệ",
     hireMe: "Thuê tôi",
+    tool: "Công cụ",
   },
   home: {
     banner: {

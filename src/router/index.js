@@ -67,6 +67,14 @@ const routes = [
       title: "Trương Nguyễn Khánh - Contact",
     },
   },
+  {
+    path: "/expense-management-plan",
+    name: "ExpenseManagementPlan",
+    component: () => import("@/views/ExpenseManagementPlan.vue"),
+    meta: {
+      title: "Chhinghor - Expense Management Plan",
+    },
+  },
 ];
 
 const router = createRouter({

@@ -4,6 +4,7 @@ export default {
     about: "About Me",
     contact: "Contact",
     hireMe: "Hire Me",
+    tool: "Tool",
   },
   home: {
     banner: {
